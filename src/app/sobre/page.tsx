@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/sobre" },
 };
 
+const trajetoria = [
+  "Especialização em Gestão Estratégica em NR-1.",
+  "Mais de 12 anos de atuação em desenvolvimento humano.",
+  "Mais de mil pessoas acompanhadas em processos de clareza, decisão e mudança.",
+  "Vivência em gestão dentro de grandes empresas, com leitura prática de ambientes corporativos.",
+];
+
 export default function SobrePage() {
   return (
     <WorldShell nav={[{ label: "Início", href: "/" }]} world="neutral">
@@ -27,15 +34,26 @@ export default function SobrePage() {
           <p>
             Hoje esse trabalho vive em duas frentes. Na primeira, acompanho
             mulheres em jornadas individuais de reencontro: clareza, direção e
-            confiança para destravar a própria vida. Na segunda, ajudo
-            empresas a construírem ambientes mais saudáveis e produtivos, com
-            programas de bem-estar organizacional e adequação à NR-1.
+            confiança para destravar a própria vida. Na segunda, ajudo empresas
+            a construírem ambientes mais saudáveis e produtivos, com programas
+            de bem-estar organizacional e adequação à NR-1.
           </p>
           <p>
             Os dois mundos têm portas separadas, mas a essência é a mesma:
             pessoas funcionam melhor quando são vistas por inteiro.
           </p>
         </div>
+
+        <section className="mt-12 rounded-2xl border border-line bg-surface p-7">
+          <h2 className="text-2xl font-medium text-fg">
+            Formação e trajetória
+          </h2>
+          <ul className="mt-5 flex list-disc flex-col gap-3 pl-5 text-base leading-7 text-muted">
+            {trajetoria.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
       </section>
     </WorldShell>
   );

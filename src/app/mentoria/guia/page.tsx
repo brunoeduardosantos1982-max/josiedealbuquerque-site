@@ -72,7 +72,7 @@ export default function GuiaPage() {
         </a>
         <p className="mx-auto mt-8 max-w-xl text-[11px] leading-5 text-muted opacity-80">
           Este conteúdo é educacional e de desenvolvimento pessoal. Não
-          constitui diagnóstico, tratamento psicológico ou médico, nem
+          constitui diagnóstico, conduta psicológica ou médica, nem
           substitui acompanhamento profissional de saúde.
         </p>
       </section>

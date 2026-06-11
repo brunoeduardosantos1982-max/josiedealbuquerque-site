@@ -336,7 +336,7 @@ export function QuizClient() {
       </a>
       <p className="mt-6 text-center text-[11px] leading-5 text-muted opacity-80">
         Este conteúdo é educacional e de desenvolvimento pessoal. Não
-        constitui diagnóstico, tratamento psicológico ou médico, nem
+        constitui diagnóstico, conduta psicológica ou médica, nem
         substitui acompanhamento profissional de saúde. Se você está
         enfrentando sofrimento intenso, procure um profissional de saúde
         mental.
