@@ -26,18 +26,18 @@ const riscos = [
 const etapas = [
   {
     numero: "01",
-    title: "Diagnóstico",
-    body: "Mapeamento dos riscos psicossociais e do clima da empresa, com leitura técnica e plano de prioridades.",
+    title: "Diagnóstico Estratégico Organizacional",
+    body: "Realizamos um mapeamento completo dos riscos psicossociais, da segurança psicológica, do clima organizacional e dos fatores que impactam a saúde, o engajamento e a produtividade das equipes, identificando prioridades e oportunidades de melhoria.",
   },
   {
     numero: "02",
-    title: "Programa de bem-estar",
-    body: "Ações estruturadas de desenvolvimento humano e saúde organizacional, desenhadas para a realidade da empresa.",
+    title: "Programa de Bem-Estar e Desenvolvimento Humano",
+    body: "Desenvolvemos soluções personalizadas para fortalecer a saúde mental, o equilíbrio emocional, a qualidade das relações, a liderança e o bem-estar organizacional, promovendo ambientes mais saudáveis, engajados e sustentáveis.",
   },
   {
     numero: "03",
-    title: "Adequação à NR-1",
-    body: "Documentação e gestão contínua dos riscos psicossociais, em conformidade com a norma.",
+    title: "Gestão Estratégica e Adequação à NR-1",
+    body: "Transformamos as exigências da NR-1 em ações práticas de prevenção, monitoramento e melhoria contínua, integrando a gestão dos riscos psicossociais à estratégia da empresa e fortalecendo sua cultura organizacional, transformando uma exigência legal em uma vantagem competitiva.",
   },
 ];
 
@@ -47,13 +47,15 @@ export default function EmpresasPage() {
       <section className="mx-auto w-full max-w-4xl px-5 pb-12 pt-16 sm:px-8 sm:pt-24">
         <p className="eyebrow">para empresas</p>
         <h1 className="mt-5 max-w-3xl text-4xl font-medium leading-[1.12] sm:text-5xl">
-          Sua empresa está preparada para as exigências da NR-1 em saúde
-          mental?
+          Adequação à NR-1 não é apenas sobre evitar passivos trabalhistas. É
+          sobre construir empresas mais fortes, humanas e preparadas para o
+          futuro.
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-          A norma agora obriga a gestão de riscos psicossociais no trabalho.
-          Adequar-se é lei, e é também o que reduz afastamentos, turnover e
-          queda de produtividade.
+          Transformamos a adequação à NR-1 em uma estratégia de crescimento
+          organizacional, promovendo saúde mental, segurança psicológica e
+          ambientes de trabalho que impulsionam pessoas, resultados e
+          sustentabilidade empresarial.
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <Link className="btn-brand" href="/empresas/contato">
@@ -96,12 +98,23 @@ export default function EmpresasPage() {
             </div>
           ))}
         </div>
-        <div className="mt-10 rounded-2xl border border-line bg-surface p-7">
+        <blockquote className="mt-10 rounded-2xl border border-petroleo/20 bg-petroleo/5 p-7">
+          <p className="text-base leading-7 text-fg italic">
+            &ldquo;Mais do que adequar empresas à NR-1, ajudamos organizações a
+            construir ambientes emocionalmente saudáveis, produtivos e
+            preparados para os desafios do futuro do trabalho.&rdquo;
+          </p>
+        </blockquote>
+
+        <div className="mt-6 rounded-2xl border border-line bg-surface p-7">
           <p className="text-sm leading-7 text-muted">
             <strong className="text-fg">Quem conduz:</strong> Josie de
-            Albuquerque, especialização em Gestão Estratégica em NR-1,
-            experiência em gestão administrativa e mais de 12 anos em
-            desenvolvimento humano, com atuação dentro de grandes empresas.
+            Albuquerque, Administradora, especialista em Desenvolvimento Humano
+            e com especialização em Gestão Estratégica em NR-1 e Bem-Estar
+            Organizacional. Possui sólida experiência em gestão administrativa e
+            mais de 12 anos atuando no desenvolvimento de pessoas, incluindo
+            vivência em grandes empresas e projetos voltados à saúde integrativa,
+            comportamento e desempenho humano.
           </p>
         </div>
         <div className="mt-8">

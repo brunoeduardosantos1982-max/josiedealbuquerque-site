@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 };
 
 const sintomas = [
-  "Acorda no piloto automático e os dias se parecem demais",
-  "Dá conta de todo mundo, menos de você",
-  "Não sabe mais responder o que você quer da vida",
-  "Vê oportunidades passarem porque hesitou",
+  "Acorda no piloto automático e os dias parecem se repetir",
+  "Sabe trazer soluções para todo mundo, menos para você",
+  "Não tem clareza sobre o que quer da vida",
+  "Vê oportunidades passarem porque hesita ou procrastina",
 ];
 
 export default function MentoriaPage() {
@@ -21,12 +21,13 @@ export default function MentoriaPage() {
       <section className="mx-auto w-full max-w-3xl px-5 pb-12 pt-16 text-center sm:px-8 sm:pt-24">
         <p className="eyebrow">para você</p>
         <h1 className="mt-5 text-4xl font-medium leading-[1.12] sm:text-5xl">
-          Por fora, está tudo em ordem. Por dentro, algo travou.
+          Você não está perdida. Está em transição.
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted">
-          Você montou uma vida que, no papel, deveria te deixar bem. Mas a
-          sensação de estar travada não vai embora. O primeiro passo é dar
-          nome a isso: um diagnóstico honesto, de 2 minutos.
+          Quando o antigo já não faz sentido e o novo ainda não se revelou por
+          completo, você está no LIMIAR. O primeiro passo é dar um nome a isso.
+          Faça este diagnóstico, de apenas 2 minutos, e reconheça o que te
+          trava no momento.
         </p>
         <div className="mt-9">
           <Link className="btn-brand" href="/mentoria/quiz">
@@ -55,7 +56,7 @@ export default function MentoriaPage() {
           </ul>
           <p className="mt-8 text-center text-sm leading-6 text-muted">
             Cada uma dessas frases aponta para um bloqueio diferente, e o
-            caminho para sair de cada um também é diferente. Por isso a
+            caminho para superar cada um também é diferente. Por isso a
             jornada começa pelo diagnóstico.
           </p>
           <div className="mt-7 text-center">
@@ -63,6 +64,19 @@ export default function MentoriaPage() {
               Fazer o diagnóstico agora
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-line">
+        <div className="mx-auto w-full max-w-3xl px-5 py-14 text-center sm:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-terracota">
+            O LIMIAR
+          </p>
+          <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-fg">
+            Um espaço de restauração, regulação, regeneração e integração para
+            quem está pronta para atravessar para a próxima fase da própria
+            vida.
+          </p>
         </div>
       </section>
     </>

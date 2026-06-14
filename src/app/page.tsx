@@ -43,11 +43,12 @@ export default function Home() {
             Para você
           </p>
           <h2 className="mt-3 text-2xl font-medium text-tinta">
-            Uma jornada pessoal de reencontro
+            Quando o antigo já não faz sentido e o novo ainda não se revelou
           </h2>
           <p className="mt-3 text-sm leading-6 text-muted">
-            Autoconhecimento e direção para mulheres que sentem que a vida
-            travou, começando por um diagnóstico de 2 minutos.
+            Esse é o LIMIAR para uma nova realidade. Faça seu diagnóstico
+            gratuito em 2 minutos e saiba onde você está estagnada, para dar
+            início à sua transição pessoal.
           </p>
           <span className="mt-5 inline-block text-sm font-semibold text-terracota group-hover:underline">
             Descobrir a mentoria →
