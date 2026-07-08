@@ -11,6 +11,7 @@ export default function EmpresasLayout({
       nav={[
         { label: "Soluções", href: "/empresas" },
         { label: "NR-1", href: "/empresas/nr1" },
+        { label: "Blog", href: "/empresas/blog" },
       ]}
       world="empresas"
     >
