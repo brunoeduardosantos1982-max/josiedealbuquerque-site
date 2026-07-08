@@ -110,3 +110,51 @@ h3 {
   color: var(--brand);
   font-weight: 600;
 }
+
+/* ===== Artigo do blog (HTML gerado do markdown) ===== */
+.artigo {
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--fg);
+  line-height: 1.75;
+}
+.artigo .lead {
+  font-family: var(--font-lora), Georgia, serif;
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--brand);
+  margin-bottom: 28px;
+}
+.artigo p {
+  font-size: 17px;
+  color: var(--fg);
+  margin-bottom: 20px;
+}
+.artigo h2 {
+  font-family: var(--font-lora), Georgia, serif;
+  font-size: 26px;
+  color: var(--brand);
+  margin: 36px 0 14px;
+}
+.artigo ul,
+.artigo ol {
+  margin: 0 0 22px 22px;
+  font-size: 17px;
+  color: var(--fg);
+}
+.artigo li {
+  margin-bottom: 8px;
+}
+.artigo strong {
+  color: var(--brand);
+}
+.artigo .note {
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  padding: 18px 22px;
+  margin: 30px 0;
+  font-size: 16px;
+  color: var(--brand);
+}
+
