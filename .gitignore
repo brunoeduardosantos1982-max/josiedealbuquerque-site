@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# midia bruta (fonte de edicao, nao vai para o repo nem para o build da Vercel)
+# Os .mov da palestra NR-1 somam 843 MB. O que o site serve sao os derivados
+# leves em public/video/, gerados por ffmpeg (ver AGENTS.md).
+/materiais-src/videos/
+/materiais-src/fotos/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
