@@ -54,7 +54,7 @@ export default async function PostEmpresasPage({ params }: Params) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <section className="bg-brand text-bege">
-        <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8">
+        <div className="mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-8 sm:pt-32">
           <div className="text-sm text-bege/70">
             <Link className="hover:text-bege" href="/empresas">
               Empresas

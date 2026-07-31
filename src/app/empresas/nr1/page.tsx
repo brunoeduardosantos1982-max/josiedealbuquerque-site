@@ -91,7 +91,7 @@ const faqJsonLd = {
 
 export default function Nr1Page() {
   return (
-    <article className="mx-auto w-full max-w-3xl px-5 py-16 sm:px-8">
+    <article className="mx-auto w-full max-w-3xl px-5 pb-16 pt-28 sm:px-8 sm:pt-32">
       <script
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         type="application/ld+json"

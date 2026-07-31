@@ -7,6 +7,7 @@ export default function EmpresasLayout({
 }) {
   return (
     <WorldShell
+      chrome="float"
       cta={{ label: "Agendar diagnóstico", href: "/empresas/contato" }}
       nav={[
         { label: "Soluções", href: "/empresas" },

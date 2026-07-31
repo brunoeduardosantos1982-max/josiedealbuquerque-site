@@ -13,7 +13,7 @@ export default function BlogEmpresasPage() {
   const posts = listarPosts();
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8">
+    <div className="mx-auto w-full max-w-6xl px-5 pb-16 pt-28 sm:px-8 sm:pt-32">
       <p className="eyebrow">Conteúdo para empresas</p>
       <h1 className="mt-3 font-serif text-4xl text-brand">
         NR-1, riscos psicossociais e conformidade

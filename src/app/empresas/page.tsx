@@ -47,29 +47,48 @@ export default function EmpresasPage() {
   return (
     <>
       <HeroVideo>
-        <p className="eyebrow">para empresas</p>
-        <h1 className="mt-5 max-w-3xl text-4xl font-medium leading-[1.12] sm:text-5xl">
-          Adequação à NR-1 não é apenas sobre evitar passivos trabalhistas. É
-          sobre construir empresas mais fortes, humanas e preparadas para o
-          futuro.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-          Transformamos a adequação à NR-1 em uma estratégia de crescimento
-          organizacional, promovendo saúde mental, segurança psicológica e
-          ambientes de trabalho que impulsionam pessoas, resultados e
-          sustentabilidade empresarial.
-        </p>
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-          <Link className="btn-brand" href="/empresas/contato">
-            Agendar um diagnóstico inicial
+        <div className="max-w-md">
+          <Link
+            className="group mb-3 inline-flex items-center gap-1.5 rounded-full bg-eucalipto/25 px-3 py-1 text-[11.5px] font-medium text-bege backdrop-blur-sm transition-colors hover:bg-eucalipto/40"
+            href="/empresas/nr1"
+          >
+            A fase punitiva da NR-1 já começou
+            <span className="inline-block transition-transform duration-200 group-hover:translate-x-0.5">
+              →
+            </span>
           </Link>
-          <Link className="btn-outline" href="/empresas/nr1">
-            Entender a NR-1
+
+          <h1 className="mb-3 text-[1.5rem] font-medium leading-[1.15] tracking-tight text-bege sm:text-[1.75rem]">
+            Adequação à NR-1 não é sobre evitar multa. É sobre construir uma
+            empresa mais forte.
+          </h1>
+
+          <p className="mb-4 text-[13px] font-normal text-bege/70">
+            Gestão de riscos psicossociais com método e conformidade.
+          </p>
+
+          <Link
+            className="group inline-flex items-center gap-2 rounded-full border border-bege/60 px-5 py-2.5 text-[13px] font-medium text-bege transition-all duration-200 hover:border-bege hover:bg-bege hover:text-[#16243c]"
+            href="/empresas/contato"
+          >
+            Agendar um diagnóstico inicial
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+              →
+            </span>
           </Link>
         </div>
       </HeroVideo>
 
-      <section className="border-y border-line bg-surface/70">
+      <section className="border-b border-line bg-surface/70">
+        <div className="mx-auto w-full max-w-5xl px-5 pt-14 sm:px-8">
+          <p className="eyebrow">para empresas</p>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">
+            Transformamos a adequação à NR-1 em uma estratégia de crescimento
+            organizacional, promovendo saúde mental, segurança psicológica e
+            ambientes de trabalho que impulsionam pessoas, resultados e
+            sustentabilidade empresarial.
+          </p>
+        </div>
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-5 py-12 sm:px-8 md:grid-cols-3">
           {riscos.map((item) => (
             <div

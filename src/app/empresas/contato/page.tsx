@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContatoEmpresasPage() {
   return (
-    <section className="mx-auto w-full max-w-2xl px-5 py-14 sm:px-8">
+    <section className="mx-auto w-full max-w-2xl px-5 pb-14 pt-28 sm:px-8 sm:pt-32">
       <p className="eyebrow">diagnóstico inicial</p>
       <h1 className="mt-4 text-4xl font-medium leading-[1.12]">
         Vamos entender o cenário da sua empresa

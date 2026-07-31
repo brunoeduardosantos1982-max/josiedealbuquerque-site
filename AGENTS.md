@@ -38,7 +38,17 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 
 **Pegadinha das listas Brevo:** `/api/materiais/subscribe` escolhe a lista por `audience`. Sem esse campo o padrão é `b2b` e cai em `BREVO_LIST_MATERIAIS`; com `audience: "b2c"` cai em `BREVO_LIST_B2C`. Nunca deixe material do mundo Mentoria ir para a lista de materiais do mundo Empresas.
 
-**Vídeo no hero:** `src/components/hero-video.tsx` serve `/empresas`. É server component de propósito (autoplay e `prefers-reduced-motion` resolvem em HTML e CSS). O texto fica num painel de vidro em vez de sobre um scrim escuro, que é o sistema visual aprovado pela Josie.
+## Hero de vídeo e navegação flutuante (mundo Empresas)
+
+`src/components/hero-video.tsx` serve `/empresas`: vídeo **vertical** (`nr1-hero-mobile.*`, o enquadramento nativo dos clipes) ocupando a tela inteira, conteúdo ancorado embaixo à esquerda em tipografia pequena. Server component de propósito, porque `autoplay muted playsinline` e `prefers-reduced-motion` resolvem em HTML e CSS.
+
+- **`object-position` é medido, não estético.** Em `center 22%` a Josie e o slide ficam no quadro em tela larga; centralizado, o corte pega o tronco e decapita.
+- **Contraste vem de dois gradientes**, um de baixo e um da esquerda, exatamente onde o texto pousa. A Josie fica à direita e continua limpa. Não voltar para overlay escuro na imagem inteira nem para painel de vidro por cima: os dois foram recusados pelo Bruno.
+- No mobile o vídeo cabe inteiro na tela (sem sobra vertical para reposicionar), então a Josie aparece pequena no rodapé do quadro. **Débito conhecido:** um corte 9:16 mais fechado nela resolveria.
+
+`WorldShell` tem a prop `chrome`: `"solid"` (padrão, barra com borda) ou `"float"` (pílulas absolutas por cima do conteúdo). O mundo Empresas usa `float`, e por isso **as páginas desse mundo precisam de `pt-28 sm:pt-32`** para não passar por baixo das pílulas. Página nova em `/empresas` sem esse respiro nasce quebrada.
+
+**Pegadinha de screenshot:** com o vídeo tocando, `Page.captureScreenshot` via CDP trava e derruba o renderizador. Capture emulando `prefers-reduced-motion: reduce` (renderiza o poster), com `deviceScaleFactor: 1` e um alvo novo por rota.
 
 ## Convenções
 
