@@ -5,9 +5,11 @@ import { useState } from "react";
 import {
   DIMENSOES,
   NOME_DIMENSAO,
+  WHATSAPP_JOSIE,
   dimensaoMaisForte,
   dimensaoMaisFragil,
   leituraCruzada,
+  linkConsulta,
   percentual,
   somarMapa,
   type BloqueioKey,
@@ -149,15 +151,8 @@ const ESCALA: { valor: number; rotulo: string }[] = [
   { valor: 3, rotulo: "Sempre" },
 ];
 
-/* Número da Josie fica em env pública porque é link de saída, não segredo.
-   Sem a variável, o CTA cai na página de contato em vez de virar link quebrado. */
-const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_JOSIE?.replace(/\D/g, "") ?? "";
-
-function linkConsulta(nome: string, bloqueio: ProfileKey): string {
-  if (!WHATSAPP) return "/mentoria";
-  const texto = `Oi Josie, sou ${nome || "uma leitora do site"}. Fiz o pré-diagnóstico e deu ${PROFILES[bloqueio].nome}. Quero agendar a consulta de mentoria.`;
-  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
-}
+/* A env sobrescreve; o padrão no lib garante que o CTA nunca fique sem destino. */
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_JOSIE || WHATSAPP_JOSIE;
 
 function topProfile(scores: Scores): ProfileKey {
   let best: ProfileKey = "E";
@@ -564,7 +559,7 @@ export function QuizClient() {
         </p>
         <a
           className="btn-brand mt-6 block w-full text-center"
-          href={linkConsulta(nome.trim(), bloqueio)}
+          href={linkConsulta(WHATSAPP, nome.trim(), profile.nome)}
           rel="noreferrer"
           target="_blank"
         >

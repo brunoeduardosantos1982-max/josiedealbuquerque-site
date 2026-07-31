@@ -217,6 +217,32 @@ const VIRADA: Record<BloqueioKey, string> = {
   I: "A confiança não vem de pensar melhor sobre si. Ela vem de acumular evidência de que você se sustenta, e cuidar disso é a primeira evidência.",
 };
 
+/* WhatsApp da Josie. NÃO é segredo: vira link no HTML servido a todo mundo.
+   Por isso mora aqui como padrão, com a env como sobrescrita, e não só na env:
+   variável esquecida na Vercel deixaria o único CTA do funil sem destino. */
+export const WHATSAPP_JOSIE = "5548996868396";
+
+/** Só dígitos, como o wa.me exige. Devolve "" se não sobrar número utilizável. */
+export function normalizarWhatsApp(bruto: string | undefined): string {
+  const digitos = (bruto ?? "").replace(/\D/g, "");
+  /* E.164 do Brasil: 55 + DDD (2) + celular (9) = 13 dígitos. O piso é 13 de
+     propósito: 12 é justamente o número antigo sem o nono dígito, que abriria
+     uma conversa com a pessoa errada. Melhor cair em /mentoria. */
+  return digitos.length >= 13 ? digitos : "";
+}
+
+/** Link de agendamento da consulta, com a conversa já começada. */
+export function linkConsulta(
+  numero: string,
+  nome: string,
+  nomeBloqueio: string,
+): string {
+  const limpo = normalizarWhatsApp(numero);
+  if (!limpo) return "/mentoria";
+  const texto = `Oi Josie, sou ${nome || "uma leitora do site"}. Fiz o pré-diagnóstico e deu ${nomeBloqueio}. Quero agendar a consulta de mentoria.`;
+  return `https://wa.me/${limpo}?text=${encodeURIComponent(texto)}`;
+}
+
 export type LeituraCruzada = {
   bloqueio: BloqueioKey;
   dimensao: DimensaoKey;

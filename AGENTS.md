@@ -20,7 +20,9 @@ Infra de teste criada em 2026-07-29 (contrato `josie-funil-autonomo-C01`); antes
 
 `BREVO_API_KEY`, `BREVO_LIST_B2C`, `BREVO_LIST_B2B`, `BREVO_LIST_MATERIAIS`, `BREVO_ENTREGA_TEMPLATE_ID`, `SITE_URL`, `NEXT_PUBLIC_WHATSAPP_JOSIE`. Referência em `.env.example`. Sem as chaves Brevo o site funciona e `/api/lead` apenas registra no log.
 
-`NEXT_PUBLIC_WHATSAPP_JOSIE` é só dígitos com DDI e DDD. É link de saída, não segredo, por isso `NEXT_PUBLIC`. **Sem ela o CTA de agendamento da consulta cai em `/mentoria`**, e o funil de mentoria fica sem ponto de conversão.
+`NEXT_PUBLIC_WHATSAPP_JOSIE` é **opcional**. O WhatsApp da Josie tem padrão no código (`WHATSAPP_JOSIE` em `src/lib/pre-diagnostico.ts`), porque é link público que vai para o HTML de qualquer jeito e não é segredo; deixá-lo só em env criaria uma forma de o único CTA do funil ir ao ar sem destino. A env serve para sobrescrever.
+
+**O número é validado:** menos de 13 dígitos (55 + DDD + 9) é recusado e o CTA cai em `/mentoria`. O piso é 13 de propósito, porque 12 é o formato antigo sem o nono dígito, e ele abriria conversa com outra pessoa.
 
 ## Funil do mundo Mentoria (modelo vigente desde 2026-07-30)
 

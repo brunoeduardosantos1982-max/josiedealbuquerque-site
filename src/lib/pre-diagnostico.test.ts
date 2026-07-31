@@ -6,10 +6,13 @@ import {
   NOME_DIMENSAO,
   ORDEM_DESEMPATE,
   PONTUACAO_MAXIMA_DIMENSAO,
+  WHATSAPP_JOSIE,
   dimensaoMaisForte,
   dimensaoMaisFragil,
   leituraCruzada,
+  linkConsulta,
   mapaVazio,
+  normalizarWhatsApp,
   percentual,
   somarMapa,
   type BloqueioKey,
@@ -112,6 +115,44 @@ describe("percentual", () => {
   it("prende valores fora da faixa", () => {
     expect(percentual(-3)).toBe(0);
     expect(percentual(40)).toBe(100);
+  });
+});
+
+describe("WhatsApp da consulta", () => {
+  it("o número da Josie está em E.164 do Brasil: 55 + DDD + 9 dígitos", () => {
+    expect(WHATSAPP_JOSIE).toMatch(/^55\d{11}$/);
+    expect(WHATSAPP_JOSIE).toHaveLength(13);
+  });
+
+  it("normaliza número com máscara para só dígitos", () => {
+    expect(normalizarWhatsApp("+55 (48) 99686-8396")).toBe("5548996868396");
+  });
+
+  it("recusa número curto demais para ser celular brasileiro", () => {
+    // 12 dígitos: e o nono digito faltando. Nao pode virar link.
+    expect(normalizarWhatsApp("+554896868396")).toBe("");
+    expect(normalizarWhatsApp("")).toBe("");
+    expect(normalizarWhatsApp(undefined)).toBe("");
+  });
+
+  it("monta o link do wa.me com a mensagem já escrita", () => {
+    const link = linkConsulta(WHATSAPP_JOSIE, "Ana", "O Bloqueio do Esgotamento");
+    expect(link.startsWith(`https://wa.me/${WHATSAPP_JOSIE}?text=`)).toBe(true);
+    const texto = decodeURIComponent(link.split("?text=")[1]);
+    expect(texto).toContain("Ana");
+    expect(texto).toContain("O Bloqueio do Esgotamento");
+    expect(texto).toContain("agendar a consulta");
+  });
+
+  it("sem nome, a mensagem continua fazendo sentido", () => {
+    const texto = decodeURIComponent(
+      linkConsulta(WHATSAPP_JOSIE, "", "O Bloqueio da Insegurança").split("?text=")[1],
+    );
+    expect(texto).toContain("uma leitora do site");
+  });
+
+  it("com número inválido cai em /mentoria em vez de link quebrado", () => {
+    expect(linkConsulta("123", "Ana", "O Bloqueio da Estagnação")).toBe("/mentoria");
   });
 });
 
