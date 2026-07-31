@@ -141,6 +141,52 @@ describe("materiais subscribe", () => {
     expect(urls).toContain("https://api.brevo.com/v3/smtp/email");
   });
 
+  it("material do mundo Mentoria vai para a lista B2C, nunca para a de materiais B2B", async () => {
+    vi.stubEnv("BREVO_API_KEY", "xkeysib-test");
+    vi.stubEnv("BREVO_LIST_MATERIAIS", "7");
+    vi.stubEnv("BREVO_LIST_B2C", "4");
+    let capturado: { init?: RequestInit } | null = null;
+    const fetchMock = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
+      capturado = { init };
+      return Response.json({ id: 1 }, { status: 201 });
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    vi.spyOn(console, "log").mockImplementation(() => undefined);
+
+    const response = await postSubscribe({
+      email: "leitora@exemplo.com",
+      nome: "Ana",
+      material: "caderno-do-caos-ao-equilibrio",
+      audience: "b2c",
+      consentimento: true,
+    });
+    const chamada = capturado as unknown as { init: RequestInit };
+    const body = JSON.parse(String(chamada.init.body)) as { listIds?: number[] };
+
+    expect(response.status).toBe(200);
+    expect(body.listIds).toEqual([4]);
+    expect(body.listIds).not.toContain(7);
+  });
+
+  it("sem audience continua indo para a lista de materiais do mundo Empresas", async () => {
+    vi.stubEnv("BREVO_API_KEY", "xkeysib-test");
+    vi.stubEnv("BREVO_LIST_MATERIAIS", "7");
+    vi.stubEnv("BREVO_LIST_B2C", "4");
+    let capturado: { init?: RequestInit } | null = null;
+    const fetchMock = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
+      capturado = { init };
+      return Response.json({ id: 1 }, { status: 201 });
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    vi.spyOn(console, "log").mockImplementation(() => undefined);
+
+    await postSubscribe(VALIDO);
+    const chamada = capturado as unknown as { init: RequestInit };
+    const body = JSON.parse(String(chamada.init.body)) as { listIds?: number[] };
+
+    expect(body.listIds).toEqual([7]);
+  });
+
   it("corpo que nao e json devolve 400", async () => {
     const fetchMock = vi.fn(async () => Response.json({}));
     vi.stubGlobal("fetch", fetchMock);

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { HeroVideo } from "@/components/hero-video";
+
 export const metadata: Metadata = {
   title: "Para empresas | NR-1 e bem-estar organizacional",
   description:
@@ -44,7 +46,7 @@ const etapas = [
 export default function EmpresasPage() {
   return (
     <>
-      <section className="mx-auto w-full max-w-4xl px-5 pb-12 pt-16 sm:px-8 sm:pt-24">
+      <HeroVideo>
         <p className="eyebrow">para empresas</p>
         <h1 className="mt-5 max-w-3xl text-4xl font-medium leading-[1.12] sm:text-5xl">
           Adequação à NR-1 não é apenas sobre evitar passivos trabalhistas. É
@@ -65,7 +67,7 @@ export default function EmpresasPage() {
             Entender a NR-1
           </Link>
         </div>
-      </section>
+      </HeroVideo>
 
       <section className="border-y border-line bg-surface/70">
         <div className="mx-auto grid w-full max-w-5xl grid-cols-1 gap-4 px-5 py-12 sm:px-8 md:grid-cols-3">

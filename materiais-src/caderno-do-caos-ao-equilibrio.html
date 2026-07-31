@@ -1,0 +1,1702 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Do Caos ao Equilíbrio: Caderno de Reencontro | Josie de Albuquerque</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root{
+    --bege:#F9F5EB;
+    --terracota:#C26D50;
+    --terracota-claro:#E8CFC4;
+    --tinta:#2B2724;
+    --tinta-suave:#6B6259;
+    --linha:#D9CFC0;
+    --papel:#FFFDF8;
+  }
+
+  body{
+    font-family:"Inter",Arial,sans-serif;
+    color:var(--tinta);
+    background:var(--bege);
+    font-size:10.5pt;
+    line-height:1.55;
+  }
+
+  .pagina{
+    width:210mm; height:297mm;
+    padding:18mm 20mm 15mm;
+    background:var(--bege);
+    page-break-after:always;
+    position:relative;
+    overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .pagina:last-child{ page-break-after:auto; }
+
+  /* ---------- tipografia ---------- */
+  h1,h2,h3,h4{ font-family:"Lora",Georgia,serif; font-weight:600; color:var(--tinta); }
+  h1{ font-size:30pt; line-height:1.12; letter-spacing:-.01em; }
+  h2{ font-size:19pt; line-height:1.2; margin-bottom:4mm; }
+  h3{ font-size:13.5pt; line-height:1.25; margin-bottom:2.5mm; }
+  h4{ font-size:11.5pt; margin-bottom:1.5mm; }
+  p{ margin-bottom:3mm; }
+  strong{ font-weight:600; }
+  em{ font-style:italic; }
+
+  .olho{
+    font-family:"Inter",sans-serif; font-size:8pt; font-weight:600;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--terracota);
+    margin-bottom:3mm;
+  }
+  .intro{ color:var(--tinta-suave); font-size:10pt; margin-bottom:6mm; max-width:150mm; }
+  .nota{ font-size:9pt; color:var(--tinta-suave); font-style:italic; }
+
+  /* ---------- cabeçalho / rodapé corrente ---------- */
+  .topo{
+    display:flex; justify-content:space-between; align-items:baseline;
+    border-bottom:1px solid var(--linha); padding-bottom:2.5mm; margin-bottom:7mm;
+    font-size:8pt; letter-spacing:.1em; text-transform:uppercase; color:var(--tinta-suave);
+  }
+  .topo .parte{ color:var(--terracota); font-weight:600; }
+  .rodape{
+    margin-top:auto; padding-top:4mm; border-top:1px solid var(--linha);
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:8pt; color:var(--tinta-suave);
+  }
+  .corpo{ flex:1; }
+
+  /* ---------- capa ---------- */
+  .capa{ justify-content:center; text-align:center; background:var(--bege); }
+  .capa .assinatura{ font-family:"Lora",serif; font-style:italic; font-size:34pt; color:var(--tinta); margin-bottom:14mm; }
+  .capa h1{ font-size:44pt; line-height:1.05; margin-bottom:6mm; }
+  .capa .fio{ width:26mm; height:2px; background:var(--terracota); margin:8mm auto; }
+  .capa .subtitulo{ font-family:"Lora",serif; font-style:italic; font-size:15pt; color:var(--tinta-suave); margin-bottom:16mm; }
+  .capa .autora{ font-size:9.5pt; letter-spacing:.18em; text-transform:uppercase; color:var(--tinta-suave); }
+
+  /* ---------- abertura de parte ---------- */
+  .abre-parte{ justify-content:center; background:var(--terracota); color:#fff; }
+  .abre-parte h1,.abre-parte h2,.abre-parte h3{ color:#fff; }
+  .abre-parte .num{ font-family:"Lora",serif; font-size:11pt; letter-spacing:.22em; text-transform:uppercase; opacity:.75; margin-bottom:5mm; }
+  .abre-parte h1{ font-size:40pt; margin-bottom:5mm; }
+  .abre-parte .lema{ font-family:"Lora",serif; font-style:italic; font-size:16pt; line-height:1.4; max-width:130mm; margin-bottom:10mm; opacity:.95; }
+  .abre-parte p{ font-size:10.5pt; max-width:135mm; opacity:.93; }
+  .abre-parte .fio{ width:22mm; height:2px; background:rgba(255,255,255,.55); margin:0 0 8mm; }
+
+  /* ---------- blocos ---------- */
+  .cartao{ background:var(--papel); border:1px solid var(--linha); border-radius:3mm; padding:5mm 6mm; margin-bottom:4mm; }
+  .cartao h4{ color:var(--terracota); }
+
+  .destaque{
+    border-left:3px solid var(--terracota); padding:1mm 0 1mm 5mm; margin:5mm 0;
+    font-family:"Lora",serif; font-style:italic; font-size:12pt; line-height:1.5; color:var(--tinta);
+  }
+
+  /* linhas para escrever */
+  .linhas{ margin:3mm 0 4mm; }
+  .linhas .l{ border-bottom:1px solid var(--linha); height:8.5mm; }
+  .linhas.densa .l{ height:7mm; }
+
+  .caixa{ border:1px solid var(--linha); border-radius:2.5mm; background:var(--papel); padding:3.5mm 4mm; margin-bottom:3.5mm; }
+  .caixa .rot{ font-size:8.5pt; font-weight:600; color:var(--terracota); letter-spacing:.06em; text-transform:uppercase; margin-bottom:2mm; display:block; }
+  .caixa .esc{ height:7.5mm; border-bottom:1px solid var(--linha); }
+  .caixa .esc:last-child{ border-bottom:none; }
+
+  .grade2{ display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+  .grade3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:3.5mm; }
+  .grade4{ display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; }
+
+  /* tabela de autoavaliação */
+  .escala-topo{
+    display:flex; justify-content:flex-end; gap:3mm; margin-bottom:2mm;
+    font-size:7.5pt; color:var(--tinta-suave);
+  }
+  .escala-topo span{ width:9mm; text-align:center; line-height:1.15; }
+  .aval{ width:100%; border-collapse:collapse; margin-bottom:4mm; }
+  .aval td{ border-bottom:1px solid var(--linha); padding:1.9mm 0; font-size:9.5pt; vertical-align:middle; }
+  .aval td.n{ width:9mm; text-align:center; }
+  .aval .bolha{ display:inline-block; width:4.2mm; height:4.2mm; border:1px solid var(--terracota-claro); border-radius:50%; }
+  .aval tr.grupo td{ border-bottom:none; padding-top:4mm; padding-bottom:1mm; }
+  .aval tr.grupo b{ font-family:"Lora",serif; font-size:11.5pt; font-weight:600; color:var(--terracota); }
+  .aval tr:first-child.grupo td{ padding-top:0; }
+
+  /* escala 1 a 10 */
+  .valor-linha{ margin-bottom:3.2mm; }
+  .valor-linha p{ font-size:9.5pt; margin-bottom:1.2mm; }
+  .dez{ display:flex; gap:1.6mm; }
+  .dez span{
+    flex:1; text-align:center; font-size:7.5pt; color:var(--tinta-suave);
+    border:1px solid var(--terracota-claro); border-radius:1.5mm; padding:.9mm 0;
+  }
+
+  /* nuvem de valores */
+  .nuvem{ display:flex; flex-wrap:wrap; gap:2.2mm; }
+  .nuvem span{
+    border:1px solid var(--linha); border-radius:999px; padding:1.4mm 3.4mm;
+    font-size:9pt; background:var(--papel);
+  }
+
+  /* passos numerados */
+  .passos{ counter-reset:p; }
+  .passo{ display:flex; gap:4mm; margin-bottom:3mm; align-items:flex-start; }
+  .passo .b{
+    flex-shrink:0; width:6.5mm; height:6.5mm; border-radius:50%;
+    background:var(--terracota); color:#fff; font-size:9pt; font-weight:600;
+    display:flex; align-items:center; justify-content:center; margin-top:.4mm;
+  }
+  .passo p{ margin:0; font-size:9.5pt; }
+
+  /* semana / sono */
+  .semana{ width:100%; border-collapse:collapse; }
+  .semana th{
+    font-family:"Inter",sans-serif; font-size:8pt; font-weight:600; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--terracota); text-align:left; padding:2mm 2mm 1.5mm 0;
+    border-bottom:1px solid var(--terracota-claro);
+  }
+  .semana td{ border-bottom:1px solid var(--linha); padding:3.4mm 2mm 3.4mm 0; font-size:9pt; color:var(--tinta-suave); }
+
+  /* checklist diário */
+  .check{ width:100%; border-collapse:collapse; }
+  .check th{ font-size:8pt; text-transform:uppercase; letter-spacing:.06em; color:var(--terracota); padding-bottom:2mm; }
+  .check th.pr{ text-align:left; }
+  .check td{ border-bottom:1px solid var(--linha); padding:2.6mm 0; font-size:9.5pt; }
+  .check td.q{ text-align:center; width:8mm; }
+  .check .qd{ display:inline-block; width:3.6mm; height:3.6mm; border:1px solid var(--terracota-claro); border-radius:.8mm; }
+
+  /* bloqueios */
+  .bloqueio{ background:var(--papel); border:1px solid var(--linha); border-radius:3mm; padding:4.5mm 5mm; margin-bottom:3.5mm; }
+  .bloqueio h4{ font-family:"Lora",serif; font-size:12pt; color:var(--terracota); margin-bottom:.8mm; }
+  .bloqueio .badge{ font-size:8.5pt; color:var(--tinta-suave); font-style:italic; margin-bottom:2mm; }
+  .bloqueio p{ font-size:9.3pt; margin-bottom:1.5mm; }
+  .bloqueio p:last-child{ margin-bottom:0; }
+
+  .sumario td{ padding:2.4mm 0; border-bottom:1px solid var(--linha); font-size:10pt; }
+  .sumario td.pg{ text-align:right; color:var(--terracota); font-weight:600; width:14mm; }
+  .sumario tr.p td{ padding-top:5mm; }
+  .sumario tr.p td b{ font-family:"Lora",serif; font-size:12pt; }
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<section class="pagina capa">
+  <div class="assinatura">J.</div>
+  <h1>Do Caos<br>ao Equilíbrio</h1>
+  <div class="fio"></div>
+  <div class="subtitulo">Um caderno de reencontro para quem<br>construiu uma vida certa e se perdeu dentro dela</div>
+  <div class="autora">Josie de Albuquerque</div>
+</section>
+
+<!-- ============ CARTA ============ -->
+<section class="pagina">
+  <div class="topo"><span>Do Caos ao Equilíbrio</span><span class="parte">Antes de começar</span></div>
+  <div class="corpo">
+    <div class="olho">Uma carta para você</div>
+    <h2>Eu já fui uma agente do caos</h2>
+
+    <p>Hoje eu vivo em equilíbrio. Mas houve um tempo em que a minha vida funcionava perfeitamente por fora e desmoronava por dentro, e eu era a última pessoa a admitir isso.</p>
+
+    <p>Eu dava conta. Era essa a minha identidade. Resolvia, sustentava, segurava as pontas de todo mundo e ainda sobrava energia para dizer que estava tudo bem. Até o dia em que não sobrou.</p>
+
+    <p>Se você está com este caderno na mão, desconfio que reconheceu alguma coisa aí. Talvez você tenha uma vida que, no papel, deveria te deixar bem: trabalho, rotina, estabilidade, pessoas ao redor. E mesmo assim existe um incômodo que não passa, uma voz baixinha perguntando <em>é só isso?</em>, um cansaço que fim de semana nenhum resolve.</p>
+
+    <div class="destaque">Você não está quebrada. Você está longe de si mesma. E essas duas coisas pedem caminhos completamente diferentes.</div>
+
+    <p>Este caderno não é um livro para ler. É um lugar para você se escutar. Ele nasceu de doze anos acompanhando mulheres que chegaram exatamente onde você está, e de dezoito histórias que eu estudei de perto até entender que o travamento quase nunca é falta de capacidade. É falta de contato com a própria bússola.</p>
+
+    <p>Aqui você vai escrever com a sua letra. Vai responder perguntas que talvez ninguém tenha te feito ainda, e algumas que você vem evitando responder há um tempo. Não existe resposta certa, e ninguém vai ler além de você.</p>
+
+    <p>Vá com calma. Um exercício por dia já é movimento. O que não vale é folhear até o fim e devolver o caderno para a gaveta.</p>
+
+    <p style="margin-top:6mm"><strong>Um beijo no coração e boas práticas.</strong></p>
+    <p style="font-family:'Lora',serif;font-style:italic;font-size:15pt;margin-top:2mm">Josie</p>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>2</span></div>
+</section>
+
+<!-- ============ COMO USAR ============ -->
+<section class="pagina">
+  <div class="topo"><span>Do Caos ao Equilíbrio</span><span class="parte">Antes de começar</span></div>
+  <div class="corpo">
+    <div class="olho">Como usar este caderno</div>
+    <h2>Quatro pilares, um de cada vez</h2>
+
+    <p class="intro">O caminho que eu uso com as minhas mentoradas tem quatro apoios. Eles não são etapas que se vencem e se abandonam: são movimentos que você vai revisitar a vida inteira. Este caderno está organizado neles.</p>
+
+    <div class="grade2">
+      <div class="cartao">
+        <h4>1. Aceitação</h4>
+        <p style="font-size:9.3pt;margin:0">Ver onde você está de verdade, sem maquiar e sem se punir. Nenhuma mudança começa antes desse olhar honesto.</p>
+      </div>
+      <div class="cartao">
+        <h4>2. Presença</h4>
+        <p style="font-size:9.3pt;margin:0">Voltar para o agora. Grande parte do cansaço vem de viver no que já passou ou no que ainda nem chegou.</p>
+      </div>
+      <div class="cartao">
+        <h4>3. Coragem</h4>
+        <p style="font-size:9.3pt;margin:0">Dizer o que é seu. Impor limites, nomear valores, pedir ajuda. Coragem não é ausência de medo, é ação junto com ele.</p>
+      </div>
+      <div class="cartao">
+        <h4>4. Disciplina</h4>
+        <p style="font-size:9.3pt;margin:0">Sustentar o movimento quando a motivação passa. É o pilar que transforma insight em vida diferente.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:7mm">Três combinados</h3>
+    <div class="passos">
+      <div class="passo"><div class="b">1</div><p><strong>Escreva à mão.</strong> A mão é mais lenta que a cabeça, e é justamente essa lentidão que faz aparecer o que você ainda não tinha formulado.</p></div>
+      <div class="passo"><div class="b">2</div><p><strong>Não pule o desconfortável.</strong> O exercício que você quer pular costuma ser o que tem o seu nome.</p></div>
+      <div class="passo"><div class="b">3</div><p><strong>Volte.</strong> Responda de novo daqui a três meses, com outra caneta. A diferença entre as duas respostas é o seu retrato de progresso.</p></div>
+    </div>
+
+    <div class="cartao" style="margin-top:6mm;border-color:var(--terracota-claro)">
+      <h4>Conteúdo educacional</h4>
+      <p style="font-size:9pt;margin:0;color:var(--tinta-suave)">Este material é de desenvolvimento pessoal e autoconhecimento. Ele não substitui acompanhamento profissional de saúde. Se você está em sofrimento intenso ou persistente, procure um profissional de saúde mental habilitado. Cuidar de si também é saber a hora de pedir ajuda especializada.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>3</span></div>
+</section>
+
+<!-- ============ SUMÁRIO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Do Caos ao Equilíbrio</span><span class="parte">Antes de começar</span></div>
+  <div class="corpo">
+    <div class="olho">O caminho</div>
+    <h2>O que tem aqui dentro</h2>
+    <table class="sumario" style="width:100%;border-collapse:collapse">
+      <tr><td>Uma carta para você</td><td class="pg">2</td></tr>
+      <tr><td>Como usar este caderno</td><td class="pg">3</td></tr>
+      <tr><td>Ponto de partida: o que está te travando</td><td class="pg">5</td></tr>
+      <tr class="p"><td><b>Parte 1 · Aceitação</b></td><td class="pg">8</td></tr>
+      <tr><td>Minha autoavaliação de cuidado</td><td class="pg">9</td></tr>
+      <tr><td>O que os números me dizem</td><td class="pg">13</td></tr>
+      <tr><td>Jornada de autoconsciência</td><td class="pg">14</td></tr>
+      <tr><td>Desenvolvendo a autocompaixão</td><td class="pg">15</td></tr>
+      <tr><td>Deixando ir</td><td class="pg">16</td></tr>
+      <tr class="p"><td><b>Parte 2 · Presença</b></td><td class="pg">18</td></tr>
+      <tr><td>Prática de atenção plena</td><td class="pg">19</td></tr>
+      <tr><td>Diário de gratidão</td><td class="pg">21</td></tr>
+      <tr><td>Gratidão pelo hoje</td><td class="pg">22</td></tr>
+      <tr><td>Minha higiene do sono</td><td class="pg">23</td></tr>
+      <tr><td>Meu cuidado de cada dia</td><td class="pg">25</td></tr>
+      <tr class="p"><td><b>Parte 3 · Coragem</b></td><td class="pg">26</td></tr>
+      <tr><td>Desmontando o pensamento negativo</td><td class="pg">27</td></tr>
+      <tr><td>Reforma da mentalidade</td><td class="pg">28</td></tr>
+      <tr><td>Definindo limites pessoais</td><td class="pg">29</td></tr>
+      <tr><td>Minha rede de apoio</td><td class="pg">30</td></tr>
+      <tr><td>O que me traz alegria</td><td class="pg">31</td></tr>
+      <tr><td>Meus valores pessoais</td><td class="pg">32</td></tr>
+      <tr><td>Meus quatro valores fundamentais</td><td class="pg">34</td></tr>
+      <tr class="p"><td><b>Parte 4 · Disciplina</b></td><td class="pg">37</td></tr>
+      <tr><td>Onde o meu tempo está indo</td><td class="pg">38</td></tr>
+      <tr><td>Brainstorm de ação</td><td class="pg">39</td></tr>
+      <tr><td>Visão de futuro</td><td class="pg">40</td></tr>
+      <tr><td>Meus objetivos e o método SMART</td><td class="pg">42</td></tr>
+      <tr><td>O método WOOP</td><td class="pg">45</td></tr>
+      <tr><td>Minhas estratégias de enfrentamento</td><td class="pg">46</td></tr>
+      <tr><td>Minha história de sucesso</td><td class="pg">47</td></tr>
+      <tr class="p"><td><b>O que vem depois</b></td><td class="pg">48</td></tr>
+    </table>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>4</span></div>
+</section>
+
+<!-- ============ BLOQUEIOS 1 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Do Caos ao Equilíbrio</span><span class="parte">Ponto de partida</span></div>
+  <div class="corpo">
+    <div class="olho">Ponto de partida</div>
+    <h2>O que está te travando</h2>
+    <p class="intro">Em dezoito histórias que eu acompanhei de perto, o travamento aparecia sempre de uma entre quatro formas. Leia as quatro. Uma delas vai doer mais que as outras, e é por essa que você começa.</p>
+
+    <div class="bloqueio">
+      <h4>O Bloqueio da Estagnação</h4>
+      <div class="badge">Você parou, e sente isso por dentro</div>
+      <p>Por fora está tudo em ordem. Você tem uma vida montada, talvez estabilidade no trabalho, uma rotina que funciona. Mas por dentro existe uma voz baixinha que pergunta: <strong>é só isso?</strong> Você não está mal, está parada. E parar, para quem já foi movida por algo, dói de um jeito difícil de explicar.</p>
+      <p>O que prende a Estagnada quase nunca é falta de capacidade. É falta de um <strong>próximo passo que faça sentido</strong>, não o passo óbvio, mas um que seja seu. Enquanto ele não aparece, você preenche o vazio com mais do mesmo.</p>
+    </div>
+
+    <div class="bloqueio">
+      <h4>O Bloqueio do Esgotamento</h4>
+      <div class="badge">Você dá conta de tudo, e está se esvaziando</div>
+      <p>Você é a pessoa em quem todos se apoiam. Resolve, sustenta, segura as pontas. E é justamente por isso que ninguém percebe quando você não está bem, <strong>nem você mesma, até passar do limite</strong>. O cansaço já não vai embora com um fim de semana. Virou o seu estado padrão.</p>
+      <p>O esgotamento raramente é sobre fazer demais. É sobre fazer demais <strong>pelos outros e quase nada por si</strong>, e ter perdido até a permissão de querer algo só para você. O primeiro passo não é descansar; é se recolocar na própria lista.</p>
+    </div>
+
+    <div class="bloqueio">
+      <h4>O Bloqueio da Falta de Direção</h4>
+      <div class="badge">Você se perdeu de si mesma pelo caminho</div>
+      <p>Em algum momento entre as escolhas, as cobranças e a correria, você foi ficando longe de quem você é. Hoje, se alguém te perguntar o que você realmente quer, a resposta não vem, ou vem cheia de <em>deveria</em>. <strong>Você não está sem rumo por falta de esforço. Está sem rumo porque perdeu o contato com a sua própria bússola.</strong></p>
+      <p>Falta de direção quase nunca se resolve com mais informação ou mais um curso. Se resolve com <strong>autoconhecimento</strong>: reconhecer seus valores, o que te move, o que é seu de verdade e o que você só herdou.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>5</span></div>
+</section>
+
+<!-- ============ BLOQUEIOS 2 + ROTEIRO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Do Caos ao Equilíbrio</span><span class="parte">Ponto de partida</span></div>
+  <div class="corpo">
+    <div class="bloqueio">
+      <h4>O Bloqueio da Insegurança</h4>
+      <div class="badge">Você quer crescer, mas duvida de si</div>
+      <p>Você sabe que tem potencial. Vê oportunidades, sente o impulso de ir mais longe, e então a voz interna te puxa de volta: <strong>e se eu não der conta? e se não for boa o suficiente?</strong> O medo não te paralisa por completo, mas te mantém um passo aquém do que você poderia.</p>
+      <p>A insegurança raramente é falta de competência, é falta de <strong>autoconfiança</strong>, que é coisa diferente. Competência você já tem; o que falta é a relação de confiança com você mesma. E isso se constrói, não se espera nascer pronto.</p>
+    </div>
+
+    <h3 style="margin-top:7mm">Por onde você começa</h3>
+    <p class="intro" style="margin-bottom:4mm">Você pode fazer o caderno inteiro na ordem, e eu recomendo que faça. Mas se hoje você tem pouco fôlego, comece pelo pilar que fala com o seu bloqueio.</p>
+
+    <table class="aval">
+      <tr><td style="width:42mm"><strong>Estagnada</strong></td><td style="font-size:9.5pt">Comece pela <strong>Parte 3, Coragem</strong>. O seu próximo passo está escondido nos seus valores, não na sua agenda.</td></tr>
+      <tr><td><strong>Esgotada</strong></td><td style="font-size:9.5pt">Comece pela <strong>Parte 1, Aceitação</strong>. Antes de qualquer plano, você precisa ver o tamanho real do que está carregando.</td></tr>
+      <tr><td><strong>Perdida</strong></td><td style="font-size:9.5pt">Comece pela <strong>Parte 3, Coragem</strong>, na parte de valores. É de lá que a bússola volta.</td></tr>
+      <tr><td><strong>Insegura</strong></td><td style="font-size:9.5pt">Comece pela <strong>Parte 4, Disciplina</strong>. Confiança não vem de pensar melhor, vem de acumular evidência de que você faz.</td></tr>
+    </table>
+
+    <div class="caixa" style="margin-top:6mm">
+      <span class="rot">Antes de virar a página</span>
+      <p style="font-size:9.5pt;margin-bottom:2mm">Qual dos quatro bloqueios doeu mais? Escreva aqui, com as suas palavras, por quê.</p>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>6</span></div>
+</section>
+
+<!-- ============ PÁGINA DE RESPIRO / DATA ============ -->
+<section class="pagina">
+  <div class="topo"><span>Do Caos ao Equilíbrio</span><span class="parte">Ponto de partida</span></div>
+  <div class="corpo">
+    <div class="olho">Marco zero</div>
+    <h2>Onde eu estou hoje</h2>
+    <p class="intro">Antes de mudar qualquer coisa, registre o ponto de partida. Daqui a três meses, esta página vai ser a sua prova de que alguma coisa se moveu.</p>
+
+    <div class="grade2">
+      <div class="caixa"><span class="rot">Data de hoje</span><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Meu bloqueio principal</span><div class="esc"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Se eu tivesse que resumir como me sinto hoje em três palavras</span>
+      <div class="grade3" style="margin-top:1mm">
+        <div class="esc" style="border-bottom:1px solid var(--linha)"></div>
+        <div class="esc" style="border-bottom:1px solid var(--linha)"></div>
+        <div class="esc" style="border-bottom:1px solid var(--linha)"></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O que eu venho evitando olhar</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O que eu quero que esteja diferente quando eu terminar este caderno</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="destaque" style="margin-top:6mm">Escreveu? Então já começou. O resto é caminho.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>7</span></div>
+</section>
+
+<!-- ============ ABRE PARTE 1 ============ -->
+<section class="pagina abre-parte">
+  <div class="num">Parte um</div>
+  <h1>Aceitação</h1>
+  <div class="fio"></div>
+  <div class="lema">Ninguém sai de um lugar que se recusa a enxergar.</div>
+  <p>Aceitar não é concordar, não é se conformar e não é desistir. Aceitar é olhar para o que está acontecendo sem a maquiagem que a gente usa até quando está sozinha.</p>
+  <p style="margin-top:3mm">Esta parte vai te pedir honestidade, não desempenho. As perguntas daqui não têm resposta bonita. Se você responder o que gostaria que fosse verdade em vez do que é, o caderno inteiro perde a graça, e você sai daqui do mesmo jeito que entrou.</p>
+</section>
+
+<!-- ============ AUTOAVALIAÇÃO 1 — FÍSICO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha autoavaliação de cuidado</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 1</div>
+    <h2>Minha autoavaliação de cuidado</h2>
+    <p class="intro">Avalie cada item pela frequência com que ele acontece na sua vida <strong>hoje</strong>, não pelo que você pretende fazer. A lista não é completa, é um ponto de partida: acrescente o que fizer sentido para você.</p>
+
+    <div class="escala-topo"><span>0<br>nunca</span><span>1<br>pouco</span><span>2<br>às vezes</span><span>3<br>sempre</span></div>
+
+    <table class="aval">
+      <tr class="grupo"><td colspan="5"><b>Cuidado físico</b></td></tr>
+      <tr><td>Faço refeições nutritivas e balanceadas com regularidade</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Faço escolhas alimentares saudáveis de forma consciente</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Pratico exercícios físicos</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Faço exames médicos preventivos com regularidade</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Procuro atendimento médico quando preciso</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Quando adoeço, respeito o tempo de descanso e repouso</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Busco massagem ou outro cuidado corporal para relaxar</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Participo de atividades físicas que me dão prazer</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Tenho uma vida sexual prazerosa, acompanhada ou sozinha</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Priorizo dormir o suficiente para recarregar corpo e mente</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Uso roupas que me fazem sentir confortável e confiante</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Tiro férias para recarregar e viver experiências novas</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+
+      <tr class="grupo"><td colspan="5"><b>Cuidado psicológico</b></td></tr>
+      <tr><td>Faço passeios de um dia ou fim de semana para quebrar a rotina</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Reservo um tempo longe de telas e internet</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Priorizo a autorreflexão</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Presto atenção à minha experiência interior</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Busco ajuda profissional quando preciso</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Escrevo para processar pensamentos e emoções</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Leio livros por prazer, sem relação com o trabalho</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+    </table>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>9</span></div>
+</section>
+
+<!-- ============ AUTOAVALIAÇÃO 2 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha autoavaliação de cuidado</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="escala-topo"><span>0<br>nunca</span><span>1<br>pouco</span><span>2<br>às vezes</span><span>3<br>sempre</span></div>
+
+    <table class="aval">
+      <tr class="grupo"><td colspan="5"><b>Cuidado psicológico (continuação)</b></td></tr>
+      <tr><td>Reduzo o estresse na minha vida tanto quanto está ao meu alcance</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Amplio meus conhecimentos participando de eventos e experiências novas</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Uso a curiosidade como forma de aprender e explorar</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+
+      <tr class="grupo"><td colspan="5"><b>Cuidado emocional</b></td></tr>
+      <tr><td>Passo tempo com pessoas de quem gosto da companhia</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Mantenho contato com pessoas importantes na minha vida</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Pratico afirmações otimistas e o autoelogio</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Cultivo o amor próprio</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Revejo livros e filmes favoritos que me trazem conforto</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Procuro atividades, objetos, pessoas ou lugares que me fazem bem</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Me permito chorar quando é necessário</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Procuro fontes de riso e de alegria</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Reservo tempo para autorreflexão</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+
+      <tr class="grupo"><td colspan="5"><b>Cuidado espiritual</b></td></tr>
+      <tr><td>Passo tempo na natureza para me conectar com o ambiente</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Cultivo uma conexão espiritual alinhada com as minhas crenças</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Mantenho a mente aberta à inspiração de várias fontes</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Alimento o otimismo e a esperança no futuro</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Identifico o que tem valor para mim e priorizo isso na minha vida</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Pratico meditação para promover autocontrole e autoconsciência</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Me envolvo na oração como prática espiritual</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Canto para me expressar de forma criativa e emocional</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Contribuo para causas alinhadas com meus valores e crenças</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+    </table>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>10</span></div>
+</section>
+
+<!-- ============ AUTOAVALIAÇÃO 3 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha autoavaliação de cuidado</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="escala-topo"><span>0<br>nunca</span><span>1<br>pouco</span><span>2<br>às vezes</span><span>3<br>sempre</span></div>
+
+    <table class="aval">
+      <tr class="grupo"><td colspan="5"><b>Cuidado espiritual (continuação)</b></td></tr>
+      <tr><td>Leio livros inspiradores, ouço podcasts e músicas que me elevam</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Procuro experiências que despertam sentimento de valorização</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+
+      <tr class="grupo"><td colspan="5"><b>Cuidado nos relacionamentos</b></td></tr>
+      <tr><td>Marco encontros regulares com meu parceiro ou parceira</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Programo atividades regulares com meus filhos</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Programo passar um tempo com amigos</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Faço contato e visito meus parentes</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Passo tempo com meus animais de estimação</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Mantenho contato com amigos distantes</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Reservo tempo para responder mensagens pessoais</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Permito que os outros me ajudem quando preciso</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Amplio meu círculo social</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Peço ajuda quando é o caso</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Converso com alguém em quem confio</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+
+      <tr class="grupo"><td colspan="5"><b>Cuidado no trabalho</b></td></tr>
+      <tr><td>Faço pausas durante a jornada de trabalho</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Converso com colegas para manter um bom convívio</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Reservo um tempo de silêncio para concluir tarefas</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Tenho projetos ou tarefas interessantes e gratificantes</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Estabeleço limites com clientes e colegas</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Equilibro o número de tarefas para não me sobrecarregar</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Crio um espaço de trabalho confortável e produtivo</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+    </table>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>11</span></div>
+</section>
+
+<!-- ============ AUTOAVALIAÇÃO 4 — BALANÇO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha autoavaliação de cuidado</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="escala-topo"><span>0<br>nunca</span><span>1<br>pouco</span><span>2<br>às vezes</span><span>3<br>sempre</span></div>
+
+    <table class="aval">
+      <tr class="grupo"><td colspan="5"><b>Cuidado no trabalho (continuação)</b></td></tr>
+      <tr><td>Me dedico ao equilíbrio entre vida pessoal e profissional para evitar excesso de trabalho e esgotamento</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Busco equilíbrio entre trabalho, família, relações, diversão e descanso</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Tenho supervisão ou troca regular para apoio e retorno sobre o meu trabalho</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Defendo e comunico as minhas necessidades</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+      <tr><td>Tenho um grupo de apoio</td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td><td class="n"><i class="bolha"></i></td></tr>
+    </table>
+
+    <h3 style="margin-top:8mm">Some por dimensão</h3>
+    <p class="intro" style="margin-bottom:3mm">O número não é nota. Ele serve para uma coisa só: mostrar onde você está se abandonando sem perceber.</p>
+
+    <div class="grade3">
+      <div class="caixa"><span class="rot">Físico</span><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Psicológico</span><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Emocional</span><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Espiritual</span><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Relações</span><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Trabalho</span><div class="esc"></div></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>12</span></div>
+</section>
+
+<!-- ============ O QUE OS NÚMEROS DIZEM ============ -->
+<section class="pagina">
+  <div class="topo"><span>O que os números me dizem</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 2</div>
+    <h2>O que os números me dizem</h2>
+    <p class="intro">Volte às suas respostas e procure padrão, não pontuação. Quase sempre existe uma dimensão que você cuida bem e outra que você deixou de lado há tanto tempo que nem sente falta.</p>
+
+    <div class="caixa">
+      <span class="rot">Qual dimensão ficou mais alta, e o que isso me custa</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Qual ficou mais baixa, e há quanto tempo está assim</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Teve algum item que me incomodou só de ler? Qual, e por quê</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Três práticas que eu quero trazer para a minha rotina</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="destaque">Repare numa coisa: a dimensão mais baixa raramente é a que você não sabe cuidar. É a que você decidiu que pode esperar. E ela vem esperando há anos.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>13</span></div>
+</section>
+
+<!-- ============ AUTOCONSCIÊNCIA ============ -->
+<section class="pagina">
+  <div class="topo"><span>Jornada de autoconsciência</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 3</div>
+    <h2>Jornada de autoconsciência</h2>
+    <p class="intro">Autoconsciência é reconhecer o que você pensa, sente e faz, e perceber como essas três coisas conversam entre si. Escolha uma situação recente que mexeu com você de verdade.</p>
+
+    <div class="caixa">
+      <span class="rot">1 · A situação e como eu reagi</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="grade2">
+      <div class="caixa">
+        <span class="rot">2 · Que emoções eu senti</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">3 · Que pensamentos ou crenças estavam por trás delas</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">4 · Como esses pensamentos e emoções influenciaram o meu comportamento</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">5 · De que outra forma eu poderia ter reagido, com a consciência que tenho hoje</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>14</span></div>
+</section>
+
+<!-- ============ AUTOCOMPAIXÃO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Desenvolvendo a autocompaixão</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 4</div>
+    <h2>Desenvolvendo a autocompaixão</h2>
+    <p class="intro">Autocompaixão é tratar você mesma com a bondade que você distribui para todo mundo sem pensar duas vezes. Se você fala consigo de um jeito que jamais falaria com uma amiga, é aqui que começa o trabalho.</p>
+
+    <div class="grade2">
+      <div class="caixa">
+        <span class="rot">Uma situação recente em que fui dura comigo</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">Os pensamentos negativos ligados a ela</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Uma resposta mais compassiva para mim mesma</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:2mm">Valide o que você sentiu, reconheça que estava fazendo o possível com o que tinha, ofereça a si mesma o que você ofereceria a alguém que ama.</p>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Uma ação concreta para ter mais autocompaixão daqui para a frente</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="destaque">A pergunta que desarma: o que eu diria para uma amiga querida se ela me contasse exatamente isso?</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>15</span></div>
+</section>
+
+<!-- ============ DEIXANDO IR 1 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Deixando ir</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 5</div>
+    <h2>Deixando ir</h2>
+    <p class="intro">Tem coisa que você carrega por hábito, não por necessidade. Um pensamento, uma mágoa, um papel que você assumiu e nunca mais largou. Este exercício é para identificar o que já não serve e começar a soltar.</p>
+
+    <div class="caixa">
+      <span class="rot">O que eu estou segurando que não me serve mais</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Como esse apego está impactando a minha vida de forma negativa</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O que eu tenho medo de perder ao soltar isso</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O que eu ganho ao soltar</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>16</span></div>
+</section>
+
+<!-- ============ DEIXANDO IR 2 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Deixando ir</span><span class="parte">Parte 1 · Aceitação</span></div>
+  <div class="corpo">
+    <div class="caixa">
+      <span class="rot">Uma ação que eu posso fazer hoje para começar a soltar</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Que pensamentos eu posso colocar no lugar dos que estou deixando ir</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Como eu vou me apoiar nesse processo, e com quem posso contar</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Como eu vou celebrar cada avanço</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="destaque" style="margin-top:6mm">Soltar costuma ser difícil e demorado, e não tem nada de errado nisso. Seja paciente e gentil com você. Cada passo em direção ao desapego é um passo em direção a uma versão sua mais leve.</div>
+
+    <div class="cartao" style="margin-top:6mm">
+      <h4>Fim da Parte 1</h4>
+      <p style="font-size:9.3pt;margin:0">Você acabou de olhar para onde está sem se enfeitar. Isso é a parte que a maioria pula. A partir daqui fica mais leve, porque já não é sobre descobrir a verdade, é sobre o que fazer com ela.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>17</span></div>
+</section>
+
+<!-- ============ ABRE PARTE 2 ============ -->
+<section class="pagina abre-parte">
+  <div class="num">Parte dois</div>
+  <h1>Presença</h1>
+  <div class="fio"></div>
+  <div class="lema">Boa parte do seu cansaço não vem do que você faz. Vem de onde a sua cabeça está enquanto você faz.</div>
+  <p>A gente almoça pensando na reunião, participa da reunião pensando no jantar, e à noite não lembra do gosto de nada. É possível atravessar semanas inteiras assim, e chamar isso de vida cheia.</p>
+  <p style="margin-top:3mm">Presença é o pilar mais simples de entender e o mais difícil de sustentar. Não pede tempo extra, pede outra qualidade de atenção no tempo que você já tem. Os exercícios desta parte são curtos de propósito.</p>
+</section>
+
+<!-- ============ ATENÇÃO PLENA 1 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Prática de atenção plena</span><span class="parte">Parte 2 · Presença</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 6</div>
+    <h2>Prática de atenção plena</h2>
+    <p class="intro">Atenção plena é estar inteira no momento em que você está, prestando atenção em pensamentos, sensações e ambiente sem julgar nada disso. Reduz estresse, melhora o foco e devolve o controle sobre a reação automática.</p>
+
+    <div class="passos">
+      <div class="passo"><div class="b">1</div><p>Escolha um lugar tranquilo e confortável, onde você saiba que não será interrompida.</p></div>
+      <div class="passo"><div class="b">2</div><p>Comece respirando fundo algumas vezes, inspirando pelo nariz e expirando pela boca.</p></div>
+      <div class="passo"><div class="b">3</div><p>Feche os olhos e concentre-se na respiração. Observe a sensação do ar entrando e saindo do corpo.</p></div>
+      <div class="passo"><div class="b">4</div><p>Quando os pensamentos chegarem, apenas observe. Não julgue, não analise, não entre na conversa. Volte a atenção para a respiração.</p></div>
+      <div class="passo"><div class="b">5</div><p>Preste atenção nas sensações físicas. Perceba qualquer tensão ou desconforto no corpo e tente relaxar essas áreas.</p></div>
+      <div class="passo"><div class="b">6</div><p>Amplie a consciência para o que está ao seu redor. Perceba sons, cheiros e sensações do ambiente.</p></div>
+      <div class="passo"><div class="b">7</div><p>Volte a atenção para a respiração e continue trazendo o foco para o momento presente.</p></div>
+      <div class="passo"><div class="b">8</div><p>Pratique por 5 a 10 minutos, todos os dias.</p></div>
+    </div>
+
+    <div class="cartao" style="margin-top:5mm">
+      <h4>Quatro coisas que ajudam</h4>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Você pode praticar em qualquer lugar, não apenas num ambiente silencioso.</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">A mente divagar durante a prática é normal e faz parte do processo, não é erro seu.</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Meditações guiadas e aplicativos servem bem para começar.</p>
+      <p style="font-size:9.2pt;margin:0">Experimente formatos diferentes: respiração consciente, varredura corporal, meditação andando.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>19</span></div>
+</section>
+
+<!-- ============ ATENÇÃO PLENA 2 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Prática de atenção plena</span><span class="parte">Parte 2 · Presença</span></div>
+  <div class="corpo">
+    <h3>Depois de praticar, responda</h3>
+
+    <div class="caixa">
+      <span class="rot">O que eu percebi durante a prática</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Foi difícil me manter presente? Que distrações apareceram</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Como eu me senti ao terminar</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Como eu posso encaixar a atenção plena na minha rotina</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Que diferença isso pode fazer no meu bem-estar</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>20</span></div>
+</section>
+
+<!-- ============ DIÁRIO DE GRATIDÃO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Diário de gratidão</span><span class="parte">Parte 2 · Presença</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 7</div>
+    <h2>Diário de gratidão</h2>
+    <p class="intro">Prática simples e desproporcionalmente poderosa: anotar todo dia aquilo pelo que você é grata. Não é otimismo forçado, é treinar a atenção para enxergar o que já está lá e passa batido.</p>
+
+    <p style="font-size:9.8pt"><strong>Três coisas pelas quais eu sou grata hoje.</strong> Podem ser grandes ou pequenas, simples ou complexas, pessoais ou universais.</p>
+
+    <div class="caixa" style="margin-top:3mm">
+      <span class="rot">1</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2mm 0 1mm">Por que eu sou grata por isso, com detalhe</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">2</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2mm 0 1mm">Por que eu sou grata por isso, com detalhe</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">3</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2mm 0 1mm">Por que eu sou grata por isso, com detalhe</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Como eu me sinto ao expressar gratidão</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>21</span></div>
+</section>
+
+<!-- ============ GRATIDÃO PELO HOJE ============ -->
+<section class="pagina">
+  <div class="topo"><span>Gratidão pelo hoje</span><span class="parte">Parte 2 · Presença</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 8</div>
+    <h2>Gratidão pelo hoje</h2>
+    <p class="intro">Uma página para o fim do dia. Copie ou refaça quantas vezes quiser: funciona melhor repetida do que perfeita.</p>
+
+    <div class="caixa"><span class="rot">Hoje eu sou grata por</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">O melhor momento de hoje foi</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Coisas que me fizeram sorrir</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Pessoas por quem sou grata hoje</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">A lembrança que eu quero guardar deste dia</span><div class="esc"></div><div class="esc"></div></div>
+
+    <div class="cartao" style="margin-top:4mm">
+      <h4>Para a prática pegar</h4>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Repita com regularidade. A gratidão é músculo, não humor.</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Mantenha o registro em algum lugar fácil de alcançar, caderno ou aplicativo.</p>
+      <p style="font-size:9.2pt;margin:0">Diga em voz alta para as pessoas. Gratidão que fica só na cabeça rende menos.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>22</span></div>
+</section>
+
+<!-- ============ SONO 1 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha higiene do sono</span><span class="parte">Parte 2 · Presença</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 9</div>
+    <h2>Minha higiene do sono</h2>
+    <p class="intro">Higiene do sono é o conjunto de hábitos que fazem você dormir bem. Registre uma semana antes de tirar qualquer conclusão: quase sempre o padrão aparece sozinho.</p>
+
+    <table class="semana">
+      <tr><th style="width:26mm">Dia</th><th>Dormi às</th><th>Acordei às</th><th>Horas</th><th>Qualidade</th><th>O que atrapalhou</th></tr>
+      <tr><td><strong>Segunda</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Terça</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Quarta</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Quinta</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Sexta</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Sábado</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><strong>Domingo</strong></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+
+    <div class="cartao" style="margin-top:6mm">
+      <h4>O que costuma funcionar</h4>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Horário de dormir consistente, inclusive nos fins de semana e feriados.</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Um ritual relaxante antes de deitar: banho quente, leitura, luz baixa.</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Cafeína e telas longe do fim do dia.</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Quarto confortável, fresco, silencioso e escuro.</p>
+      <p style="font-size:9.2pt;margin:0">Se o problema do sono persistir, procure um profissional de saúde. Insônia crônica não se resolve só com força de vontade.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>23</span></div>
+</section>
+
+<!-- ============ SONO 2 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha higiene do sono</span><span class="parte">Parte 2 · Presença</span></div>
+  <div class="corpo">
+    <h3>Cinco passos que eu vou tomar</h3>
+    <p class="intro">Depois de uma semana registrando, escreva medidas específicas. Genérico não muda nada: "dormir melhor" não é passo, "desligar a tela às 22h" é.</p>
+
+    <div class="caixa"><span class="rot">Passo 1</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Passo 2</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Passo 3</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Passo 4</span><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Passo 5</span><div class="esc"></div><div class="esc"></div></div>
+
+    <div class="destaque">Você não vai reconstruir a sua energia enquanto estiver dormindo mal. Nenhum dos outros exercícios deste caderno compensa isso.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>24</span></div>
+</section>
+
+<!-- ============ CHECKLIST DIÁRIO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Meu cuidado de cada dia</span><span class="parte">Parte 2 · Presença</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 10</div>
+    <h2>Meu cuidado de cada dia</h2>
+    <p class="intro">Escreva na coluna da esquerda as práticas que você quer sustentar, e marque os dias em que aconteceram. Comece com poucas: três práticas cumpridas valem mais que dez abandonadas na quarta-feira.</p>
+
+    <table class="check">
+      <tr><th class="pr" style="width:80mm">Minha prática</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th><th>D</th></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+      <tr><td></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td><td class="q"><i class="qd"></i></td></tr>
+    </table>
+
+    <div class="cartao" style="margin-top:5mm">
+      <h4>Como usar sem se frustrar</h4>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Seja específica e mensurável: "caminhar 30 minutos" funciona melhor que "me exercitar".</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Revise no fim da semana, veja o que aconteceu e ajuste o que não coube na vida real.</p>
+      <p style="font-size:9.2pt;margin:0">Reconheça o que você cumpriu. Uma semana marcada é evidência de que você faz o que diz.</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>25</span></div>
+</section>
+
+<!-- ============ ABRE PARTE 3 ============ -->
+<section class="pagina abre-parte">
+  <div class="num">Parte três</div>
+  <h1>Coragem</h1>
+  <div class="fio"></div>
+  <div class="lema">Coragem não é a ausência do medo. É agir junto com ele, sem esperar que passe.</div>
+  <p>Aqui é onde a maioria trava, porque este pilar tem custo social. Impor um limite decepciona alguém. Nomear um valor obriga a rever escolhas. Pedir ajuda derruba a imagem de quem dá conta de tudo sozinha.</p>
+  <p style="margin-top:3mm">As mulheres que destravaram não viraram destemidas. Elas aprenderam a transformar o medo em movimento. Foi aí que vieram o espaço próprio, o trabalho que cresceu, os desafios que antes pareciam grandes demais.</p>
+</section>
+
+<!-- ============ PENSAMENTO NEGATIVO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Desmontando o pensamento negativo</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 11</div>
+    <h2>Desmontando o pensamento negativo</h2>
+    <p class="intro">Pensamento negativo repetido vira convicção, e convicção vira decisão. Este exercício quebra o automatismo: em vez de acreditar no pensamento, você pede provas a ele.</p>
+
+    <div class="caixa">
+      <span class="rot">Que pensamento negativo eu quero enfrentar</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="grade2">
+      <div class="caixa"><span class="rot">Qual foi o gatilho</span><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Como esse pensamento me faz sentir</span><div class="esc"></div><div class="esc"></div></div>
+    </div>
+
+    <div class="grade2">
+      <div class="caixa"><span class="rot">Que evidências dizem que ele é verdade</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Que evidências dizem que ele é falso</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O que eu diria a uma amiga que me contasse esse mesmo pensamento</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Um pensamento mais realista, que considere os dois lados da evidência</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <p class="nota">Repita com outros pensamentos recorrentes. Desmontar crença antiga leva tempo, e ter que repetir não é sinal de fracasso.</p>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>27</span></div>
+</section>
+
+<!-- ============ REFORMA DA MENTALIDADE ============ -->
+<section class="pagina">
+  <div class="topo"><span>Reforma da mentalidade</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 12</div>
+    <h2>Reforma da mentalidade</h2>
+    <p class="intro">Na coluna da esquerda, um pensamento ou crença negativa que você costuma ter sobre si mesma. Na direita, uma afirmação que contradiga esse pensamento, apoiada em algo real: uma força sua, uma conquista, uma qualidade que você reconhece.</p>
+
+    <table class="aval" style="margin-top:2mm">
+      <tr><td style="width:50%;border-bottom:1px solid var(--terracota-claro);padding-bottom:2mm"><strong style="color:var(--terracota);font-size:8.5pt;letter-spacing:.06em;text-transform:uppercase">Pensamento ou crença negativa</strong></td><td style="border-bottom:1px solid var(--terracota-claro);padding-bottom:2mm;padding-left:5mm"><strong style="color:var(--terracota);font-size:8.5pt;letter-spacing:.06em;text-transform:uppercase">Afirmação que contradiz</strong></td></tr>
+      <tr><td style="height:14mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:14mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:14mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:14mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:14mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:14mm"></td><td style="padding-left:5mm"></td></tr>
+    </table>
+
+    <p class="nota">Revise e atualize esta lista de tempos em tempos. Afirmação que você já não precisa mais é sinal de caminho andado.</p>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>28</span></div>
+</section>
+
+<!-- ============ LIMITES ============ -->
+<section class="pagina">
+  <div class="topo"><span>Definindo limites pessoais</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 13</div>
+    <h2>Definindo limites pessoais</h2>
+    <p class="intro">Se você é a pessoa que todo mundo procura, provavelmente é a que menos diz não. Limite não é muro, é a linha que preserva a sua energia para o que importa.</p>
+
+    <div class="caixa">
+      <span class="rot">Uma situação em que eu preciso estabelecer um limite</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O limite que eu quero definir, claro, específico e assertivo</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Meus medos sobre estabelecer esse limite</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:2mm">Medo de conflito, de decepcionar, de rejeição, de não ser mais necessária.</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Uma ação específica para definir e manter esse limite</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="cartao">
+      <h4>Na hora de comunicar</h4>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Seja clara, específica e assertiva. Limite explicado demais soa negociável.</p>
+      <p style="font-size:9.2pt;margin-bottom:1.5mm">Comunique com respeito e sem agressividade. Firmeza e dureza são coisas diferentes.</p>
+      <p style="font-size:9.2pt;margin:0">Cuide de si depois. É normal sentir culpa nas primeiras vezes, e a culpa passa antes do limite.</p>
+    </div>
+
+    <div class="destaque">Todo limite decepciona alguém que se acostumou a não encontrar nenhum. Isso não significa que ele está errado.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>29</span></div>
+</section>
+
+<!-- ============ REDE DE APOIO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha rede de apoio</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 14</div>
+    <h2>Minha rede de apoio</h2>
+    <p class="intro">Escreva os nomes das pessoas que oferecem cada tipo de apoio na sua vida. Se alguma coluna ficar vazia, não é fracasso seu: é informação sobre onde investir.</p>
+
+    <div class="grade3">
+      <div class="caixa">
+        <span class="rot">Apoio emocional</span>
+        <p style="font-size:8.5pt;color:var(--tinta-suave);margin-bottom:2mm">Cuidado e conforto</p>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">Apoio prático</span>
+        <p style="font-size:8.5pt;color:var(--tinta-suave);margin-bottom:2mm">Tarefas e resolução</p>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">Apoio informativo</span>
+        <p style="font-size:8.5pt;color:var(--tinta-suave);margin-bottom:2mm">Conselho e orientação</p>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+    </div>
+
+    <div class="caixa" style="margin-top:3mm">
+      <span class="rot">Onde estão as lacunas da minha rede</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O que eu posso fazer para fortalecer essa rede</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="destaque">Quem sustenta todo mundo costuma ter a coluna do apoio emocional vazia. Repare se é o seu caso.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>30</span></div>
+</section>
+
+<!-- ============ ALEGRIA + CRIATIVIDADE ============ -->
+<section class="pagina">
+  <div class="topo"><span>O que me traz alegria</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 15</div>
+    <h2>O que me traz alegria</h2>
+    <p class="intro">Pense nas atividades que te dão alegria e realização. Podem ser hobbies, interesses ou coisas de que você gosta e para as quais anda sem tempo. Recolocar isso na rotina não é luxo, é reposição de energia.</p>
+
+    <div class="caixa">
+      <span class="rot">Atividade ou interesse</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2mm 0 1mm">Por que eu gosto disso</p>
+      <div class="esc"></div>
+      <div class="grade2" style="margin-top:2mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Com que frequência eu quero fazer</p><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Meu primeiro passo para encaixar isso</p><div class="esc"></div></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Atividade ou interesse</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2mm 0 1mm">Por que eu gosto disso</p>
+      <div class="esc"></div>
+      <div class="grade2" style="margin-top:2mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Com que frequência eu quero fazer</p><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Meu primeiro passo para encaixar isso</p><div class="esc"></div></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:6mm">Um caminho de expressão</h3>
+    <p class="intro" style="margin-bottom:3mm">Escrever, desenhar, pintar, cantar, cozinhar. Escolha uma forma de expressão, dedique um tempo a ela sem cobrar resultado, e depois anote o que apareceu.</p>
+
+    <div class="caixa">
+      <span class="rot">O que eu escolhi, e o que apareceu enquanto eu fazia</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>31</span></div>
+</section>
+
+<!-- ============ VALORES ESCALA 1 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Meus valores pessoais</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 16</div>
+    <h2>Meus valores pessoais</h2>
+    <p class="intro">Avalie de 1 a 10 o quanto cada coisa é importante para você, sendo 1 nada importante e 10 essencial. Responda pelo que é seu, não pelo que soa bonito.</p>
+
+    <div class="valor-linha"><p>Atingir meus objetivos e ter sucesso no que eu faço</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Buscar novas experiências e assumir riscos</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Viver de acordo com as minhas crenças e valores</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Manter equilíbrio na minha vida, inclusive entre trabalho e vida pessoal</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Fazer parte de uma comunidade e retribuir aos outros</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Me expressar de forma criativa</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Aprender coisas novas e continuar crescendo</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Ter relações próximas com a minha família</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Ter autonomia e fazer as minhas próprias escolhas</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Manter uma boa saúde física e mental</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Sentir paz e harmonia interior</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>32</span></div>
+</section>
+
+<!-- ============ VALORES ESCALA 2 ============ -->
+<section class="pagina">
+  <div class="topo"><span>Meus valores pessoais</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="valor-linha"><p>Ver justiça e imparcialidade no mundo</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Ser leal aos meus amigos e à minha família</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Me sentir segura e estável na minha vida</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+    <div class="valor-linha"><p>Ter conexão com algo maior do que eu</p><div class="dez"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div></div>
+
+    <div class="caixa" style="margin-top:6mm">
+      <span class="rot">Algum valor me surpreendeu? Qual, e por quê</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Qual valor eu quero colocar mais no centro da minha vida</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Onde a minha rotina de hoje contradiz o que eu marquei como 9 ou 10</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="destaque">A distância entre o que você marcou com 10 e o que ocupa a sua semana costuma explicar boa parte do incômodo que te trouxe até aqui.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>33</span></div>
+</section>
+
+<!-- ============ VALORES FUNDAMENTAIS — NUVEM ============ -->
+<section class="pagina">
+  <div class="topo"><span>Meus quatro valores fundamentais</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 17</div>
+    <h2>Meus quatro valores fundamentais</h2>
+    <p class="intro">Circule, sem pensar muito, todos os valores que ressoam em você. Não existe resposta certa e você pode marcar quantos quiser. O primeiro impulso costuma ser o mais honesto.</p>
+
+    <div class="nuvem">
+      <span>Respeito</span><span>Autoaperfeiçoamento</span><span>Justiça</span><span>Gratidão</span><span>Perseverança</span>
+      <span>Igualdade</span><span>Coragem</span><span>Lealdade</span><span>Abertura</span><span>Autenticidade</span>
+      <span>Compaixão</span><span>Responsabilidade</span><span>Sabedoria</span><span>Humildade</span><span>Confiança</span>
+      <span>Inovação</span><span>Criatividade</span><span>Bondade</span><span>Liberdade</span><span>Integridade</span>
+      <span>Autoaceitação</span><span>Equilíbrio</span><span>Excelência</span><span>Aventura</span><span>Honestidade</span>
+      <span>Otimismo</span><span>Espiritualidade</span><span>Confiabilidade</span><span>Paciência</span><span>Empatia</span>
+      <span>Generosidade</span><span>Adaptabilidade</span><span>Assertividade</span><span>Cuidado</span><span>Compromisso</span>
+      <span>Diversidade</span><span>Flexibilidade</span><span>Perdão</span><span>Simpatia</span><span>Graciosidade</span>
+      <span>Crescimento</span><span>Dedicação</span><span>Saúde</span><span>Gentileza</span><span>Independência</span>
+      <span>Inteligência</span><span>Escuta</span><span>Atenção plena</span><span>Moderação</span><span>Não julgamento</span>
+      <span>Organização</span><span>Paixão</span><span>Persistência</span><span>Atitude positiva</span><span>Qualidade</span>
+      <span>Reflexão</span><span>Resiliência</span><span>Sensibilidade</span><span>Trabalho em equipe</span><span>Presença</span>
+    </div>
+
+    <div class="caixa" style="margin-top:6mm">
+      <span class="rot">Se faltou algum valor que é importante para mim, escrevo aqui</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>34</span></div>
+</section>
+
+<!-- ============ VALORES — AGRUPAMENTO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Meus quatro valores fundamentais</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <h3>Agora reduza a quatro</h3>
+    <p class="intro">Reveja os valores que você circulou e agrupe os que têm significado parecido para você. Depois escolha, para cada grupo, uma palavra que capture o sentimento do conjunto inteiro. Esses são os seus quatro valores fundamentais.</p>
+
+    <div class="grade2">
+      <div class="caixa">
+        <span class="rot">Grupo 1</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+        <p style="font-size:8.8pt;color:var(--terracota);margin:3mm 0 1mm;font-weight:600">A palavra que resume este grupo</p>
+        <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">Grupo 2</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+        <p style="font-size:8.8pt;color:var(--terracota);margin:3mm 0 1mm;font-weight:600">A palavra que resume este grupo</p>
+        <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">Grupo 3</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+        <p style="font-size:8.8pt;color:var(--terracota);margin:3mm 0 1mm;font-weight:600">A palavra que resume este grupo</p>
+        <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">Grupo 4</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div><div class="esc"></div>
+        <p style="font-size:8.8pt;color:var(--terracota);margin:3mm 0 1mm;font-weight:600">A palavra que resume este grupo</p>
+        <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>35</span></div>
+</section>
+
+<!-- ============ VALORES — VIVER ============ -->
+<section class="pagina">
+  <div class="topo"><span>Meus quatro valores fundamentais</span><span class="parte">Parte 3 · Coragem</span></div>
+  <div class="corpo">
+    <h3>Como eu vivo esses valores</h3>
+    <p class="intro">Valor que não aparece na agenda é intenção, não valor. Para cada um dos quatro, escreva como ele se manifesta no seu dia a dia, de forma concreta.</p>
+
+    <div class="caixa">
+      <span class="rot">Valor fundamental nº 1</span>
+      <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2.5mm 0 1mm">Como eu vivo esse valor no meu dia a dia</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Valor fundamental nº 2</span>
+      <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2.5mm 0 1mm">Como eu vivo esse valor no meu dia a dia</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Valor fundamental nº 3</span>
+      <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2.5mm 0 1mm">Como eu vivo esse valor no meu dia a dia</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Valor fundamental nº 4</span>
+      <div class="esc" style="border-bottom:2px solid var(--terracota-claro)"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2.5mm 0 1mm">Como eu vivo esse valor no meu dia a dia</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="cartao" style="margin-top:4mm">
+      <h4>Fim da Parte 3</h4>
+      <p style="font-size:9.3pt;margin:0">Esses quatro valores são a sua bússola. Toda decisão difícil daqui para a frente pode ser testada contra eles: isso me aproxima ou me afasta do que eu disse que é meu?</p>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>36</span></div>
+</section>
+
+<!-- ============ ABRE PARTE 4 ============ -->
+<section class="pagina abre-parte">
+  <div class="num">Parte quatro</div>
+  <h1>Disciplina</h1>
+  <div class="fio"></div>
+  <div class="lema">Motivação é o que te faz começar. Disciplina é o que te sustenta na terça-feira comum.</div>
+  <p>Este é o pilar que separa o caderno preenchido da vida mudada. Sem ele, tudo o que você escreveu até aqui vira um bom insight que você vai lembrar com carinho daqui a dois anos, exatamente no mesmo lugar.</p>
+  <p style="margin-top:3mm">Disciplina aqui não é rigidez nem autopunição. É construir estruturas tão pequenas e tão claras que fica mais fácil cumprir do que abandonar.</p>
+</section>
+
+<!-- ============ PRODUTIVIDADE ============ -->
+<section class="pagina">
+  <div class="topo"><span>Onde o meu tempo está indo</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 18</div>
+    <h2>Onde o meu tempo está indo</h2>
+    <p class="intro">Liste as tarefas que ocupam a sua semana, marque a prioridade de cada uma (A alta, M média, B baixa) e o tempo que ela consome. O padrão que aparece costuma incomodar, e é essa a utilidade.</p>
+
+    <table class="check">
+      <tr><th class="pr" style="width:100mm">Tarefa</th><th style="width:30mm">Prioridade</th><th>Tempo</th></tr>
+      <tr><td></td><td class="q" style="width:30mm;font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+      <tr><td></td><td class="q" style="font-size:8.5pt;color:var(--tinta-suave)">A &nbsp; M &nbsp; B</td><td></td></tr>
+    </table>
+
+    <div class="grade2" style="margin-top:5mm">
+      <div class="caixa">
+        <span class="rot">O que rouba o meu tempo sem me devolver nada</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+      <div class="caixa">
+        <span class="rot">Passos concretos para recuperar esse tempo</span>
+        <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>38</span></div>
+</section>
+
+<!-- ============ BRAINSTORM DE AÇÃO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Brainstorm de ação</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 19</div>
+    <h2>Brainstorm de ação</h2>
+    <p class="intro">Escolha um objetivo e pense nele por cinco ângulos. Repare que quatro dos cinco não pedem que você acrescente nada à sua vida.</p>
+
+    <div class="caixa">
+      <span class="rot">O objetivo que eu quero destravar</span>
+      <div class="esc"></div>
+    </div>
+
+    <div class="caixa"><span class="rot">Parar de fazer</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Fazer menos</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Continuar fazendo</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Fazer mais</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+    <div class="caixa"><span class="rot">Começar a fazer</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>39</span></div>
+</section>
+
+<!-- ============ VISÃO DE FUTURO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Visão de futuro</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 20</div>
+    <h2>Visão de futuro</h2>
+    <p class="intro">Escreva no presente, como se já fosse verdade. Quanto mais concreta a imagem, mais fácil o seu cérebro reconhecer a oportunidade quando ela aparecer.</p>
+
+    <div class="caixa">
+      <span class="rot">Daqui a três meses</span>
+      <div class="grade2" style="margin-top:1mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Vida pessoal</p><div class="esc"></div><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Vida profissional</p><div class="esc"></div><div class="esc"></div></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Daqui a seis meses</span>
+      <div class="grade2" style="margin-top:1mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Vida pessoal</p><div class="esc"></div><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Vida profissional</p><div class="esc"></div><div class="esc"></div></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Daqui a doze meses</span>
+      <div class="grade2" style="margin-top:1mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Vida pessoal</p><div class="esc"></div><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Vida profissional</p><div class="esc"></div><div class="esc"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>40</span></div>
+</section>
+
+<!-- ============ VISÃO 3 MESES DETALHE ============ -->
+<section class="pagina">
+  <div class="topo"><span>Visão de futuro</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <h3>Minha visão de três meses, por área</h3>
+    <p class="intro">Três meses é o horizonte honesto: perto o suficiente para você não fantasiar, longe o suficiente para caber mudança real.</p>
+
+    <div class="grade2">
+      <div class="caixa"><span class="rot">Saúde</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Carreira</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Relações</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Vida pessoal</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Finanças</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Conhecimento</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+    </div>
+
+    <div class="destaque">Se você marcou os seus quatro valores fundamentais na Parte 3, releia esta página com eles ao lado. O que estiver em contradição vai te custar caro depois.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>41</span></div>
+</section>
+
+<!-- ============ OBJETIVOS DE VIDA ============ -->
+<section class="pagina">
+  <div class="topo"><span>Meus objetivos</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 21</div>
+    <h2>Meus objetivos</h2>
+    <p class="intro">Escolha até três prioridades para os próximos três meses. Três é o limite de propósito: quem persegue dez objetivos não persegue nenhum.</p>
+
+    <div class="caixa">
+      <span class="rot">Objetivo 1</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2.5mm 0 1mm">Meus passos para chegar lá</p>
+      <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      <div class="grade2" style="margin-top:2mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Começo em</p><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Prazo</p><div class="esc"></div></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Objetivo 2</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2.5mm 0 1mm">Meus passos para chegar lá</p>
+      <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      <div class="grade2" style="margin-top:2mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Começo em</p><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Prazo</p><div class="esc"></div></div>
+      </div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Objetivo 3</span>
+      <div class="esc"></div>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin:2.5mm 0 1mm">Meus passos para chegar lá</p>
+      <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+      <div class="grade2" style="margin-top:2mm">
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Começo em</p><div class="esc"></div></div>
+        <div><p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1mm">Prazo</p><div class="esc"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>42</span></div>
+</section>
+
+<!-- ============ SMART ============ -->
+<section class="pagina">
+  <div class="topo"><span>O método SMART</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 22</div>
+    <h2>O método SMART</h2>
+    <p class="intro">SMART significa específico, mensurável, atingível, relevante e com prazo. Pegue o objetivo mais importante dos três e passe ele por este filtro.</p>
+
+    <div class="caixa">
+      <span class="rot">S · Específico</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Qual é exatamente o meu objetivo?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+    <div class="caixa">
+      <span class="rot">M · Mensurável</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Como eu vou medir o meu progresso?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+    <div class="caixa">
+      <span class="rot">A · Atingível</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">É possível com os recursos e as restrições que eu tenho hoje?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+    <div class="caixa">
+      <span class="rot">R · Relevante</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Como isso conversa com os meus valores e prioridades?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+    <div class="caixa">
+      <span class="rot">T · Prazo</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Quando eu quero ter chegado lá?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>43</span></div>
+</section>
+
+<!-- ============ PROGRESSO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Progresso da minha meta</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 23</div>
+    <h2>Progresso da minha meta</h2>
+    <p class="intro">Volte a esta página de tempos em tempos. Ela existe para você reconhecer o quanto já andou, que é justamente o que se esquece no meio do caminho.</p>
+
+    <div class="caixa"><span class="rot">Qual é o meu objetivo</span><div class="esc"></div></div>
+
+    <div class="caixa">
+      <span class="rot">Por que ele é importante para mim</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="grade2">
+      <div class="caixa"><span class="rot">Que forças minhas me ajudaram até aqui</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">O que atrapalhou o meu progresso</span><div class="esc"></div><div class="esc"></div><div class="esc"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Que obstáculos ainda podem aparecer, e como eu vou lidar com eles</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Que passos ainda faltam</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="grade2">
+      <div class="caixa"><span class="rot">Como eu me sinto sobre o meu progresso</span><div class="esc"></div><div class="esc"></div></div>
+      <div class="caixa"><span class="rot">Data em que eu alcancei</span><div class="esc"></div><div class="esc"></div></div>
+    </div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>44</span></div>
+</section>
+
+<!-- ============ WOOP ============ -->
+<section class="pagina">
+  <div class="topo"><span>O método WOOP</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 24</div>
+    <h2>O método WOOP</h2>
+    <p class="intro">Desejo, resultado, obstáculo e plano. A diferença deste método para o pensamento positivo comum está no terceiro passo: você é obrigada a olhar para o que pode dar errado, e é isso que faz o plano funcionar.</p>
+
+    <div class="caixa">
+      <span class="rot">W · Desejo</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Qual é o meu desejo ou objetivo específico?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+    <div class="caixa">
+      <span class="rot">O · Resultado</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Qual é o melhor resultado possível se eu conseguir? Como eu vou me sentir?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+    <div class="caixa">
+      <span class="rot">O · Obstáculo</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Qual é o principal obstáculo dentro de mim que pode me impedir?</p>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+    <div class="caixa">
+      <span class="rot">P · Plano</span>
+      <p style="font-size:8.8pt;color:var(--tinta-suave);margin-bottom:1.5mm">Quando o obstáculo aparecer, o que exatamente eu vou fazer?</p>
+      <div class="esc"></div><div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="destaque">Repare que o obstáculo que importa quase nunca é externo. É o que acontece dentro de você quando a coisa fica difícil.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>45</span></div>
+</section>
+
+<!-- ============ ENFRENTAMENTO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minhas estratégias de enfrentamento</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 25</div>
+    <h2>Minhas estratégias de enfrentamento</h2>
+    <p class="intro">Todo mundo tem um jeito de lidar com o que dói. Alguns funcionam, outros só adiam a conta. Identifique os seus e proponha alternativas mais saudáveis, sem julgamento.</p>
+
+    <table class="aval" style="margin-top:2mm">
+      <tr>
+        <td style="width:50%;border-bottom:1px solid var(--terracota-claro);padding-bottom:2mm"><strong style="color:var(--terracota);font-size:8.5pt;letter-spacing:.06em;text-transform:uppercase">O que eu faço hoje e me prejudica</strong></td>
+        <td style="border-bottom:1px solid var(--terracota-claro);padding-bottom:2mm;padding-left:5mm"><strong style="color:var(--terracota);font-size:8.5pt;letter-spacing:.06em;text-transform:uppercase">O que eu quero fazer no lugar</strong></td>
+      </tr>
+      <tr><td style="height:16mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:16mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:16mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:16mm"></td><td style="padding-left:5mm"></td></tr>
+      <tr><td style="height:16mm"></td><td style="padding-left:5mm"></td></tr>
+    </table>
+
+    <p class="nota">Trocar estratégia de enfrentamento é dos trabalhos mais lentos deste caderno, porque ela costuma ter décadas de prática. Vá com paciência.</p>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>46</span></div>
+</section>
+
+<!-- ============ HISTÓRIA DE SUCESSO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Minha história de sucesso</span><span class="parte">Parte 4 · Disciplina</span></div>
+  <div class="corpo">
+    <div class="olho">Exercício 26</div>
+    <h2>Minha história de sucesso</h2>
+    <p class="intro">Você já superou coisas. Provavelmente subestima o quanto. Este exercício existe para transformar uma vitória do passado em método para as próximas.</p>
+
+    <div class="caixa">
+      <span class="rot">Uma conquista da qual eu me orgulho</span>
+      <div class="esc"></div><div class="esc"></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Que ações específicas me levaram até lá</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">O que eu aprendi com essa experiência</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="caixa">
+      <span class="rot">Como eu aplico esse aprendizado nos meus objetivos de agora</span>
+      <div class="linhas densa"><div class="l"></div><div class="l"></div><div class="l"></div></div>
+    </div>
+
+    <div class="destaque">A mulher que fez aquilo é a mesma que está com este caderno na mão. Ela não sumiu, só andou ocupada demais para lembrar de si.</div>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>47</span></div>
+</section>
+
+<!-- ============ FECHO ============ -->
+<section class="pagina">
+  <div class="topo"><span>Do Caos ao Equilíbrio</span><span class="parte">O que vem depois</span></div>
+  <div class="corpo">
+    <div class="olho">O que vem depois</div>
+    <h2>Você não precisa fazer sozinha</h2>
+
+    <p>Se você chegou até aqui preenchendo de verdade, alguma coisa já mudou. Não necessariamente a sua rotina: mudou o que você consegue enxergar sobre ela. E isso é irreversível, para o bem.</p>
+
+    <p>Agora eu vou ser honesta com você sobre o limite deste caderno.</p>
+
+    <p>Ele te dá clareza. O que ele não te dá é a parte mais difícil, que é sustentar a mudança quando a semana aperta, quando alguém reclama do seu limite novo, quando a antiga versão de você bate na porta oferecendo o conforto de sempre. Essa parte quase ninguém atravessa sozinha, e não é por falta de força.</p>
+
+    <div class="destaque">O que segura a mudança não é mais informação. É companhia e constância.</div>
+
+    <h3 style="margin-top:7mm">Do Caos ao Equilíbrio, o programa</h3>
+    <p>É a continuação natural deste caderno: quatro semanas comigo e com um grupo pequeno de mulheres que estão exatamente no mesmo ponto que você.</p>
+
+    <div class="cartao">
+      <h4>Semana 1</h4>
+      <p style="font-size:9.3pt;margin:0">Lemos juntas o que você respondeu aqui. O caderno vira diagnóstico, e o diagnóstico vira plano.</p>
+    </div>
+    <div class="cartao">
+      <h4>Semanas 2 a 4</h4>
+      <p style="font-size:9.3pt;margin:0">Um encontro ao vivo por semana comigo, no grupo, mais o acompanhamento no dia a dia. É onde a dúvida da terça-feira encontra resposta antes de virar desistência.</p>
+    </div>
+
+    <p style="margin-top:5mm">O grupo é a sala de aula, e é ele que faz a diferença. Você deixa de ser uma mulher tentando mudar sozinha e passa a ser uma entre várias que se sustentam.</p>
+
+    <p style="margin-top:5mm"><strong>Quer saber quando abre a próxima turma?</strong><br>
+    Acesse <strong>josiedealbuquerque.com.br</strong> e entre para a lista.</p>
+
+    <p style="font-family:'Lora',serif;font-style:italic;font-size:14pt;margin-top:8mm">Te espero do outro lado.<br>Josie</p>
+  </div>
+  <div class="rodape"><span>josiedealbuquerque.com.br</span><span>48</span></div>
+</section>
+
+<!-- ============ CONTRACAPA ============ -->
+<section class="pagina" style="justify-content:center;text-align:center">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center">
+    <div style="font-family:'Lora',serif;font-style:italic;font-size:26pt;margin-bottom:8mm">J.</div>
+    <p style="font-family:'Lora',serif;font-style:italic;font-size:15pt;line-height:1.5;max-width:120mm;color:var(--tinta)">
+      Hoje eu vivo em Equilíbrio,<br>mas eu já fui uma agente do Caos.
+    </p>
+    <div style="width:20mm;height:2px;background:var(--terracota);margin:9mm 0"></div>
+    <p style="font-size:9.5pt;color:var(--tinta-suave);letter-spacing:.16em;text-transform:uppercase">Josie de Albuquerque</p>
+    <p style="font-size:9pt;color:var(--tinta-suave);margin-top:2mm">Desenvolvimento humano, das pessoas às organizações</p>
+    <p style="font-size:9pt;color:var(--terracota);margin-top:5mm">josiedealbuquerque.com.br</p>
+  </div>
+
+  <div style="border-top:1px solid var(--linha);padding-top:5mm;max-width:150mm;margin:0 auto">
+    <p style="font-size:8.2pt;color:var(--tinta-suave);line-height:1.5;margin:0">
+      Este material é de desenvolvimento pessoal e autoconhecimento, com finalidade educacional. Ele não substitui avaliação, acompanhamento ou orientação de profissional de saúde habilitado. Se você estiver em sofrimento intenso ou persistente, procure ajuda profissional. Conteúdo protegido; a reprodução ou distribuição sem autorização não é permitida.
+    </p>
+    <p style="font-size:8.2pt;color:var(--tinta-suave);margin-top:3mm">© 2026 Josie de Albuquerque</p>
+  </div>
+</section>
+
+</body>
+</html>

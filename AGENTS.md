@@ -18,7 +18,27 @@ Infra de teste criada em 2026-07-29 (contrato `josie-funil-autonomo-C01`); antes
 
 ## Variáveis de ambiente (nomes)
 
-`BREVO_API_KEY`, `BREVO_LIST_B2C`, `BREVO_LIST_B2B`, `BREVO_LIST_MATERIAIS`, `BREVO_ENTREGA_TEMPLATE_ID`, `SITE_URL`. Referência em `.env.example`. Sem as chaves Brevo o site funciona e `/api/lead` apenas registra no log.
+`BREVO_API_KEY`, `BREVO_LIST_B2C`, `BREVO_LIST_B2B`, `BREVO_LIST_MATERIAIS`, `BREVO_ENTREGA_TEMPLATE_ID`, `SITE_URL`, `NEXT_PUBLIC_WHATSAPP_JOSIE`. Referência em `.env.example`. Sem as chaves Brevo o site funciona e `/api/lead` apenas registra no log.
+
+`NEXT_PUBLIC_WHATSAPP_JOSIE` é só dígitos com DDI e DDD. É link de saída, não segredo, por isso `NEXT_PUBLIC`. **Sem ela o CTA de agendamento da consulta cai em `/mentoria`**, e o funil de mentoria fica sem ponto de conversão.
+
+## Funil do mundo Mentoria (modelo vigente desde 2026-07-30)
+
+O caderno **não é produto**, é isca gratuita. O que se vende é a **consulta de mentoria de R$ 97**, paga por Pix ou link manual e agendada no WhatsApp, e esse valor volta como desconto se a pessoa comprar algum programa depois. **Não existe checkout no site**, e o trio de rotas Mercado Pago fica para os produtos futuros.
+
+`/mentoria/quiz` é um fluxo único de pré-diagnóstico, não mais um quiz:
+
+1. 8 perguntas de bloqueio (E/X/P/I), conteúdo fiel a `quiz-bloqueio-josie.html` no vault
+2. gate com nome, e-mail e **aceite explícito** (sem ele `/api/materiais/subscribe` devolve 400)
+3. 6 telas do mapa de cuidado, 4 afirmações por dimensão, 0 a 3
+4. relatório com a leitura cruzada de bloqueio × dimensão mais frágil
+5. CTA único: agendar a consulta
+
+A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só desenha. Mexeu nos textos, rode `npm test`: há teste que varre as 24 combinações atrás de termo vetado e travessão.
+
+**Pegadinha das listas Brevo:** `/api/materiais/subscribe` escolhe a lista por `audience`. Sem esse campo o padrão é `b2b` e cai em `BREVO_LIST_MATERIAIS`; com `audience: "b2c"` cai em `BREVO_LIST_B2C`. Nunca deixe material do mundo Mentoria ir para a lista de materiais do mundo Empresas.
+
+**Vídeo no hero:** `src/components/hero-video.tsx` serve `/empresas`. É server component de propósito (autoplay e `prefers-reduced-motion` resolvem em HTML e CSS). O texto fica num painel de vidro em vez de sobre um scrim escuro, que é o sistema visual aprovado pela Josie.
 
 ## Convenções
 
@@ -37,6 +57,29 @@ Os originais ficam em `materiais-src/videos/` e `materiais-src/fotos/`, ambos **
 - Vídeo de fundo vai sempre **sem faixa de áudio** (`-an`) — é mudo por definição e áudio atrapalha o autoplay.
 - Regenerar: `ffmpeg -ss 2 -t 12 -i "<origem.mov>" -vf "crop=2160:1215:0:640,scale=1920:1080" -an -c:v libx264 -crf 28 -preset slow -pix_fmt yuv420p -movflags +faststart -y public/video/nr1-hero.mp4` (WebM: `-c:v libvpx-vp9 -crf 46 -b:v 0 -row-mt 1`). Teto: 3 MB por arquivo.
 - Estes vídeos são **exclusivos de `/empresas` e da página NR-1** — é filmagem de entrega corporativa com plateia, fora de tom no mundo `/mentoria`.
+
+## Materiais em PDF (checklist NR-1, caderno "Do Caos ao Equilíbrio")
+
+Todo material rico tem a **fonte HTML versionada em `materiais-src/`** e o **PDF derivado em `public/materiais/`**. O PDF nunca é a fonte: quem edita é o HTML, e o PDF se regenera.
+
+- `checklist-nr1.html` → `public/materiais/checklist-nr1.pdf` (1 página, mundo Empresas, petróleo/eucalipto)
+- `caderno-do-caos-ao-equilibrio.html` → `public/materiais/caderno-do-caos-ao-equilibrio.pdf` (49 páginas, mundo Mentoria, terracota/bege). É o produto de entrada de R$ 97.
+
+Regeneração: Chrome headless via CDP, `Page.printToPDF` com `preferCSSPageSize:true` e `printBackground:true`, margens zeradas (o `@page { size:A4; margin:0 }` do HTML é quem manda). Espere ~6 s depois do `Page.navigate` antes de imprimir, senão as fontes do Google Fonts não terminam de carregar e o PDF sai com fallback serifado.
+
+**Regras de conteúdo do caderno** (valem para qualquer edição futura):
+- Termos proibidos em TODO material B2C: "terapeuta", "terapia", "tratamento", "cura". A Josie não é psicóloga registrada.
+- A leitora é tratada **no feminino**. O público validado são mulheres de 30 a 45 anos.
+- Sem travessão (em-dash) na copy; use vírgula ou dois-pontos.
+- Sem linguagem esotérica na abertura ("alquimia", "energético", "bioenergia"). A dor vem primeiro.
+- Estrutura fixa: 4 bloqueios do quiz como ponto de partida, depois os 4 pilares (Aceitação, Presença, Coragem, Disciplina) como as 4 partes.
+- Disclaimer educacional obrigatório na contracapa.
+
+Teste de aceite (roda da raiz do projeto, exige PyMuPDF):
+
+```
+python -c "import fitz;d=fitz.open('public/materiais/caderno-do-caos-ao-equilibrio.pdf');t=chr(10).join(p.get_text() for p in d);print('FALHOU' if any(w in t.lower() for w in ['terapeuta','terapia','tratamento',chr(8212)]) else 'OK')"
+```
 
 ## Importação de base de leads
 

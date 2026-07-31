@@ -2,10 +2,28 @@
 
 import { useState } from "react";
 
-/* Conteúdo 100% fiel ao protótipo quiz-bloqueio-josie.html (fonte de verdade).
-   4 perfis extraídos de 18 casos reais: E=Estagnada X=Esgotada P=Perdida I=Insegura. */
+import {
+  DIMENSOES,
+  NOME_DIMENSAO,
+  dimensaoMaisForte,
+  dimensaoMaisFragil,
+  leituraCruzada,
+  percentual,
+  somarMapa,
+  type BloqueioKey,
+  type DimensaoKey,
+} from "@/lib/pre-diagnostico";
 
-type ProfileKey = "E" | "X" | "P" | "I";
+/* Fluxo único de pré-diagnóstico do mundo Mentoria.
+
+   Bloco 1 (bloqueio) -> gate (nome + e-mail, entrega o caderno) -> Bloco 2 (mapa
+   de cuidado, 6 dimensões) -> relatório com a leitura cruzada -> CTA da consulta.
+
+   Conteúdo do Bloco 1 é 100% fiel ao protótipo quiz-bloqueio-josie.html
+   (fonte de verdade). 4 perfis extraídos de 18 casos reais:
+   E=Estagnada X=Esgotada P=Perdida I=Insegura. */
+
+type ProfileKey = BloqueioKey;
 type Scores = Record<ProfileKey, number>;
 
 const PROFILES: Record<
@@ -124,7 +142,22 @@ const QUESTIONS: { q: string; opts: [string, Partial<Scores>][] }[] = [
   },
 ];
 
-const HOTMART_URL = "https://pay.hotmart.com/M95873042T?off=uoo819k9";
+const ESCALA: { valor: number; rotulo: string }[] = [
+  { valor: 0, rotulo: "Nunca" },
+  { valor: 1, rotulo: "Pouco" },
+  { valor: 2, rotulo: "Às vezes" },
+  { valor: 3, rotulo: "Sempre" },
+];
+
+/* Número da Josie fica em env pública porque é link de saída, não segredo.
+   Sem a variável, o CTA cai na página de contato em vez de virar link quebrado. */
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_JOSIE?.replace(/\D/g, "") ?? "";
+
+function linkConsulta(nome: string, bloqueio: ProfileKey): string {
+  if (!WHATSAPP) return "/mentoria";
+  const texto = `Oi Josie, sou ${nome || "uma leitora do site"}. Fiz o pré-diagnóstico e deu ${PROFILES[bloqueio].nome}. Quero agendar a consulta de mentoria.`;
+  return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+}
 
 function topProfile(scores: Scores): ProfileKey {
   let best: ProfileKey = "E";
@@ -138,7 +171,7 @@ function topProfile(scores: Scores): ProfileKey {
   return best;
 }
 
-type Stage = "intro" | "questions" | "gate" | "result";
+type Stage = "intro" | "questions" | "gate" | "mapa" | "result";
 
 export function QuizClient() {
   const [stage, setStage] = useState<Stage>("intro");
@@ -148,6 +181,14 @@ export function QuizClient() {
   const [email, setEmail] = useState("");
   const [erro, setErro] = useState<string | null>(null);
   const [enviando, setEnviando] = useState(false);
+  const [consentimento, setConsentimento] = useState(false);
+  const [dimIdx, setDimIdx] = useState(0);
+  const [respostas, setRespostas] = useState<Record<DimensaoKey, number[]>>(
+    () =>
+      Object.fromEntries(
+        DIMENSOES.map((d) => [d.chave, Array(d.itens.length).fill(-1)]),
+      ) as Record<DimensaoKey, number[]>,
+  );
 
   function choose(points: Partial<Scores>) {
     setScores((prev) => {
@@ -164,6 +205,14 @@ export function QuizClient() {
     }
   }
 
+  function responder(chave: DimensaoKey, item: number, valor: number) {
+    setRespostas((prev) => {
+      const next = { ...prev, [chave]: [...prev[chave]] };
+      next[chave][item] = valor;
+      return next;
+    });
+  }
+
   async function submitLead() {
     setErro(null);
     const okEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim());
@@ -175,8 +224,13 @@ export function QuizClient() {
       setErro("Confere o e-mail, parece incompleto.");
       return;
     }
+    if (!consentimento) {
+      setErro("Preciso do seu aceite para te enviar o caderno por e-mail.");
+      return;
+    }
 
     setEnviando(true);
+    const bloqueio = topProfile(scores);
     try {
       await fetch("/api/lead", {
         method: "POST",
@@ -185,35 +239,52 @@ export function QuizClient() {
           audience: "b2c",
           nome: nome.trim(),
           email: email.trim(),
-          bloqueio: topProfile(scores),
+          bloqueio,
         }),
       });
     } catch {
-      /* o resultado aparece mesmo se a gravação falhar; lead é registrado no servidor */
+      /* o fluxo continua mesmo se a gravação falhar; o lead é registrado no servidor */
+    }
+    try {
+      await fetch("/api/materiais/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          audience: "b2c",
+          nome: nome.trim(),
+          email: email.trim(),
+          material: "caderno-do-caos-ao-equilibrio",
+          consentimento: true,
+        }),
+      });
+    } catch {
+      /* a entrega do caderno é best-effort, nunca trava o pré-diagnóstico */
     }
     setEnviando(false);
-    setStage("result");
+    setStage("mapa");
   }
 
+  /* ---------------- intro ---------------- */
   if (stage === "intro") {
     return (
       <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
-        <p className="eyebrow">diagnóstico · 2 minutos</p>
+        <p className="eyebrow">pré-diagnóstico · 5 minutos</p>
         <h1 className="mt-4 text-3xl font-medium leading-[1.15] sm:text-4xl">
           Por que você se sente travada?
         </h1>
         <p className="mt-4 text-base leading-7 text-muted">
-          Você tem uma vida que, no papel, deveria te deixar bem. Mas por
-          dentro algo não flui. Responda 8 perguntas honestas e descubra qual
-          é o bloqueio que está te segurando, e o primeiro passo pra sair
-          dele.
+          Você tem uma vida que, no papel, deveria te deixar bem. Mas por dentro
+          algo não flui. Este pré-diagnóstico tem duas partes: primeiro
+          identifica o bloqueio que está te segurando, depois mapeia onde você
+          anda se cuidando e onde parou. No fim você recebe uma leitura pessoal
+          e o caderno completo, de graça.
         </p>
         <button
           className="btn-brand mt-7 w-full"
           onClick={() => setStage("questions")}
           type="button"
         >
-          Começar o diagnóstico
+          Começar o pré-diagnóstico
         </button>
         <p className="mt-4 text-center text-xs leading-5 text-muted">
           São perguntas sobre como você se sente. Não há resposta certa, só a
@@ -223,9 +294,10 @@ export function QuizClient() {
     );
   }
 
+  /* ---------------- bloco 1: bloqueio ---------------- */
   if (stage === "questions") {
     const item = QUESTIONS[idx];
-    const pct = Math.round((idx / QUESTIONS.length) * 100);
+    const pct = Math.round((idx / QUESTIONS.length) * 50);
     return (
       <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
         <div className="h-1.5 overflow-hidden rounded-full bg-bege">
@@ -235,7 +307,7 @@ export function QuizClient() {
           />
         </div>
         <p className="mt-6 text-xs tracking-wide text-muted">
-          Pergunta {idx + 1} de {QUESTIONS.length}
+          Parte 1 de 2 · pergunta {idx + 1} de {QUESTIONS.length}
         </p>
         <h2 className="mt-2 text-2xl font-medium leading-[1.25]">{item.q}</h2>
         <div className="mt-6 flex flex-col gap-3">
@@ -254,17 +326,19 @@ export function QuizClient() {
     );
   }
 
+  /* ---------------- gate ---------------- */
   if (stage === "gate") {
     return (
       <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
-        <p className="eyebrow">seu diagnóstico está pronto</p>
+        <p className="eyebrow">primeira parte concluída</p>
         <h2 className="mt-4 text-3xl font-medium leading-[1.15]">
-          Pra onde envio o seu resultado?
+          Já sei qual é o seu bloqueio
         </h2>
         <p className="mt-4 text-base leading-7 text-muted">
-          Identifiquei o seu bloqueio principal e preparei o primeiro passo
-          pra você. Deixe seu nome e e-mail que eu te mostro agora, e te envio
-          uma cópia pra você reler quando precisar.
+          Falta a segunda parte, que é onde a leitura fica realmente sua: um
+          mapa de como você anda se cuidando em seis áreas da vida. Deixe seu
+          nome e e-mail para eu te enviar o caderno completo agora, e siga para
+          o mapa.
         </p>
         <div className="mt-6 flex flex-col gap-4">
           <label className="flex flex-col gap-1.5 text-sm text-muted">
@@ -290,6 +364,18 @@ export function QuizClient() {
             />
           </label>
         </div>
+        <label className="mt-5 flex cursor-pointer items-start gap-3 text-xs leading-5 text-muted">
+          <input
+            checked={consentimento}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--color-brand,#C26D50)]"
+            onChange={(event) => setConsentimento(event.target.checked)}
+            type="checkbox"
+          />
+          <span>
+            Aceito receber o caderno e os conteúdos da Josie por e-mail. Seus
+            dados ficam só com ela, e você pode sair quando quiser.
+          </span>
+        </label>
         {erro ? <p className="mt-3 text-sm text-terracota">{erro}</p> : null}
         <button
           className="btn-brand mt-6 w-full disabled:opacity-60"
@@ -297,26 +383,107 @@ export function QuizClient() {
           onClick={submitLead}
           type="button"
         >
-          {enviando ? "Um instante..." : "Ver o meu resultado"}
+          {enviando ? "Um instante..." : "Continuar para o mapa"}
         </button>
         <p className="mt-4 text-center text-xs leading-5 text-muted">
-          Seus dados ficam só com a Josie. Sem spam, você pode sair quando
-          quiser.
+          O caderno vai para o seu e-mail, sem custo.
         </p>
       </div>
     );
   }
 
-  const profile = PROFILES[topProfile(scores)];
+  /* ---------------- bloco 2: mapa de cuidado ---------------- */
+  if (stage === "mapa") {
+    const dimensao = DIMENSOES[dimIdx];
+    const atual = respostas[dimensao.chave];
+    const completa = atual.every((valor) => valor >= 0);
+    const pct = 50 + Math.round((dimIdx / DIMENSOES.length) * 50);
+    const ultima = dimIdx + 1 === DIMENSOES.length;
+
+    return (
+      <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
+        <div className="h-1.5 overflow-hidden rounded-full bg-bege">
+          <div
+            className="h-full rounded-full bg-brand transition-all duration-300"
+            style={{ width: `${pct}%` }}
+          />
+        </div>
+        <p className="mt-6 text-xs tracking-wide text-muted">
+          Parte 2 de 2 · área {dimIdx + 1} de {DIMENSOES.length}
+        </p>
+        <h2 className="mt-2 text-2xl font-medium leading-[1.25]">
+          {dimensao.titulo}
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-muted">{dimensao.convite}</p>
+
+        <div className="mt-6 flex flex-col gap-5">
+          {dimensao.itens.map((item, posicao) => (
+            <div key={item}>
+              <p className="text-[15px] leading-6 text-fg">{item}</p>
+              <div className="mt-2 grid grid-cols-4 gap-2">
+                {ESCALA.map((opcao) => {
+                  const marcada = atual[posicao] === opcao.valor;
+                  return (
+                    <button
+                      aria-pressed={marcada}
+                      className={`rounded-lg border px-2 py-2.5 text-xs leading-4 transition ${
+                        marcada
+                          ? "border-brand bg-brand text-white"
+                          : "border-line bg-bege/50 text-muted hover:border-brand"
+                      }`}
+                      key={opcao.valor}
+                      onClick={() =>
+                        responder(dimensao.chave, posicao, opcao.valor)
+                      }
+                      type="button"
+                    >
+                      {opcao.rotulo}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button
+          className="btn-brand mt-7 w-full disabled:opacity-50"
+          disabled={!completa}
+          onClick={() => (ultima ? setStage("result") : setDimIdx(dimIdx + 1))}
+          type="button"
+        >
+          {ultima ? "Ver o meu pré-diagnóstico" : "Próxima área"}
+        </button>
+        {!completa ? (
+          <p className="mt-3 text-center text-xs text-muted">
+            Responda as quatro afirmações para seguir.
+          </p>
+        ) : null}
+      </div>
+    );
+  }
+
+  /* ---------------- relatório ---------------- */
+  const bloqueio = topProfile(scores);
+  const profile = PROFILES[bloqueio];
+  const mapa = somarMapa(respostas);
+  const fragil = dimensaoMaisFragil(mapa);
+  const forte = dimensaoMaisForte(mapa);
+  const leitura = leituraCruzada(bloqueio, fragil);
+
   return (
     <div className="rounded-2xl border border-line bg-surface p-8 sm:p-10">
-      <p className="eyebrow">{nome.trim()}, aqui está o seu diagnóstico</p>
+      <p className="eyebrow">
+        {nome.trim()}, aqui está o seu pré-diagnóstico
+      </p>
+
       <h2 className="mt-4 text-3xl font-medium leading-[1.15]">
         {profile.nome}
       </h2>
       <p className="mt-3 inline-block rounded-full border border-brand px-4 py-1 font-serif text-sm italic text-brand">
         {profile.badge}
       </p>
+
       <div className="mt-6 flex flex-col gap-4 text-base leading-7 text-muted">
         <p dangerouslySetInnerHTML={{ __html: profile.p1 }} />
         <div
@@ -324,22 +491,95 @@ export function QuizClient() {
           dangerouslySetInnerHTML={{ __html: profile.insight }}
         />
         <p dangerouslySetInnerHTML={{ __html: profile.p2 }} />
+      </div>
+
+      {/* mapa de cuidado */}
+      <h3 className="mt-10 font-serif text-2xl font-medium leading-tight">
+        O seu mapa de cuidado
+      </h3>
+      <p className="mt-2 text-sm leading-6 text-muted">
+        Não é nota, é retrato. Ele mostra onde a sua energia está sendo reposta
+        e onde ela só sai.
+      </p>
+      <div className="mt-5 flex flex-col gap-3">
+        {DIMENSOES.map((dimensao) => {
+          const valor = percentual(mapa[dimensao.chave]);
+          const eFragil = dimensao.chave === fragil;
+          return (
+            <div key={dimensao.chave}>
+              <div className="flex items-baseline justify-between text-sm">
+                <span className={eFragil ? "font-medium text-brand" : "text-fg"}>
+                  {dimensao.titulo}
+                </span>
+                <span className="text-xs text-muted">{valor}%</span>
+              </div>
+              <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-bege">
+                <div
+                  className={`h-full rounded-full ${eFragil ? "bg-brand" : "bg-fg/25"}`}
+                  style={{ width: `${valor}%` }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* leitura cruzada */}
+      <h3 className="mt-10 font-serif text-2xl font-medium leading-tight">
+        O que isso quer dizer junto
+      </h3>
+      <div className="mt-4 flex flex-col gap-4 text-base leading-7 text-muted">
+        <p className="text-fg">
+          <strong>{leitura.abertura}</strong>
+        </p>
+        <p>{leitura.corpo}</p>
+        <div className="rounded-r-xl border-l-[3px] border-brand bg-bege/70 px-5 py-4 text-[15px] leading-7 text-fg">
+          {leitura.virada}
+        </div>
         <p>
-          <strong className="text-fg">O seu primeiro passo:</strong>{" "}
-          reconhecer o bloqueio já muda como você se enxerga, mas reconhecer
-          não basta. Eu preparei um material que te mostra, na prática, como
-          começar a destravar a partir de onde você está hoje.
+          Vale reparar no outro lado também: a sua área mais firme hoje é a{" "}
+          <strong className="text-fg">{NOME_DIMENSAO[forte]}</strong>. Ela é a
+          prova de que você consegue sustentar cuidado quando decide que aquilo
+          importa. O trabalho não é aprender a se cuidar, é estender para o
+          resto o que você já faz em algum lugar.
         </p>
       </div>
-      <a className="btn-brand mt-7 block w-full text-center" href={HOTMART_URL}>
-        Quero dar o primeiro passo
-      </a>
-      <p className="mt-6 text-center text-[11px] leading-5 text-muted opacity-80">
-        Este conteúdo é educacional e de desenvolvimento pessoal. Não
-        constitui diagnóstico, conduta psicológica ou médica, nem
-        substitui acompanhamento profissional de saúde. Se você está
-        enfrentando sofrimento intenso, procure um profissional de saúde
-        mental.
+
+      {/* próximo passo */}
+      <div className="mt-10 rounded-2xl border border-brand/40 bg-bege/60 p-6 sm:p-7">
+        <p className="eyebrow">o seu próximo passo</p>
+        <h3 className="mt-3 font-serif text-2xl font-medium leading-tight text-fg">
+          Uma conversa de uma hora com a Josie
+        </h3>
+        <p className="mt-3 text-[15px] leading-7 text-muted">
+          O caderno completo já saiu para o seu e-mail, sem custo, e ele te leva
+          longe sozinha. O que ele não faz é olhar para o seu caso. Na consulta
+          de mentoria a Josie lê o seu pré-diagnóstico com você e monta o
+          primeiro plano de saída, com o que cabe na sua vida real.
+        </p>
+        <p className="mt-4 text-[15px] leading-7 text-fg">
+          <strong>R$ 97 pela consulta.</strong> Se depois dela você decidir
+          seguir com algum programa da Josie, esse valor volta como desconto na
+          sua compra.
+        </p>
+        <a
+          className="btn-brand mt-6 block w-full text-center"
+          href={linkConsulta(nome.trim(), bloqueio)}
+          rel="noreferrer"
+          target="_blank"
+        >
+          Quero agendar a minha consulta
+        </a>
+        <p className="mt-3 text-center text-xs leading-5 text-muted">
+          Você fala direto com a Josie no WhatsApp para escolher o horário.
+        </p>
+      </div>
+
+      <p className="mt-8 text-center text-[11px] leading-5 text-muted opacity-80">
+        Este conteúdo é educacional e de desenvolvimento pessoal. Não constitui
+        diagnóstico, conduta psicológica ou médica, nem substitui acompanhamento
+        profissional de saúde. Se você está enfrentando sofrimento intenso,
+        procure um profissional de saúde mental.
       </p>
     </div>
   );

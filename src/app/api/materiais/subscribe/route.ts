@@ -1,7 +1,12 @@
-/* Captura de leads de material rico (lead magnet) do mundo Empresas / NR-1.
+/* Entrega de material rico (lead magnet) dos DOIS mundos.
    Isolada do /api/lead (que trata contato comercial). Best-effort e env-gated:
    sem BREVO_API_KEY o material é liberado mesmo assim; nada é gravado sem
-   consentimento (LGPD). */
+   consentimento (LGPD).
+
+   Regra do projeto: lead B2C e lead B2B NUNCA entram na mesma lista. Por isso a
+   lista de destino depende de `audience`: material do mundo Empresas cai em
+   BREVO_LIST_MATERIAIS, material do mundo Mentoria cai em BREVO_LIST_B2C (a mesma
+   do quiz, com updateEnabled para os atributos se somarem ao contato que já existe). */
 
 import { isEmailValido } from "@/lib/validacao";
 
@@ -16,6 +21,7 @@ type SubscribePayload = {
   cargo?: unknown;
   telefone?: unknown;
   material?: unknown;
+  audience?: unknown;
   consentimento?: unknown;
 };
 
@@ -37,6 +43,7 @@ export async function POST(request: Request) {
   const cargo = texto(payload.cargo);
   const telefone = texto(payload.telefone);
   const material = texto(payload.material);
+  const audience = payload.audience === "b2c" ? "b2c" : "b2b";
   const consentimento = payload.consentimento === true;
 
   if (!isEmailValido(email)) {
@@ -51,11 +58,15 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.BREVO_API_KEY?.trim();
-  const listId = Number(process.env.BREVO_LIST_MATERIAIS);
+  const listId =
+    audience === "b2c"
+      ? Number(process.env.BREVO_LIST_B2C)
+      : Number(process.env.BREVO_LIST_MATERIAIS);
 
   console.log({
     event: "material_recebido",
     material,
+    audience,
     brevo: Boolean(apiKey && Number.isFinite(listId)),
   });
 
