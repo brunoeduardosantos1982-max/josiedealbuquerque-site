@@ -42,7 +42,7 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 
 ## Hero de vídeo e navegação flutuante (mundo Empresas)
 
-`src/components/hero-video.tsx` serve `/empresas`: vídeo **vertical** (`nr1-hero-mobile.*`, o enquadramento nativo dos clipes) ocupando a tela inteira, conteúdo ancorado embaixo à esquerda em tipografia pequena. Server component de propósito, porque `autoplay muted playsinline` e `prefers-reduced-motion` resolvem em HTML e CSS.
+`src/components/hero-video.tsx` serve `/empresas`: vídeo **vertical** (`nr1-hero-integra.mp4`, o enquadramento nativo dos clipes) ocupando a tela inteira, conteúdo ancorado embaixo à esquerda em tipografia pequena. Server component de propósito, porque `autoplay muted playsinline` e `prefers-reduced-motion` resolvem em HTML e CSS.
 
 - **`object-position` é medido, não estético.** Em `center 22%` a Josie e o slide ficam no quadro em tela larga; centralizado, o corte pega o tronco e decapita.
 - **Contraste vem de dois gradientes**, um de baixo e um da esquerda, exatamente onde o texto pousa. A Josie fica à direita e continua limpa. Não voltar para overlay escuro na imagem inteira nem para painel de vidro por cima: os dois foram recusados pelo Bruno.
@@ -66,11 +66,11 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 
 ## Mídia da palestra NR-1 (vídeo de fundo de /empresas)
 
-Os originais ficam em `materiais-src/videos/` e `materiais-src/fotos/`, ambos **git-ignored** (os 8 `.mov` somam 843 MB; no repo travariam clone e build da Vercel). O que o site serve são os derivados leves em `public/video/`, versionados: `nr1-hero.{mp4,webm}` (1920×1080), `nr1-hero-mobile.{mp4,webm}` (1080×1920) e `nr1-hero-poster.jpg`.
+Os originais ficam em `materiais-src/videos/` e `materiais-src/fotos/`, ambos **git-ignored** (os 8 `.mov` somam 843 MB; no repo travariam clone e build da Vercel). O que o site serve são os derivados leves em `public/video/`, versionados. **Em uso hoje:** `nr1-hero-integra.mp4` (1080×1920, 45 s, com áudio) e `nr1-hero-vertical-poster.jpg`. **Sem uso:** `nr1-hero.{mp4,webm}`, `nr1-hero-mobile.{mp4,webm}` e `nr1-hero-poster.jpg`, que sobraram do C03.
 
 - **Pegadinha da rotação:** metade dos `.mov` reporta `3840×2160` no `ffprobe`, mas tem `rotation=-90` nos side data — a exibição real é `2160×3840`. **Todos os 8 são verticais**; não existe material horizontal. Conferir sempre extraindo um frame e medindo o JPG, não confiando no `width/height` do stream.
 - O corte 16:9 usa `crop=2160:1215:0:640`. O offset `y=640` é medido: em `y=1100` a Josie fica sem cabeça.
-- Vídeo de fundo vai sempre **sem faixa de áudio** (`-an`) — é mudo por definição e áudio atrapalha o autoplay.
+- ~~Vídeo de fundo vai sempre sem faixa de áudio~~ **Revogado em 2026-07-31:** o hero passou a servir o clipe inteiro COM áudio e botão de tirar do mudo. Ver a seção do hero acima. A regra do `-an` só vale para vídeo puramente decorativo.
 - Regenerar: `ffmpeg -ss 2 -t 12 -i "<origem.mov>" -vf "crop=2160:1215:0:640,scale=1920:1080" -an -c:v libx264 -crf 28 -preset slow -pix_fmt yuv420p -movflags +faststart -y public/video/nr1-hero.mp4` (WebM: `-c:v libvpx-vp9 -crf 46 -b:v 0 -row-mt 1`). Teto: 3 MB por arquivo.
 - Estes vídeos são **exclusivos de `/empresas` e da página NR-1** — é filmagem de entrega corporativa com plateia, fora de tom no mundo `/mentoria`.
 
