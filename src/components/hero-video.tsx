@@ -1,3 +1,5 @@
+import { ControleSom } from "@/components/controle-som";
+
 /* Hero de vídeo do mundo Empresas.
 
    Os arquivos vêm do contrato C03: filmagem de uma entrega in company real da
@@ -22,6 +24,8 @@
    Server component de propósito: `autoplay muted playsinline` e o respeito a
    prefers-reduced-motion resolvem em HTML e CSS, sem mandar JS para o cliente. */
 
+const ID_VIDEO = "hero-empresas-video";
+
 export function HeroVideo({ children }: { children: React.ReactNode }) {
   return (
     <section className="relative isolate overflow-hidden bg-[#152a4a]">
@@ -40,18 +44,19 @@ export function HeroVideo({ children }: { children: React.ReactNode }) {
         {/* No desktop a largura precisa ser explícita: com `justify-self-end` a
             coluna encolhe para o conteúdo, e aí `aspect-ratio` zera a altura. */}
         <div className="absolute inset-0 lg:static lg:order-2 lg:ml-auto lg:aspect-[9/16] lg:w-full lg:max-w-[400px] lg:overflow-hidden lg:rounded-3xl lg:shadow-2xl lg:ring-1 lg:ring-white/10">
+          {/* Começa MUDO por obrigação do navegador: autoplay com som é
+              bloqueado em Chrome, Safari e Firefox. O ControleSom libera. */}
           <video
-            aria-hidden="true"
             autoPlay
             className="h-full w-full object-cover object-[center_22%] motion-reduce:hidden lg:object-[center_28%]"
+            id={ID_VIDEO}
             loop
             muted
             playsInline
             poster="/video/nr1-hero-vertical-poster.jpg"
             preload="metadata"
           >
-            <source src="/video/nr1-hero-mobile.webm" type="video/webm" />
-            <source src="/video/nr1-hero-mobile.mp4" type="video/mp4" />
+            <source src="/video/nr1-hero-integra.mp4" type="video/mp4" />
           </video>
           {/* Sem movimento: fica só o quadro parado. */}
           <div
@@ -62,6 +67,11 @@ export function HeroVideo({ children }: { children: React.ReactNode }) {
         </div>
 
         <div className="relative z-20 lg:order-1">{children}</div>
+      </div>
+
+      {/* Controle de som: canto inferior direito, fora da coluna de texto. */}
+      <div className="absolute bottom-5 right-5 z-30 sm:bottom-8 sm:right-8">
+        <ControleSom alvo={ID_VIDEO} />
       </div>
     </section>
   );

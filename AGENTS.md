@@ -47,6 +47,10 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 - **`object-position` é medido, não estético.** Em `center 22%` a Josie e o slide ficam no quadro em tela larga; centralizado, o corte pega o tronco e decapita.
 - **Contraste vem de dois gradientes**, um de baixo e um da esquerda, exatamente onde o texto pousa. A Josie fica à direita e continua limpa. Não voltar para overlay escuro na imagem inteira nem para painel de vidro por cima: os dois foram recusados pelo Bruno.
 - No mobile o vídeo cabe inteiro na tela (sem sobra vertical para reposicionar), então a Josie aparece pequena no rodapé do quadro. **Débito conhecido:** um corte 9:16 mais fechado nela resolveria.
+- **Áudio:** o hero serve `nr1-hero-integra.mp4`, o clipe INTEIRO (45 s) com faixa AAC. Ele começa **mudo por obrigação do navegador**: Chrome, Safari e Firefox bloqueiam autoplay com som e só liberam depois de gesto do usuário. Quem libera é `src/components/controle-som.tsx`, um client component mínimo que acha o vídeo pelo `id` para não obrigar o hero a virar client.
+- **Não tente detectar faixa de áudio por API do navegador.** `webkitAudioDecodedByteCount` fica em zero justamente enquanto o vídeo está mudo, então o botão nunca apareceria no Chrome. O controle é sempre visível.
+- Regenerar a versão com som: `ffmpeg -i "<origem.mov>" -vf "scale=1080:1920" -c:v libx264 -crf 31 -preset slow -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart -y public/video/nr1-hero-integra.mp4`. Os 45 s dão ~7,7 MB; com `faststart` o vídeo transmite progressivamente em vez de travar o carregamento.
+- Os arquivos `nr1-hero.{mp4,webm}` e `nr1-hero-mobile.{mp4,webm}` do C03 ficaram **sem uso** depois dessa troca (~9 MB parados no repo).
 
 `WorldShell` tem a prop `chrome`: `"solid"` (padrão, barra com borda) ou `"float"` (pílulas absolutas por cima do conteúdo). O mundo Empresas usa `float`, e por isso **as páginas desse mundo precisam de `pt-28 sm:pt-32`** para não passar por baixo das pílulas. Página nova em `/empresas` sem esse respiro nasce quebrada.
 
