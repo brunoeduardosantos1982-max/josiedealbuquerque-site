@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CapturaMaterial } from "@/components/captura-material";
@@ -78,6 +79,26 @@ export default async function PostEmpresasPage({ params }: Params) {
           </div>
         </div>
       </section>
+
+      {meta.imagem ? (
+        <figure className="mx-auto w-full max-w-4xl px-5 pt-10 sm:px-8">
+          {/* Prova de entrega real, em preto e branco para não competir com o
+              texto técnico. O material de origem é 3:4; o corte 16:9 é do CSS. */}
+          <Image
+            alt="Josie de Albuquerque conduzindo um treinamento sobre NR-1 e riscos psicossociais numa empresa"
+            className="aspect-[16/9] w-full rounded-2xl object-cover object-[center_35%] ring-1 ring-black/5"
+            height={1867}
+            priority
+            sizes="(min-width: 1024px) 900px, 100vw"
+            src={meta.imagem}
+            width={1400}
+          />
+          <figcaption className="mt-3 text-xs leading-5 text-muted">
+            Josie de Albuquerque em treinamento sobre NR-1 e bem-estar
+            organizacional, conduzido in company.
+          </figcaption>
+        </figure>
+      ) : null}
 
       <div className="px-5 py-14 sm:px-8">
         <article

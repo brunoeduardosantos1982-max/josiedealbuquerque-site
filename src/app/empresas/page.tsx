@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { HeroVideo } from "@/components/hero-video";
@@ -102,22 +103,40 @@ export default function EmpresasPage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-4xl px-5 py-14 sm:px-8">
+      <section className="mx-auto w-full max-w-5xl px-5 py-14 sm:px-8">
         <h2 className="text-3xl font-medium">Como trabalhamos</h2>
-        <div className="mt-8 flex flex-col gap-6">
-          {etapas.map((etapa) => (
-            <div className="flex gap-5" key={etapa.numero}>
-              <span className="font-serif text-2xl text-brand">
-                {etapa.numero}
-              </span>
-              <div>
-                <h3 className="text-lg font-medium text-fg">{etapa.title}</h3>
-                <p className="mt-1 text-sm leading-6 text-muted">
-                  {etapa.body}
-                </p>
+        <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+          {/* Foto da entrega real, em preto e branco: prova sem competir com o
+              texto nem puxar a atenção para a cor. O material de origem é 3:4. */}
+          <figure className="md:sticky md:top-28">
+            <Image
+              alt="Josie de Albuquerque conduzindo uma entrega sobre NR-1 e bem-estar organizacional numa empresa"
+              className="w-full rounded-2xl object-cover shadow-sm ring-1 ring-black/5"
+              height={1333}
+              sizes="(min-width: 768px) 38vw, 100vw"
+              src="/img/josie-metodo-pb.jpg"
+              width={1000}
+            />
+            <figcaption className="mt-3 text-xs leading-5 text-muted">
+              Entrega in company sobre NR-1 e bem-estar organizacional.
+            </figcaption>
+          </figure>
+
+          <div className="flex flex-col gap-6">
+            {etapas.map((etapa) => (
+              <div className="flex gap-5" key={etapa.numero}>
+                <span className="font-serif text-2xl text-brand">
+                  {etapa.numero}
+                </span>
+                <div>
+                  <h3 className="text-lg font-medium text-fg">{etapa.title}</h3>
+                  <p className="mt-1 text-sm leading-6 text-muted">
+                    {etapa.body}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         <blockquote className="mt-10 rounded-2xl border border-petroleo/20 bg-petroleo/5 p-7">
           <p className="text-base leading-7 text-fg italic">
