@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function QuizPage() {
   return (
-    <section className="mx-auto w-full max-w-2xl px-5 py-12 sm:px-8 sm:py-16">
+    <section className="mx-auto w-full max-w-2xl px-5 pb-12 pt-28 sm:px-8 sm:pb-16 sm:pt-32">
       <QuizClient />
     </section>
   );

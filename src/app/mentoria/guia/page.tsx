@@ -40,7 +40,7 @@ const dentro = [
 export default function GuiaPage() {
   return (
     <>
-      <section className="mx-auto w-full max-w-5xl px-5 pb-10 pt-16 sm:px-8">
+      <section className="mx-auto w-full max-w-5xl px-5 pb-10 pt-28 sm:px-8 sm:pt-32">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-start md:gap-14">
           <div>
             <p className="eyebrow">caderno gratuito</p>

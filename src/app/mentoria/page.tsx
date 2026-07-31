@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { HeroMarquise } from "@/components/hero-marquise";
+
 export const metadata: Metadata = {
   title: "Para você | Mentoria",
   description:
@@ -18,12 +20,11 @@ const sintomas = [
 export default function MentoriaPage() {
   return (
     <>
-      <section className="mx-auto w-full max-w-3xl px-5 pb-12 pt-16 text-center sm:px-8 sm:pt-24">
+      <HeroMarquise />
+
+      <section className="mx-auto w-full max-w-3xl px-5 pb-12 pt-16 text-center sm:px-8">
         <p className="eyebrow">para você</p>
-        <h1 className="mt-5 text-4xl font-medium leading-[1.12] sm:text-5xl">
-          Você não está perdida. Está em transição.
-        </h1>
-        <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted">
+        <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-muted">
           Quando o antigo já não faz sentido e o novo ainda não se revelou por
           completo, você está no LIMIAR. O primeiro passo é dar um nome a isso.
           Faça este diagnóstico, de apenas 2 minutos, e reconheça o que te
