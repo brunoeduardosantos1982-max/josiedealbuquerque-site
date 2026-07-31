@@ -8,7 +8,11 @@ export default function EmpresasLayout({
   return (
     <WorldShell
       chrome="float"
-      cta={{ label: "Agendar diagnóstico", href: "/empresas/contato" }}
+      cta={{
+        label: "Agendar diagnóstico",
+        labelCurto: "Agendar",
+        href: "/empresas/contato",
+      }}
       nav={[
         { label: "Soluções", href: "/empresas" },
         { label: "NR-1", href: "/empresas/nr1" },

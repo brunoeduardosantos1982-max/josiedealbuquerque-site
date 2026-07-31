@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { formatarDataPt, listarPosts } from "@/lib/blog";
 
@@ -30,8 +31,20 @@ export default function BlogEmpresasPage() {
             href={`/empresas/blog/${post.slug}`}
             key={post.slug}
           >
-            <div className="flex h-40 items-end bg-brand p-5">
-              <span className="rounded-full bg-bege/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-bege">
+            {/* Com foto, o card mostra a prova de entrega real. Sem, cai no
+                bloco petróleo de antes, para post novo nunca nascer quebrado. */}
+            <div className="relative flex h-40 items-end overflow-hidden bg-brand p-5">
+              {post.imagem ? (
+                <Image
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition duration-500 group-hover:scale-105"
+                  height={1867}
+                  sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                  src={post.imagem}
+                  width={1400}
+                />
+              ) : null}
+              <span className="relative rounded-full bg-black/45 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-bege backdrop-blur-sm">
                 {post.categoria}
               </span>
             </div>

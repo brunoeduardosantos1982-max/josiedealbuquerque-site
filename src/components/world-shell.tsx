@@ -2,6 +2,8 @@ import Link from "next/link";
 import { AssinaturaJ, BrandLockup } from "@/components/logo";
 
 type NavItem = { label: string; href: string };
+/* `labelCurto` só existe para o CTA no mobile, onde o rótulo inteiro não cabe. */
+type CtaItem = NavItem & { labelCurto?: string };
 
 /* Regra do projeto: cada mundo tem navegação própria e NUNCA expõe o outro.
    A ponte de volta é só o logo (raiz).
@@ -19,7 +21,7 @@ export function WorldShell({
 }: {
   world: "neutral" | "mentoria" | "empresas";
   nav: NavItem[];
-  cta?: NavItem;
+  cta?: CtaItem;
   chrome?: "solid" | "float";
   children: React.ReactNode;
 }) {
@@ -42,10 +44,13 @@ export function WorldShell({
             >
               <AssinaturaJ className="h-5 w-auto" />
             </Link>
-            <div className="flex items-center gap-4 rounded-xl border border-black/5 bg-bege/90 px-4 py-2.5 shadow-sm backdrop-blur-md sm:gap-8 sm:px-8 sm:py-3">
+            {/* `whitespace-nowrap` é o que impede a pílula de virar duas linhas
+                em telas de 360px: sem ele "NR-1" quebra entre o hífen e o 1, e
+                o rótulo do CTA racha no meio. O CTA ainda encurta no mobile. */}
+            <div className="flex items-center gap-3 rounded-xl border border-black/5 bg-bege/90 px-3.5 py-2.5 shadow-sm backdrop-blur-md sm:gap-8 sm:px-8 sm:py-3">
               {nav.map((item) => (
                 <Link
-                  className="text-[12px] font-medium text-muted transition-colors duration-200 hover:text-brand sm:text-[14px]"
+                  className="whitespace-nowrap text-[12px] font-medium text-muted transition-colors duration-200 hover:text-brand sm:text-[14px]"
                   href={item.href}
                   key={item.href}
                 >
@@ -54,10 +59,11 @@ export function WorldShell({
               ))}
               {cta ? (
                 <Link
-                  className="text-[12px] font-semibold text-brand transition-colors duration-200 hover:opacity-70 sm:text-[14px]"
+                  className="whitespace-nowrap text-[12px] font-semibold text-brand transition-colors duration-200 hover:opacity-70 sm:text-[14px]"
                   href={cta.href}
                 >
-                  {cta.label}
+                  <span className="sm:hidden">{cta.labelCurto ?? cta.label}</span>
+                  <span className="hidden sm:inline">{cta.label}</span>
                 </Link>
               ) : null}
             </div>
