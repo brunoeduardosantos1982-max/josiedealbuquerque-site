@@ -10,7 +10,7 @@ export default function MentoriaLayout({
       cta={{ label: "Fazer o diagnóstico", href: "/mentoria/quiz" }}
       nav={[
         { label: "Início", href: "/mentoria" },
-        { label: "O guia", href: "/mentoria/guia" },
+        { label: "O caderno", href: "/mentoria/guia" },
       ]}
       world="mentoria"
     >

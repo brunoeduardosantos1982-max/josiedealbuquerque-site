@@ -187,6 +187,34 @@ describe("materiais subscribe", () => {
     expect(body.listIds).toEqual([7]);
   });
 
+  it("grava CIDADE, o atributo que a base herdada nunca teve", async () => {
+    vi.stubEnv("BREVO_API_KEY", "xkeysib-test");
+    vi.stubEnv("BREVO_LIST_B2C", "4");
+    let capturado: { init?: RequestInit } | null = null;
+    const fetchMock = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
+      capturado = { init };
+      return Response.json({ id: 1 }, { status: 201 });
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    vi.spyOn(console, "log").mockImplementation(() => undefined);
+
+    await postSubscribe({
+      email: "leitora@exemplo.com",
+      nome: "Ana",
+      cidade: "Blumenau",
+      material: "caderno-do-caos-ao-equilibrio",
+      audience: "b2c",
+      consentimento: true,
+    });
+    const chamada = capturado as unknown as { init: RequestInit };
+    const body = JSON.parse(String(chamada.init.body)) as {
+      attributes?: Record<string, string>;
+    };
+
+    expect(body.attributes?.CIDADE).toBe("Blumenau");
+    expect(body.attributes?.NOME).toBe("Ana");
+  });
+
   it("corpo que nao e json devolve 400", async () => {
     const fetchMock = vi.fn(async () => Response.json({}));
     vi.stubGlobal("fetch", fetchMock);

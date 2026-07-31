@@ -20,6 +20,7 @@ type SubscribePayload = {
   empresa?: unknown;
   cargo?: unknown;
   telefone?: unknown;
+  cidade?: unknown;
   material?: unknown;
   audience?: unknown;
   consentimento?: unknown;
@@ -42,6 +43,7 @@ export async function POST(request: Request) {
   const empresa = texto(payload.empresa);
   const cargo = texto(payload.cargo);
   const telefone = texto(payload.telefone);
+  const cidade = texto(payload.cidade);
   const material = texto(payload.material);
   const audience = payload.audience === "b2c" ? "b2c" : "b2b";
   const consentimento = payload.consentimento === true;
@@ -85,6 +87,10 @@ export async function POST(request: Request) {
   if (empresa) attributes.EMPRESA = empresa;
   if (cargo) attributes.CARGO = cargo;
   if (telefone) attributes.TELEFONE = telefone;
+  /* Cidade e obrigatoria nos formularios novos: a base herdada do RD Station
+     veio com cidade vazia em 100% dos 1.560 leads, o que impede qualquer
+     segmentacao por regiao. Nao repetir o erro. */
+  if (cidade) attributes.CIDADE = cidade;
 
   try {
     const response = await fetch(BREVO_CONTACTS_URL, {
