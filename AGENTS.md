@@ -48,7 +48,7 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 - **Áudio:** começa **mudo por obrigação do navegador**. Chrome, Safari e Firefox bloqueiam autoplay com som e só liberam após gesto do usuário. Quem libera é `src/components/controle-som.tsx`, client component mínimo que acha o vídeo pelo `id` para não obrigar o hero a virar client.
 - **Não tente detectar faixa de áudio por API do navegador.** `webkitAudioDecodedByteCount` fica em zero justamente enquanto o vídeo está mudo, então o botão nunca apareceria no Chrome. O controle é sempre visível.
 - Converter um `.MOV` novo: `ffmpeg -i "<origem.MOV>" -vf "scale=1080:1920" -c:v libx264 -crf 32 -preset medium -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart -y public/video/josie-palestra.mp4`. CRF 32 mantém legenda e texto de slide legíveis; 1min48s dá ~18 MB, e o `faststart` faz transmitir progressivamente.
-- **Lixo conhecido:** `nr1-hero.{mp4,webm}`, `nr1-hero-mobile.{mp4,webm}`, `nr1-hero-poster.jpg` e `nr1-hero-vertical-poster.jpg` estão em `public/video/` com **zero referência no código** (~9,4 MB). Sobraram do C03.
+- Os derivados do C03 (`nr1-hero.*`, `nr1-hero-mobile.*` e os posters antigos) saíram de `public/video/` em 2026-08-01: ficaram sem uso quando o hero trocou de vídeo. Foram **movidos, não apagados**, para `materiais-src/videos/derivados-aposentados/`, que é git-ignored. `public/video/` voltou a ter só o que é servido.
 
 `WorldShell` tem a prop `chrome`: `"solid"` (padrão, barra com borda) ou `"float"` (pílulas absolutas por cima do conteúdo). O mundo Empresas usa `float`, e por isso **as páginas desse mundo precisam de `pt-28 sm:pt-32`** para não passar por baixo das pílulas. Página nova em `/empresas` sem esse respiro nasce quebrada.
 
@@ -64,7 +64,7 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 
 ## Mídia da palestra NR-1 (vídeo de fundo de /empresas)
 
-Os originais ficam em `materiais-src/videos/` e `materiais-src/fotos/`, ambos **git-ignored** (os 8 `.mov` somam 843 MB; no repo travariam clone e build da Vercel). O que o site serve são os derivados leves em `public/video/`, versionados. **Em uso hoje:** `nr1-hero-integra.mp4` (1080×1920, 45 s, com áudio) e `nr1-hero-vertical-poster.jpg`. **Sem uso:** `nr1-hero.{mp4,webm}`, `nr1-hero-mobile.{mp4,webm}` e `nr1-hero-poster.jpg`, que sobraram do C03.
+Os originais ficam em `materiais-src/videos/` e `materiais-src/fotos/`, ambos **git-ignored** (os 8 `.mov` somam 843 MB; no repo travariam clone e build da Vercel). O que o site serve são os derivados leves em `public/video/`: hoje só `josie-palestra.mp4` e `josie-palestra-poster.jpg`. Derivado que sai de uso vai para `materiais-src/videos/derivados-aposentados/` (git-ignored), não fica parado no repo.
 
 - **Pegadinha da rotação:** metade dos `.mov` reporta `3840×2160` no `ffprobe`, mas tem `rotation=-90` nos side data — a exibição real é `2160×3840`. **Todos os 8 são verticais**; não existe material horizontal. Conferir sempre extraindo um frame e medindo o JPG, não confiando no `width/height` do stream.
 - O corte 16:9 usa `crop=2160:1215:0:640`. O offset `y=640` é medido: em `y=1100` a Josie fica sem cabeça.
