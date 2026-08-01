@@ -2,76 +2,62 @@ import { ControleSom } from "@/components/controle-som";
 
 /* Hero de vídeo do mundo Empresas.
 
-   Os arquivos vêm do contrato C03: filmagem de uma entrega in company real da
-   Josie sobre NR-1, com plateia de decisores. É a única prova de entrega que o
-   site tem, e por decisão registrada ela é EXCLUSIVA de /empresas e da página
-   NR-1 (fora de tom no mundo B2C da mentoria).
+   O arquivo é `Josi palestra .MOV`, entregue pelo Bruno em 2026-08-01: uma
+   entrega in company real sobre gestão estratégica de pessoas, 1min48s,
+   vertical nativo 2160×3840 com áudio.
 
-   TODO o material de origem é VERTICAL (vídeos 9:16, fotos 3:4). Por isso o
-   hero muda de forma conforme a tela, em vez de esticar retrato numa tela larga:
-
-   - Mobile: o vídeo cobre a tela inteira e o texto pousa sobre ele, com véu.
-   - Desktop: o vídeo volta para o fluxo e ocupa um quadro RETRATO ao lado do
-     texto. Esticar 9:16 numa tela 16:9 obriga a um corte que joga fora quase
-     dois terços do quadro e fica feio.
-
-   É um único elemento <video>: `absolute inset-0` no mobile e `lg:static` no
-   desktop devolve ele para a célula da grade, sem duplicar download nem decode.
+   DECISÃO DE LAYOUT (2026-08-01): o vídeo NÃO é mais fundo com texto por cima.
+   Ele já vem editado, com legendas queimadas no quadro em fonte própria e
+   slides da marca. Sobrepor a headline do site criava duas camadas de texto
+   competindo, e o véu escurecia justamente a faixa das legendas. Agora ele é
+   apresentado emoldurado, ao lado do texto no desktop e acima dele no mobile.
+   Isso também eliminou os dois gradientes e o posicionamento absoluto.
 
    O fundo é petróleo, a cor do mundo Empresas, então o texto em bege funciona
-   nos dois arranjos sem precisar de dois conjuntos de estilo.
+   nos dois arranjos com um conjunto único de estilos.
 
-   Server component de propósito: `autoplay muted playsinline` e o respeito a
-   prefers-reduced-motion resolvem em HTML e CSS, sem mandar JS para o cliente. */
+   Só o botão de som vai como JS; o resto renderiza no servidor. */
 
 const ID_VIDEO = "hero-empresas-video";
 
 export function HeroVideo({ children }: { children: React.ReactNode }) {
   return (
     <section className="relative isolate overflow-hidden bg-[#152a4a]">
-      {/* Véus: só no mobile, onde o texto pousa em cima da imagem. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3/4 bg-gradient-to-t from-black/85 via-black/45 to-transparent lg:hidden"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-3/5 bg-gradient-to-r from-black/70 via-black/25 to-transparent lg:hidden"
-      />
-
-      <div className="relative mx-auto grid min-h-screen w-full max-w-6xl items-end gap-12 px-6 pb-10 pt-24 sm:px-12 lg:min-h-0 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8 lg:py-24">
-        {/* Mídia. Fundo no mobile, coluna retrato no desktop. */}
-        {/* No desktop a largura precisa ser explícita: com `justify-self-end` a
-            coluna encolhe para o conteúdo, e aí `aspect-ratio` zera a altura. */}
-        <div className="absolute inset-0 lg:static lg:order-2 lg:ml-auto lg:aspect-[9/16] lg:w-full lg:max-w-[400px] lg:overflow-hidden lg:rounded-3xl lg:shadow-2xl lg:ring-1 lg:ring-white/10">
-          {/* Começa MUDO por obrigação do navegador: autoplay com som é
-              bloqueado em Chrome, Safari e Firefox. O ControleSom libera. */}
-          <video
-            autoPlay
-            className="h-full w-full object-cover object-[center_22%] motion-reduce:hidden lg:object-[center_28%]"
-            id={ID_VIDEO}
-            loop
-            muted
-            playsInline
-            poster="/video/nr1-hero-vertical-poster.jpg"
-            preload="metadata"
-          >
-            <source src="/video/nr1-hero-integra.mp4" type="video/mp4" />
-          </video>
-          {/* Sem movimento: fica só o quadro parado. */}
-          <div
-            aria-hidden="true"
-            className="hidden h-full w-full bg-cover bg-[center_22%] motion-reduce:block lg:bg-[center_28%]"
-            style={{ backgroundImage: "url('/video/nr1-hero-vertical-poster.jpg')" }}
-          />
-        </div>
-
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-14 pt-24 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-28">
         <div className="relative z-20 lg:order-1">{children}</div>
-      </div>
 
-      {/* Controle de som: canto inferior direito, fora da coluna de texto. */}
-      <div className="absolute bottom-5 right-5 z-30 sm:bottom-8 sm:right-8">
-        <ControleSom alvo={ID_VIDEO} />
+        <figure className="lg:order-2 lg:justify-self-end">
+          <div className="relative mx-auto aspect-[9/16] w-[78%] overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10 sm:w-[60%] lg:mx-0 lg:ml-auto lg:w-full lg:max-w-[400px]">
+            {/* Começa MUDO por obrigação do navegador: autoplay com som é
+                bloqueado em Chrome, Safari e Firefox. O ControleSom libera. */}
+            <video
+              autoPlay
+              className="h-full w-full object-cover motion-reduce:hidden"
+              id={ID_VIDEO}
+              loop
+              muted
+              playsInline
+              poster="/video/josie-palestra-poster.jpg"
+              preload="metadata"
+            >
+              <source src="/video/josie-palestra.mp4" type="video/mp4" />
+            </video>
+            {/* Sem movimento: fica só o quadro parado. */}
+            <div
+              aria-hidden="true"
+              className="hidden h-full w-full bg-cover bg-center motion-reduce:block"
+              style={{
+                backgroundImage: "url('/video/josie-palestra-poster.jpg')",
+              }}
+            />
+            <div className="absolute bottom-3 right-3 z-10">
+              <ControleSom alvo={ID_VIDEO} />
+            </div>
+          </div>
+          <figcaption className="mt-3 text-center text-xs leading-5 text-bege/60 lg:text-right">
+            Entrega in company sobre gestão estratégica de pessoas.
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
