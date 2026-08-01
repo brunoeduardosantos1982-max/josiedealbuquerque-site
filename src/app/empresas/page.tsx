@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { HeroVideo } from "@/components/hero-video";
+import { HeroVideoCheio } from "@/components/hero-video-cheio";
 
 export const metadata: Metadata = {
   title: "Para empresas | NR-1 e bem-estar organizacional",
@@ -47,24 +47,15 @@ const etapas = [
 export default function EmpresasPage() {
   return (
     <>
-      <HeroVideo
-        cta={
-          /* Fica FORA do bloco de texto de propósito: no mobile ele precisa vir
-             depois do vídeo e da legenda. Ver o comentário em hero-video.tsx. */
+      <HeroVideoCheio />
+
+      {/* O texto desce para logo abaixo do vídeo. Com o hero deixando de ser
+          uma grade de duas colunas, some o vazio que sobrava sob o CTA no
+          desktop: agora a coluna não precisa acompanhar a altura da figura. */}
+      <section className="bg-[#152a4a]">
+        <div className="mx-auto w-full max-w-4xl px-6 py-14 sm:px-8 sm:py-16">
           <Link
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-bege/60 px-5 py-3 text-[13px] font-medium text-bege transition-all duration-200 hover:border-bege hover:bg-bege hover:text-[#16243c] sm:w-auto sm:justify-start"
-            href="/empresas/contato"
-          >
-            Agendar um diagnóstico inicial
-            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-              →
-            </span>
-          </Link>
-        }
-      >
-        <div className="max-w-md">
-          <Link
-            className="group mb-3 inline-flex items-center gap-1.5 rounded-full bg-eucalipto/25 px-3 py-1 text-[11.5px] font-medium text-bege backdrop-blur-sm transition-colors hover:bg-eucalipto/40"
+            className="group mb-4 inline-flex items-center gap-1.5 rounded-full bg-eucalipto/25 px-3 py-1 text-[11.5px] font-medium text-bege transition-colors hover:bg-eucalipto/40"
             href="/empresas/nr1"
           >
             A fase punitiva da NR-1 já começou
@@ -73,16 +64,26 @@ export default function EmpresasPage() {
             </span>
           </Link>
 
-          <h1 className="mb-3 text-[1.5rem] font-medium leading-[1.15] tracking-tight text-bege sm:text-[1.75rem]">
+          <h1 className="max-w-2xl text-[1.6rem] font-medium leading-[1.15] tracking-tight text-bege sm:text-[2.1rem]">
             Adequação à NR-1 não é sobre evitar multa. É sobre construir uma
             empresa mais forte.
           </h1>
 
-          <p className="text-[13px] font-normal text-bege/70">
+          <p className="mt-4 max-w-xl text-[14px] leading-6 font-normal text-bege/70 sm:text-[15px]">
             Gestão de riscos psicossociais com método e conformidade.
           </p>
+
+          <Link
+            className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full border border-bege/60 px-5 py-3 text-[13px] font-medium text-bege transition-all duration-200 hover:border-bege hover:bg-bege hover:text-[#16243c] sm:w-auto"
+            href="/empresas/contato"
+          >
+            Agendar um diagnóstico inicial
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+              →
+            </span>
+          </Link>
         </div>
-      </HeroVideo>
+      </section>
 
       <section className="border-b border-line bg-surface/70">
         <div className="mx-auto w-full max-w-5xl px-5 pt-14 sm:px-8">

@@ -42,13 +42,14 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 
 ## Hero de vídeo e navegação flutuante (mundo Empresas)
 
-`src/components/hero-video.tsx` serve `/empresas` com `josie-palestra.mp4`: entrega in company real sobre gestão estratégica de pessoas, 1min48s, com áudio.
+`src/components/hero-video-cheio.tsx` serve `/empresas` com `josie-palestra.mp4`: entrega in company real, 1min48s, com áudio. **Vídeo em tela cheia, antes do texto, passando por baixo do cabeçalho.** O badge, a headline, o subtexto e o CTA vêm na seção logo abaixo.
 
-- **O vídeo NÃO é fundo com texto por cima.** Ele já vem editado, com legendas queimadas no quadro em fonte própria e slides da marca. Sobrepor a headline criava duas camadas de texto competindo, e o véu escurecia justamente a faixa das legendas. Ele aparece **emoldurado**: ao lado do texto no desktop, abaixo dele no mobile. Não voltar a usá-lo como backdrop.
-- **Áudio:** começa **mudo por obrigação do navegador**. Chrome, Safari e Firefox bloqueiam autoplay com som e só liberam após gesto do usuário. Quem libera é `src/components/controle-som.tsx`, client component mínimo que acha o vídeo pelo `id` para não obrigar o hero a virar client.
+- **A pegadinha do formato.** O vídeo é 9:16 e a tela do desktop é 16:9. Preencher significaria descartar dois terços do quadro, cortando a legenda queimada ou a cabeça da Josie. Por isso: `object-cover` no mobile (onde o formato quase bate) e `object-contain` no desktop, centralizado, com uma cópia DESFOCADA do quadro preenchendo as laterais. **Não trocar por cover no desktop** sem antes conferir um frame; já foi recusado uma vez por ficar feio.
+- **Por que o hero deixou de ser grade de duas colunas:** no desktop a coluna do texto era obrigada a acompanhar a altura da figura, e sobrava um vazio grande sob o CTA.
+- **Áudio:** começa **mudo por obrigação do navegador**. Chrome, Safari e Firefox bloqueiam autoplay com som e só liberam após gesto do usuário. Quem libera é `src/components/controle-som.tsx`, client component mínimo que acha o vídeo pelo `id`.
 - **Não tente detectar faixa de áudio por API do navegador.** `webkitAudioDecodedByteCount` fica em zero justamente enquanto o vídeo está mudo, então o botão nunca apareceria no Chrome. O controle é sempre visível.
 - Converter um `.MOV` novo: `ffmpeg -i "<origem.MOV>" -vf "scale=1080:1920" -c:v libx264 -crf 32 -preset medium -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart -y public/video/josie-palestra.mp4`. CRF 32 mantém legenda e texto de slide legíveis; 1min48s dá ~18 MB, e o `faststart` faz transmitir progressivamente.
-- Os derivados do C03 (`nr1-hero.*`, `nr1-hero-mobile.*` e os posters antigos) saíram de `public/video/` em 2026-08-01: ficaram sem uso quando o hero trocou de vídeo. Foram **movidos, não apagados**, para `materiais-src/videos/derivados-aposentados/`, que é git-ignored. `public/video/` voltou a ter só o que é servido.
+- Derivado que sai de uso vai para `materiais-src/videos/derivados-aposentados/` (git-ignored), não fica parado no repo.
 
 `WorldShell` tem a prop `chrome`: `"solid"` (padrão, barra com borda) ou `"float"` (pílulas absolutas por cima do conteúdo). O mundo Empresas usa `float`, e por isso **as páginas desse mundo precisam de `pt-28 sm:pt-32`** para não passar por baixo das pílulas. Página nova em `/empresas` sem esse respiro nasce quebrada.
 
