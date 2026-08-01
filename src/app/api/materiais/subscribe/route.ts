@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   const cidade = texto(payload.cidade);
   /* Estagio do lead no funil perpetuo. Nesta fase so dois valores:
      `material` = baixou e nao fez o quiz (lead frio)
-     `quiz`     = respondeu o quiz (lead quente, ve a oferta de R$ 99)
+     `quiz`     = respondeu o quiz (lead quente, ve a oferta do diagnostico)
      Quem comprou o diagnostico entra no contrato do checkout. */
   const estagio = texto(payload.estagio);
   const material = texto(payload.material);

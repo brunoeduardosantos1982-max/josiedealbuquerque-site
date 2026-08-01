@@ -553,16 +553,20 @@ export function QuizClient() {
         </h3>
         <p className="mt-3 text-[15px] leading-7 text-muted">
           O caderno completo já saiu para o seu e-mail, sem custo, e ele te leva
-          longe sozinha. O que ele não faz é olhar para o seu caso. No
-          diagnóstico inicial a Josie <strong>já chega com o resultado deste
-          pré-diagnóstico em mãos</strong> e trabalha em cima do que apareceu
-          aqui, num encontro em grupo de até 10 pessoas.
+          longe sozinha. O que ele não faz é olhar para o seu caso.
+        </p>
+        {/* A fronteira com a aula gratuita é o que sustenta o preço: na aula a
+            Josie explica os bloqueios; aqui ela abre o mapa DESTA pessoa. */}
+        <p className="mt-3 text-[15px] leading-7 text-muted">
+          No diagnóstico a Josie abre <strong className="text-fg">o seu mapa</strong>,
+          com as suas seis dimensões na tela, e trabalha em cima do que apareceu
+          neste pré-diagnóstico. Não é uma aula sobre os bloqueios: é uma hora
+          sobre o seu.
         </p>
         <p className="mt-4 text-[15px] leading-7 text-fg">
-          <span className="text-muted line-through">R$ 199</span>{" "}
-          <strong className="text-[20px] text-brand">R$ 99</strong> para quem
-          chegou até aqui. E se depois você decidir seguir para a mentoria, esse
-          valor é abatido do pacote que escolher.
+          <strong className="text-[20px] text-brand">R$ 250</strong>, e se depois
+          você decidir seguir para a mentoria, esse valor é abatido do pacote que
+          escolher.
         </p>
         <a
           className="btn-brand mt-6 block w-full text-center"
@@ -570,11 +574,10 @@ export function QuizClient() {
           rel="noreferrer"
           target="_blank"
         >
-          Quero a minha vaga no diagnóstico
+          Quero agendar o meu diagnóstico
         </a>
         <p className="mt-3 text-center text-xs leading-5 text-muted">
-          Você fala direto com a Josie no WhatsApp para escolher a turma. As
-          turmas têm no máximo 10 pessoas.
+          Você fala direto com a Josie no WhatsApp para escolher o horário.
         </p>
       </div>
 
