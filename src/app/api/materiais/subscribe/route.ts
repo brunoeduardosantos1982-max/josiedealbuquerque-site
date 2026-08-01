@@ -21,6 +21,7 @@ type SubscribePayload = {
   cargo?: unknown;
   telefone?: unknown;
   cidade?: unknown;
+  estagio?: unknown;
   material?: unknown;
   audience?: unknown;
   consentimento?: unknown;
@@ -44,6 +45,11 @@ export async function POST(request: Request) {
   const cargo = texto(payload.cargo);
   const telefone = texto(payload.telefone);
   const cidade = texto(payload.cidade);
+  /* Estagio do lead no funil perpetuo. Nesta fase so dois valores:
+     `material` = baixou e nao fez o quiz (lead frio)
+     `quiz`     = respondeu o quiz (lead quente, ve a oferta de R$ 99)
+     Quem comprou o diagnostico entra no contrato do checkout. */
+  const estagio = texto(payload.estagio);
   const material = texto(payload.material);
   const audience = payload.audience === "b2c" ? "b2c" : "b2b";
   const consentimento = payload.consentimento === true;
@@ -91,6 +97,7 @@ export async function POST(request: Request) {
      veio com cidade vazia em 100% dos 1.560 leads, o que impede qualquer
      segmentacao por regiao. Nao repetir o erro. */
   if (cidade) attributes.CIDADE = cidade;
+  if (estagio) attributes.ESTAGIO = estagio;
 
   try {
     const response = await fetch(BREVO_CONTACTS_URL, {

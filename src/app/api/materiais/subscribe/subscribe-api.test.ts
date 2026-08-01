@@ -215,6 +215,57 @@ describe("materiais subscribe", () => {
     expect(body.attributes?.NOME).toBe("Ana");
   });
 
+  it("grava ESTAGIO, que e o que separa lead frio de lead quente", async () => {
+    vi.stubEnv("BREVO_API_KEY", "xkeysib-test");
+    vi.stubEnv("BREVO_LIST_B2C", "3");
+    let capturado: { init?: RequestInit } | null = null;
+    const fetchMock = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
+      capturado = { init };
+      return Response.json({ id: 1 }, { status: 201 });
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    vi.spyOn(console, "log").mockImplementation(() => undefined);
+
+    await postSubscribe({
+      email: "quente@exemplo.com",
+      nome: "Ana",
+      cidade: "Blumenau",
+      material: "caderno-do-caos-ao-equilibrio",
+      audience: "b2c",
+      estagio: "quiz",
+      consentimento: true,
+    });
+    const chamada = capturado as unknown as { init: RequestInit };
+    const body = JSON.parse(String(chamada.init.body)) as {
+      attributes?: Record<string, string>;
+      updateEnabled?: boolean;
+    };
+
+    expect(body.attributes?.ESTAGIO).toBe("quiz");
+    // updateEnabled e o que permite o contato SUBIR de material para quiz.
+    expect(body.updateEnabled).toBe(true);
+  });
+
+  it("sem estagio nao inventa valor no atributo", async () => {
+    vi.stubEnv("BREVO_API_KEY", "xkeysib-test");
+    vi.stubEnv("BREVO_LIST_MATERIAIS", "7");
+    let capturado: { init?: RequestInit } | null = null;
+    const fetchMock = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
+      capturado = { init };
+      return Response.json({ id: 1 }, { status: 201 });
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    vi.spyOn(console, "log").mockImplementation(() => undefined);
+
+    await postSubscribe(VALIDO);
+    const chamada = capturado as unknown as { init: RequestInit };
+    const body = JSON.parse(String(chamada.init.body)) as {
+      attributes?: Record<string, string>;
+    };
+
+    expect(body.attributes?.ESTAGIO).toBeUndefined();
+  });
+
   it("corpo que nao e json devolve 400", async () => {
     const fetchMock = vi.fn(async () => Response.json({}));
     vi.stubGlobal("fetch", fetchMock);

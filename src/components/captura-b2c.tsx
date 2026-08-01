@@ -18,9 +18,12 @@ const inputClass =
 export function CapturaB2C({
   slug,
   chamada,
+  estagio = "material",
 }: {
   slug: string;
   chamada: string;
+  /* Quem chega pela landing e lead FRIO ate responder o quiz. */
+  estagio?: string;
 }) {
   const [consentimento, setConsentimento] = useState(false);
   const [erro, setErro] = useState("");
@@ -61,6 +64,7 @@ export function CapturaB2C({
           ...dados,
           audience: "b2c",
           material: slug,
+          estagio,
           consentimento: true,
         }),
       });

@@ -231,7 +231,7 @@ export function normalizarWhatsApp(bruto: string | undefined): string {
   return digitos.length >= 13 ? digitos : "";
 }
 
-/** Link de agendamento da consulta, com a conversa já começada. */
+/** Link de agendamento do diagnóstico inicial, com a conversa já começada. */
 export function linkConsulta(
   numero: string,
   nome: string,
@@ -239,7 +239,7 @@ export function linkConsulta(
 ): string {
   const limpo = normalizarWhatsApp(numero);
   if (!limpo) return "/mentoria";
-  const texto = `Oi Josie, sou ${nome || "uma leitora do site"}. Fiz o pré-diagnóstico e deu ${nomeBloqueio}. Quero agendar a consulta de mentoria.`;
+  const texto = `Oi Josie, sou ${nome || "uma leitora do site"}. Fiz o pré-diagnóstico e deu ${nomeBloqueio}. Quero uma vaga no diagnóstico inicial de R$ 99.`;
   return `https://wa.me/${limpo}?text=${encodeURIComponent(texto)}`;
 }
 

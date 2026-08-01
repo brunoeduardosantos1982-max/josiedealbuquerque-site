@@ -249,6 +249,9 @@ export function QuizClient() {
           nome: nome.trim(),
           email: email.trim(),
           material: "caderno-do-caos-ao-equilibrio",
+          /* Sobrescreve `material` se a pessoa ja tinha baixado antes:
+             a rota grava com updateEnabled, entao o contato sobe de estagio. */
+          estagio: "quiz",
           consentimento: true,
         }),
       });
@@ -542,20 +545,24 @@ export function QuizClient() {
 
       {/* próximo passo */}
       <div className="mt-10 rounded-2xl border border-brand/40 bg-bege/60 p-6 sm:p-7">
-        <p className="eyebrow">o seu próximo passo</p>
+        {/* Esta oferta existe SÓ aqui, no relatório de quem respondeu o quiz.
+            Não pode virar página própria: URL é adivinhável e compartilhável. */}
+        <p className="eyebrow">só para quem fez o pré-diagnóstico</p>
         <h3 className="mt-3 font-serif text-2xl font-medium leading-tight text-fg">
-          Uma conversa de uma hora com a Josie
+          Diagnóstico inicial com a Josie
         </h3>
         <p className="mt-3 text-[15px] leading-7 text-muted">
           O caderno completo já saiu para o seu e-mail, sem custo, e ele te leva
-          longe sozinha. O que ele não faz é olhar para o seu caso. Na consulta
-          de mentoria a Josie lê o seu pré-diagnóstico com você e monta o
-          primeiro plano de saída, com o que cabe na sua vida real.
+          longe sozinha. O que ele não faz é olhar para o seu caso. No
+          diagnóstico inicial a Josie <strong>já chega com o resultado deste
+          pré-diagnóstico em mãos</strong> e trabalha em cima do que apareceu
+          aqui, num encontro em grupo de até 10 pessoas.
         </p>
         <p className="mt-4 text-[15px] leading-7 text-fg">
-          <strong>R$ 97 pela consulta.</strong> Se depois dela você decidir
-          seguir com algum programa da Josie, esse valor volta como desconto na
-          sua compra.
+          <span className="text-muted line-through">R$ 199</span>{" "}
+          <strong className="text-[20px] text-brand">R$ 99</strong> para quem
+          chegou até aqui. E se depois você decidir seguir para a mentoria, esse
+          valor é abatido do pacote que escolher.
         </p>
         <a
           className="btn-brand mt-6 block w-full text-center"
@@ -563,10 +570,11 @@ export function QuizClient() {
           rel="noreferrer"
           target="_blank"
         >
-          Quero agendar a minha consulta
+          Quero a minha vaga no diagnóstico
         </a>
         <p className="mt-3 text-center text-xs leading-5 text-muted">
-          Você fala direto com a Josie no WhatsApp para escolher o horário.
+          Você fala direto com a Josie no WhatsApp para escolher a turma. As
+          turmas têm no máximo 10 pessoas.
         </p>
       </div>
 
