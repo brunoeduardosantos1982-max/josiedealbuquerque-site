@@ -1,0 +1,218 @@
+<!-- =====================================================================
+     TEMPLATE DE E-MAIL — mundo Mentoria (Josie de Albuquerque)
+     Base para toda a Entrada B: entrega do caderno e as 3 trilhas de nutrição.
+
+     Adaptado do prompt de referência que o Bruno passou (página estilo e-mail,
+     editorial, fundo escuro, serifa grande, cartões de imagem, CTA de acento,
+     passos numerados, rodapé estruturado). O que foi DESCARTADO do prompt e
+     por quê:
+
+     - React, Vite e Tailwind: cliente de e-mail não roda nada disso. Aqui é
+       HTML de tabela com CSS embutido, que é o único formato que sobrevive ao
+       Outlook.
+     - Vídeo: e-mail não toca vídeo. Onde o prompt pedia vídeo, entra imagem
+       real com link para o site.
+     - Instrument Serif via Google Fonts: fonte externa é ignorada por boa
+       parte dos clientes. A pilha cai em Georgia, que é serifada, clássica e
+       está instalada em todo lugar, ficando próxima da Lora da marca.
+     - Verde-limão #DCFF00 e cinzas: fora do manual. Entra terracota #C26D50
+       sobre tinta quente #241B16, com bege #F9F5EB no texto, que é a mesma
+       paleta do hero de /mentoria.
+     - border-radius nos botões: Outlook ignora. Mantido como progressive
+       enhancement; onde não funciona, o botão vira retângulo sólido e continua
+       legível.
+
+     VARIÁVEIS DO BREVO (o site já envia as duas):
+       {{ params.NOME }}          nome de quem recebe
+       {{ params.MATERIAL_URL }}  link direto do PDF
+
+     Largura 640px, como o prompt pedia. Imagens hospedadas no próprio site,
+     em URL absoluta, porque e-mail não resolve caminho relativo.
+     ===================================================================== -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Do Caos ao Equilíbrio</title>
+<style>
+  /* Só o que os clientes decentes aproveitam. Nada aqui é essencial:
+     todo estilo crítico está embutido em cada elemento. */
+  body { margin:0; padding:0; background:#050505; }
+  img { border:0; outline:none; text-decoration:none; display:block; }
+  a { text-decoration:none; }
+  .btn:hover { background:#a95a41 !important; }
+  @media only screen and (max-width:640px) {
+    .col { padding-left:24px !important; padding-right:24px !important; }
+    .h1 { font-size:34px !important; line-height:1.1 !important; }
+    .h2 { font-size:26px !important; }
+    .cap { padding-left:16px !important; padding-right:16px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#050505;">
+
+<!-- pré-cabeçalho: aparece na lista da caixa de entrada, nunca no corpo -->
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+  49 páginas para você se escutar de novo, com a sua letra e no seu tempo.
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#050505;">
+<tr><td align="center" style="padding:24px 12px;">
+
+<table role="presentation" width="640" cellpadding="0" cellspacing="0" border="0" style="width:640px;max-width:640px;background:#241b16;">
+
+  <!-- ===== marca ===== -->
+  <tr><td align="center" style="padding:32px 24px 8px;">
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:#f9f5eb;">
+      Josie de Albuquerque
+    </div>
+  </td></tr>
+
+  <!-- ===== hero: a capa do que a pessoa está recebendo ===== -->
+  <tr><td align="center" style="padding:28px 24px 0;">
+    <a href="{{ params.MATERIAL_URL }}">
+      <img src="https://www.josiedealbuquerque.com.br/img/caderno-capa.jpg"
+           width="300" alt="Capa do caderno Do Caos ao Equilíbrio"
+           style="width:300px;max-width:80%;height:auto;">
+    </a>
+  </td></tr>
+
+  <tr><td class="col" align="center" style="padding:32px 64px 0;">
+    <h1 class="h1" style="margin:0;font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:44px;line-height:1.05;color:#f9f5eb;">
+      O seu caderno<br>chegou
+    </h1>
+  </td></tr>
+
+  <!-- ===== corpo: texto aprovado, sem alteração ===== -->
+  <tr><td class="col" style="padding:28px 64px 0;">
+    <p style="margin:0 0 20px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Oi {{ params.NOME }},
+    </p>
+    <p style="margin:0 0 24px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Aqui está o seu caderno.
+    </p>
+  </td></tr>
+
+  <!-- ===== CTA principal ===== -->
+  <tr><td align="center" style="padding:8px 24px 36px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td align="center" bgcolor="#c26d50" style="border-radius:8px;">
+        <a class="btn" href="{{ params.MATERIAL_URL }}"
+           style="display:inline-block;padding:16px 34px;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;color:#241b16;background:#c26d50;border-radius:8px;">
+          Baixar o Do Caos ao Equilíbrio
+        </a>
+      </td>
+    </tr></table>
+  </td></tr>
+
+  <!-- ===== fio ===== -->
+  <tr><td align="center" style="padding:0 24px 32px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="96"><tr>
+      <td height="1" style="background:#5a4a3e;line-height:1px;font-size:1px;">&nbsp;</td>
+    </tr></table>
+  </td></tr>
+
+  <tr><td class="col" style="padding:0 64px;">
+    <p style="margin:0 0 20px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Antes de você abrir, queria te contar uma coisa sobre ele.
+    </p>
+    <p style="margin:0 0 20px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Este caderno não é para ler. É para escrever. São 49 páginas, e boa parte
+      delas está em branco de propósito, esperando a sua letra.
+    </p>
+  </td></tr>
+
+  <!-- ===== prova visual: uma página do miolo ===== -->
+  <tr><td align="center" style="padding:24px 42px 8px;">
+    <img src="https://www.josiedealbuquerque.com.br/img/caderno-miolo.jpg"
+         width="556" alt="Uma das páginas do caderno, com espaço para escrever"
+         style="width:100%;max-width:556px;height:auto;">
+  </td></tr>
+  <tr><td class="cap" align="center" style="padding:10px 64px 32px;">
+    <div style="font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.5;color:#a5968a;">
+      Boa parte das páginas espera a sua letra.
+    </div>
+  </td></tr>
+
+  <tr><td class="col" style="padding:0 64px;">
+    <p style="margin:0 0 20px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Ele nasceu de doze anos acompanhando mulheres que chegaram até mim dizendo
+      quase a mesma frase: por fora está tudo certo, mas por dentro alguma coisa
+      não anda. Se isso soa familiar, você vai se reconhecer já nas primeiras
+      páginas.
+    </p>
+    <p style="margin:0 0 20px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Um pedido: não folheie tudo de uma vez. Comece pela autoavaliação de
+      cuidado, logo no começo. É onde você vê, com número na frente, em quais
+      áreas da sua vida você anda se abandonando sem perceber. O resto faz muito
+      mais sentido depois disso.
+    </p>
+    <p style="margin:0 0 28px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Nos próximos dias eu te escrevo de novo, contando como usar cada parte.
+    </p>
+    <p style="margin:0 0 6px;font-family:Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;color:#e8e0d4;">
+      Um beijo no coração e boas práticas,
+    </p>
+    <p style="margin:0 0 36px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:26px;line-height:1.2;color:#f9f5eb;">
+      Josie
+    </p>
+  </td></tr>
+
+  <!-- ===== P.S. da aula, no cartão de acento (o "lime card" do prompt) ===== -->
+  <tr><td style="padding:0 42px 40px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#c26d50;border-radius:10px;">
+      <tr><td align="center" style="padding:34px 32px;">
+        <div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:bold;letter-spacing:.18em;text-transform:uppercase;color:#3d1f14;">
+          uma vez por mês
+        </div>
+        <div style="margin-top:12px;font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.1;color:#241b16;">
+          Clareza na Transição
+        </div>
+        <div style="margin-top:14px;font-family:Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#3d1f14;">
+          Uma aula gratuita para quem está exatamente nesse ponto de virada.
+          Te aviso quando a próxima turma abrir.
+        </div>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- ===== rodapé ===== -->
+  <tr><td style="background:#1a120e;padding:36px 48px 40px;" align="center">
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:22px;letter-spacing:.04em;color:#f9f5eb;">
+      Josie de Albuquerque
+    </div>
+    <div style="margin-top:6px;font-family:Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#a5968a;">
+      desenvolvimento humano
+    </div>
+
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="96" style="margin:28px auto;"><tr>
+      <td height="1" style="background:#3d2f26;line-height:1px;font-size:1px;">&nbsp;</td>
+    </tr></table>
+
+    <div style="font-family:Helvetica,Arial,sans-serif;font-size:11px;line-height:1.6;color:#8a7b6f;">
+      Este conteúdo é educacional e de desenvolvimento pessoal. Não constitui
+      diagnóstico nem conduta psicológica ou médica, e não substitui
+      acompanhamento profissional de saúde.
+    </div>
+
+    <div style="margin-top:20px;font-family:Helvetica,Arial,sans-serif;font-size:11px;line-height:1.6;color:#8a7b6f;">
+      Você recebeu este e-mail porque pediu o caderno em
+      josiedealbuquerque.com.br.<br>
+      <a href="{{ unsubscribe }}" style="color:#c9a696;text-decoration:underline;">Descadastrar</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.josiedealbuquerque.com.br/privacidade" style="color:#c9a696;text-decoration:underline;">Privacidade</a>
+    </div>
+
+    <div style="margin-top:18px;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#6b5f55;">
+      © 2026 Josie de Albuquerque
+    </div>
+  </td></tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>
