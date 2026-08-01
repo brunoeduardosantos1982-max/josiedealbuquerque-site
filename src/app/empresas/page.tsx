@@ -47,7 +47,21 @@ const etapas = [
 export default function EmpresasPage() {
   return (
     <>
-      <HeroVideo>
+      <HeroVideo
+        cta={
+          /* Fica FORA do bloco de texto de propósito: no mobile ele precisa vir
+             depois do vídeo e da legenda. Ver o comentário em hero-video.tsx. */
+          <Link
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-bege/60 px-5 py-3 text-[13px] font-medium text-bege transition-all duration-200 hover:border-bege hover:bg-bege hover:text-[#16243c] sm:w-auto sm:justify-start"
+            href="/empresas/contato"
+          >
+            Agendar um diagnóstico inicial
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+              →
+            </span>
+          </Link>
+        }
+      >
         <div className="max-w-md">
           <Link
             className="group mb-3 inline-flex items-center gap-1.5 rounded-full bg-eucalipto/25 px-3 py-1 text-[11.5px] font-medium text-bege backdrop-blur-sm transition-colors hover:bg-eucalipto/40"
@@ -64,19 +78,9 @@ export default function EmpresasPage() {
             empresa mais forte.
           </h1>
 
-          <p className="mb-4 text-[13px] font-normal text-bege/70">
+          <p className="text-[13px] font-normal text-bege/70">
             Gestão de riscos psicossociais com método e conformidade.
           </p>
-
-          <Link
-            className="group inline-flex items-center gap-2 rounded-full border border-bege/60 px-5 py-2.5 text-[13px] font-medium text-bege transition-all duration-200 hover:border-bege hover:bg-bege hover:text-[#16243c]"
-            href="/empresas/contato"
-          >
-            Agendar um diagnóstico inicial
-            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-              →
-            </span>
-          </Link>
         </div>
       </HeroVideo>
 

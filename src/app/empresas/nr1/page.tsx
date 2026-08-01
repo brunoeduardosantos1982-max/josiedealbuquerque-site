@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -101,6 +102,25 @@ export default function Nr1Page() {
       <h1 className="mt-4 text-4xl font-medium leading-[1.12] text-fg">
         NR-1 e riscos psicossociais: o que sua empresa precisa fazer
       </h1>
+
+      {/* Prova de entrega real numa página que é puro texto técnico. Formato
+          livre (o Bruno liberou), então vai em banner 16:9 recortado por CSS a
+          partir do original 3:4, com o foco na Josie e na plateia. */}
+      <figure className="mt-8">
+        <Image
+          alt="Josie de Albuquerque conduzindo um treinamento sobre NR-1 e riscos psicossociais numa empresa"
+          className="aspect-[16/9] w-full rounded-2xl object-cover object-[center_35%] ring-1 ring-black/5"
+          height={1867}
+          priority
+          sizes="(min-width: 768px) 720px, 100vw"
+          src="/img/josie-treinamento-pb.jpg"
+          width={1400}
+        />
+        <figcaption className="mt-3 text-xs leading-5 text-muted">
+          Treinamento sobre NR-1 e bem-estar organizacional, conduzido in
+          company por Josie de Albuquerque.
+        </figcaption>
+      </figure>
       <div className="mt-8 flex flex-col gap-5 text-base leading-8 text-muted">
         <p>
           A NR-1, Norma Regulamentadora nº 1, estabelece as diretrizes gerais
