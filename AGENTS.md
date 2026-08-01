@@ -38,6 +38,10 @@ O caderno **não é produto**, é isca gratuita. O que se vende é a **consulta 
 
 A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só desenha. Mexeu nos textos, rode `npm test`: há teste que varre as 24 combinações atrás de termo vetado e travessão.
 
+**Pegadinha dos atributos Brevo:** atributo que não existe no cadastro da conta é **descartado em silêncio**. A rota responde `stored: true`, o contato entra, e o atributo simplesmente não está lá. Antes de mandar atributo novo pelo código, criar em `/v3/contacts/attributes/normal/<NOME>` e conferir lendo o contato depois do primeiro envio. Já existem: `NOME`, `CIDADE`, `ESTAGIO`, `MATERIAL`, `MATERIAL_URL`, `CONSENT_EM`, `BLOQUEIO`, `EMPRESA`, `CARGO`, `TELEFONE`.
+
+**Template de entrega:** id **4** no Brevo ("Entrega do caderno | Do Caos ao Equilibrio"), remetente `contato@josiedealbuquerque.com.br`. Fonte versionada em `materiais-src/email-template-mentoria.html`. Mexeu no HTML, atualize o template pela API (`PUT /v3/smtp/templates/4`), senão o site continua mandando a versão antiga.
+
 **Pegadinha das listas Brevo:** `/api/materiais/subscribe` escolhe a lista por `audience`. Sem esse campo o padrão é `b2b` e cai em `BREVO_LIST_MATERIAIS`; com `audience: "b2c"` cai em `BREVO_LIST_B2C`. Nunca deixe material do mundo Mentoria ir para a lista de materiais do mundo Empresas.
 
 ## Hero de vídeo e navegação flutuante (mundo Empresas)
