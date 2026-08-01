@@ -3,7 +3,7 @@ titulo: "NR-1 e riscos psicossociais: o que sua empresa precisa ter no PGR antes
 data: "2026-07-20"
 categoria: "NR-1"
 resumo: "A fase punitiva da NR-1 começou. Riscos psicossociais agora integram obrigatoriamente o PGR de toda empresa com CLT. Veja o que a fiscalização exige e como se adequar."
-imagem: "/img/josie-treinamento-pb.jpg"
+imagem: "/img/josie-controle-pb.jpg"
 material: "checklist-nr1"
 materialTitulo: "Checklist: riscos psicossociais no PGR conforme a NR-1"
 ---

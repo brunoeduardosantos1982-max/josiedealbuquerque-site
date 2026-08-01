@@ -37,7 +37,7 @@ export default function BlogEmpresasPage() {
               {post.imagem ? (
                 <Image
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover object-[center_35%] transition duration-500 group-hover:scale-105"
+                  className="absolute inset-0 h-full w-full object-cover object-[center_30%] transition duration-500 group-hover:scale-105"
                   height={1867}
                   sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
                   src={post.imagem}

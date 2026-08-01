@@ -85,8 +85,8 @@ export default async function PostEmpresasPage({ params }: Params) {
           {/* Prova de entrega real, em preto e branco para não competir com o
               texto técnico. O material de origem é 3:4; o corte 16:9 é do CSS. */}
           <Image
-            alt="Josie de Albuquerque conduzindo um treinamento sobre NR-1 e riscos psicossociais numa empresa"
-            className="aspect-[16/9] w-full rounded-2xl object-cover object-[center_35%] ring-1 ring-black/5"
+            alt="Josie de Albuquerque apontando para um slide sobre hierarquia de necessidades durante treinamento numa empresa"
+            className="aspect-[16/9] w-full rounded-2xl object-cover object-[center_30%] ring-1 ring-black/5"
             height={1867}
             priority
             sizes="(min-width: 1024px) 900px, 100vw"
@@ -94,8 +94,8 @@ export default async function PostEmpresasPage({ params }: Params) {
             width={1400}
           />
           <figcaption className="mt-3 text-xs leading-5 text-muted">
-            Josie de Albuquerque em treinamento sobre NR-1 e bem-estar
-            organizacional, conduzido in company.
+            Josie de Albuquerque conduzindo treinamento sobre riscos
+            psicossociais e bem-estar organizacional, in company.
           </figcaption>
         </figure>
       ) : null}

@@ -37,7 +37,7 @@ export function HeroVideo({
         <div className="lg:col-start-1 lg:row-start-1">{children}</div>
 
         <figure className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:justify-self-end">
-          <div className="relative mx-auto aspect-[9/16] w-full overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10 sm:w-[62%] lg:mx-0 lg:ml-auto lg:w-full lg:max-w-[400px]">
+          <div className="relative mx-auto aspect-[9/16] h-[46vh] w-auto overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/10 sm:h-auto sm:w-[52%] lg:mx-0 lg:ml-auto lg:h-auto lg:w-full lg:max-w-[400px]">
             {/* Começa MUDO por obrigação do navegador: autoplay com som é
                 bloqueado em Chrome, Safari e Firefox. O ControleSom libera. */}
             <video
