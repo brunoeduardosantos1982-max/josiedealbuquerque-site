@@ -239,7 +239,7 @@ export function linkConsulta(
 ): string {
   const limpo = normalizarWhatsApp(numero);
   if (!limpo) return "/mentoria";
-  const texto = `Oi Josie, sou ${nome || "uma leitora do site"}. Fiz o pré-diagnóstico e deu ${nomeBloqueio}. Quero agendar o diagnóstico de R$ 250.`;
+  const texto = `Oi Josie, sou ${nome || "uma leitora do site"}. Fiz o pré-diagnóstico e deu ${nomeBloqueio}. Quero agendar o diagnóstico de R$ 333.`;
   return `https://wa.me/${limpo}?text=${encodeURIComponent(texto)}`;
 }
 

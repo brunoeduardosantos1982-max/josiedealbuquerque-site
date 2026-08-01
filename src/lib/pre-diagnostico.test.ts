@@ -141,7 +141,7 @@ describe("WhatsApp da consulta", () => {
     const texto = decodeURIComponent(link.split("?text=")[1]);
     expect(texto).toContain("Ana");
     expect(texto).toContain("O Bloqueio do Esgotamento");
-    expect(texto).toContain("diagnóstico de R$ 250");
+    expect(texto).toContain("diagnóstico de R$ 333");
   });
 
   it("sem nome, a mensagem continua fazendo sentido", () => {

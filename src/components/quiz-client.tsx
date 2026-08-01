@@ -564,9 +564,9 @@ export function QuizClient() {
           sobre o seu.
         </p>
         <p className="mt-4 text-[15px] leading-7 text-fg">
-          <strong className="text-[20px] text-brand">R$ 250</strong>, e se depois
-          você decidir seguir para a mentoria, esse valor é abatido do pacote que
-          escolher.
+          <strong className="text-[20px] text-brand">R$ 333</strong>. E se você
+          decidir fechar a mentoria depois, esse valor é <strong className="text-fg">abatido
+          integralmente</strong> do pacote que escolher.
         </p>
         <a
           className="btn-brand mt-6 block w-full text-center"
