@@ -55,6 +55,15 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 
 **Pegadinha de screenshot:** com o vídeo tocando, `Page.captureScreenshot` via CDP trava e derruba o renderizador. Capture emulando `prefers-reduced-motion: reduce` (renderiza o poster), com `deviceScaleFactor: 1` e um alvo novo por rota.
 
+## Meta Ads (levantado em 2026-08-01)
+
+A conta de anúncios da Josie é **794465161921852**, do Business Manager dela, compartilhada como **parceira** com o negócio `centroprimeviagens` (id `1049813019498084`) do Bruno. O token de usuário de sistema que opera isso mora em `.secrets/meta-ads.json` na raiz do workspace.
+
+- **Pixel: `2712906988845455`** ("RD Station PIXEL"). É o pixel a REAPROVEITAR, não criar outro: ele traz o público de ~1.000 visitantes do perfil. Último disparo em 2023; **não está instalado no site**.
+- **Pegadinha do acesso:** compartilhar com uma PESSOA (perfil do Facebook) não dá acesso nenhum à automação. Tem que ser em **Parceiros**, com o ID do negócio. Foi o que travou o setup por duas rodadas.
+- **A atribuição de usuário de sistema pela API não funciona** com este app: devolve "Application does not have permission for this action" (exige acesso avançado de gestão de ativos, que passa por Análise de Aplicativo). Não é necessário: a parceria já entrega leitura e escrita, ambas verificadas.
+- A Página compartilhada é a `111670904446104`, com nome **`soulmentesa`** (marca aposentada). É ela que assina o anúncio, então confirmar com o Bruno antes de rodar campanha.
+
 ## Convenções
 
 - Conteúdo editorial (.md) tem origem no vault: `bssurf00/B01 Projetos/JosieDeAlbuquerque`.
