@@ -27,7 +27,7 @@ export function HeroMarquise() {
         className="anim-fade-up absolute inset-x-0 top-[18vh] z-10 overflow-hidden sm:top-[15vh]"
         style={{ animationDelay: "500ms" }}
       >
-        <div className="marquise flex w-max whitespace-nowrap font-serif text-[15vh] leading-none text-bege/90 sm:text-[22vh]">
+        <div className="marquise flex w-max whitespace-nowrap font-serif text-[11vh] leading-none text-bege/90 sm:text-[16vh]">
           <span className="pr-[6vw]">{MARQUISE}&nbsp;</span>
           <span className="pr-[6vw]">{MARQUISE}&nbsp;</span>
         </div>
