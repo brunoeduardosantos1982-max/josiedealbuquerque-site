@@ -42,15 +42,13 @@ A lógica mora em `src/lib/pre-diagnostico.ts`, pura e testada. O componente só
 
 ## Hero de vídeo e navegação flutuante (mundo Empresas)
 
-`src/components/hero-video.tsx` serve `/empresas`: vídeo **vertical** (`nr1-hero-integra.mp4`, o enquadramento nativo dos clipes) ocupando a tela inteira, conteúdo ancorado embaixo à esquerda em tipografia pequena. Server component de propósito, porque `autoplay muted playsinline` e `prefers-reduced-motion` resolvem em HTML e CSS.
+`src/components/hero-video.tsx` serve `/empresas` com `josie-palestra.mp4`: entrega in company real sobre gestão estratégica de pessoas, 1min48s, com áudio.
 
-- **`object-position` é medido, não estético.** Em `center 22%` a Josie e o slide ficam no quadro em tela larga; centralizado, o corte pega o tronco e decapita.
-- **Contraste vem de dois gradientes**, um de baixo e um da esquerda, exatamente onde o texto pousa. A Josie fica à direita e continua limpa. Não voltar para overlay escuro na imagem inteira nem para painel de vidro por cima: os dois foram recusados pelo Bruno.
-- No mobile o vídeo cabe inteiro na tela (sem sobra vertical para reposicionar), então a Josie aparece pequena no rodapé do quadro. **Débito conhecido:** um corte 9:16 mais fechado nela resolveria.
-- **Áudio:** o hero serve `nr1-hero-integra.mp4`, o clipe INTEIRO (45 s) com faixa AAC. Ele começa **mudo por obrigação do navegador**: Chrome, Safari e Firefox bloqueiam autoplay com som e só liberam depois de gesto do usuário. Quem libera é `src/components/controle-som.tsx`, um client component mínimo que acha o vídeo pelo `id` para não obrigar o hero a virar client.
+- **O vídeo NÃO é fundo com texto por cima.** Ele já vem editado, com legendas queimadas no quadro em fonte própria e slides da marca. Sobrepor a headline criava duas camadas de texto competindo, e o véu escurecia justamente a faixa das legendas. Ele aparece **emoldurado**: ao lado do texto no desktop, abaixo dele no mobile. Não voltar a usá-lo como backdrop.
+- **Áudio:** começa **mudo por obrigação do navegador**. Chrome, Safari e Firefox bloqueiam autoplay com som e só liberam após gesto do usuário. Quem libera é `src/components/controle-som.tsx`, client component mínimo que acha o vídeo pelo `id` para não obrigar o hero a virar client.
 - **Não tente detectar faixa de áudio por API do navegador.** `webkitAudioDecodedByteCount` fica em zero justamente enquanto o vídeo está mudo, então o botão nunca apareceria no Chrome. O controle é sempre visível.
-- Regenerar a versão com som: `ffmpeg -i "<origem.mov>" -vf "scale=1080:1920" -c:v libx264 -crf 31 -preset slow -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart -y public/video/nr1-hero-integra.mp4`. Os 45 s dão ~7,7 MB; com `faststart` o vídeo transmite progressivamente em vez de travar o carregamento.
-- Os arquivos `nr1-hero.{mp4,webm}` e `nr1-hero-mobile.{mp4,webm}` do C03 ficaram **sem uso** depois dessa troca (~9 MB parados no repo).
+- Converter um `.MOV` novo: `ffmpeg -i "<origem.MOV>" -vf "scale=1080:1920" -c:v libx264 -crf 32 -preset medium -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart -y public/video/josie-palestra.mp4`. CRF 32 mantém legenda e texto de slide legíveis; 1min48s dá ~18 MB, e o `faststart` faz transmitir progressivamente.
+- **Lixo conhecido:** `nr1-hero.{mp4,webm}`, `nr1-hero-mobile.{mp4,webm}`, `nr1-hero-poster.jpg` e `nr1-hero-vertical-poster.jpg` estão em `public/video/` com **zero referência no código** (~9,4 MB). Sobraram do C03.
 
 `WorldShell` tem a prop `chrome`: `"solid"` (padrão, barra com borda) ou `"float"` (pílulas absolutas por cima do conteúdo). O mundo Empresas usa `float`, e por isso **as páginas desse mundo precisam de `pt-28 sm:pt-32`** para não passar por baixo das pílulas. Página nova em `/empresas` sem esse respiro nasce quebrada.
 
